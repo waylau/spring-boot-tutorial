@@ -1,4 +1,4 @@
-# 开启第一个 Spring Boot Web 项目
+# 开启 Spring Boot 的第一个  Web 项目
 
 ## 配置环境
 
