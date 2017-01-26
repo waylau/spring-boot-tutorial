@@ -25,16 +25,19 @@ apply plugin: 'org.springframework.boot'
 
 // 打包的类型为 jar，并指定了生成的打包的文件名称和版本
 jar {
-	baseName = 'initializr-start'
+	baseName = 'hello-world'
 	version = '0.0.1-SNAPSHOT'
 }
 
 // 指定编译 .java 文件的 JDK 版本
 sourceCompatibility = 1.8
 
-// 使用了 Maven 的中央仓库
+// 默认使用了 Maven 的中央仓库。这里改用自定义的镜像库
 repositories {
-	mavenCentral()
+	//mavenCentral()
+	maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
 }
 
 // 依赖关系

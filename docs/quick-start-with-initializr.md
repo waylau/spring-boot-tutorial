@@ -20,7 +20,7 @@
 
 ## 用 Gradle 编译项目
 
-在项目根目录下，执行 `gradle build`进行编译，编辑过程如下：
+在项目根目录下，执行 `gradle build`进行构建，构建过程如下：
 
 
 ```
@@ -205,7 +205,199 @@ D:\workspaceGithub\spring-boot-tutorial\samples\initializr-start>java -jar build
 
 从输出内容我们可以看到，该项目是使用的 Tomcat 容器，使用的端口号是 8080。
 
-
 在控制台输入“Ctrl + C”，可以关闭该程序。
 
 ## 探索项目
+
+在启动项目后，在浏览器里面输入 <http://localhost:8080/>，我们可以得到如下信息：
+
+```
+Whitelabel Error Page
+
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+Wed Jan 25 21:33:34 CST 2017
+There was an unexpected error (type=Not Found, status=404).
+No message available
+```
+
+由于，在我们项目里面，还没有任何对请求的处理程序，所以返回了上述错误提示信息。
+
+我们观察下这个项目的目录结构：
+
+```
+initializr-start
+│  .gitignore
+│  build.gradle
+│  gradlew
+│  gradlew.bat
+│
+├─.gradle
+│  └─3.3
+│      └─taskArtifacts
+│              fileHashes.bin
+│              fileSnapshots.bin
+│              taskArtifacts.bin
+│              taskArtifacts.lock
+│
+├─build
+│  ├─classes
+│  │  ├─main
+│  │  │  └─com
+│  │  │      └─waylau
+│  │  │          └─spring
+│  │  │              └─boot
+│  │  │                      InitializrStartApplication.class
+│  │  │
+│  │  └─test
+│  │      └─com
+│  │          └─waylau
+│  │              └─spring
+│  │                  └─boot
+│  │                          InitializrStartApplicationTests.class
+│  │
+│  ├─libs
+│  │      initializr-start-0.0.1-SNAPSHOT.jar
+│  │      initializr-start-0.0.1-SNAPSHOT.jar.original
+│  │
+│  ├─reports
+│  │  └─tests
+│  │      └─test
+│  │          │  index.html
+│  │          │
+│  │          ├─classes
+│  │          │      com.waylau.spring.boot.InitializrStartApplicationTests.html
+│  │          │
+│  │          ├─css
+│  │          │      base-style.css
+│  │          │      style.css
+│  │          │
+│  │          ├─js
+│  │          │      report.js
+│  │          │
+│  │          └─packages
+│  │                  com.waylau.spring.boot.html
+│  │
+│  ├─resources
+│  │  └─main
+│  │          application.properties
+│  │
+│  ├─test-results
+│  │  └─test
+│  │      │  TEST-com.waylau.spring.boot.InitializrStartApplicationTests.xml
+│  │      │
+│  │      └─binary
+│  │              output.bin
+│  │              output.bin.idx
+│  │              results.bin
+│  │
+│  └─tmp
+│      ├─compileJava
+│      │  └─emptySourcePathRef
+│      ├─compileTestJava
+│      │  └─emptySourcePathRef
+│      └─jar
+│              MANIFEST.MF
+│
+├─gradle
+│  └─wrapper
+│          gradle-wrapper.jar
+│          gradle-wrapper.properties
+│
+└─src
+    ├─main
+    │  ├─java
+    │  │  └─com
+    │  │      └─waylau
+    │  │          └─spring
+    │  │              └─boot
+    │  │                      InitializrStartApplication.java
+    │  │
+    │  └─resources
+    │          application.properties
+    │
+    └─test
+        └─java
+            └─com
+                └─waylau
+                    └─spring
+                        └─boot
+                                InitializrStartApplicationTests.java
+```
+
+### 1. build.gradle 文件 
+
+在项目的根目录，我们可以看到`build.gradle` 文件，这个是项目的构建脚本。Gradle 是以 Groovy 语言为基础，面向 Java 应用为主。基于DSL（领域特定语言）语法的自动化构建工具。Gradle这个工具集成了构建，测试，发布和其他，比如软件打包，生成注释文档等功能。跟以往 Maven 等构架工具不同，配置文件不需要繁琐的 XML ，而是简洁的 Groovy 语言脚本。
+
+本项目的配置说明，我已经做了解释，如下：
+
+```
+// buildscript 代码块中脚本优先执行
+buildscript {
+
+	// ext 用于定义动态属
+	ext {
+		springBootVersion = '1.4.3.RELEASE'
+	}
+	
+	// 使用了 Maven 的中央仓库（你也可以指定其他仓库）
+	repositories {
+		mavenCentral()
+	}
+	
+	// 依赖关系
+	dependencies {
+		// classpath 声明说明了在执行其余的脚本时，ClassLoader 可以使用这些依赖项
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+// 使用插件
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+// 打包的类型为 jar，并指定了生成的打包的文件名称和版本
+jar {
+	baseName = 'initializr-start'
+	version = '0.0.1-SNAPSHOT'
+}
+
+// 指定编译 .java 文件的 JDK 版本
+sourceCompatibility = 1.8
+
+// 使用了 Maven 的中央仓库
+repositories {
+	mavenCentral()
+}
+
+// 依赖关系
+dependencies {
+	// 该依赖对于编译发行是必须的
+	compile('org.springframework.boot:spring-boot-starter-web')
+	// 该依赖对于编译测试是必须的，默认包含编译产品依赖和编译时依
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+```
+
+### 2. gradlew 和 gradlew.bat
+
+自动完成  Gradle 环境的脚本，在 Linux 和 Mact 下直接运行`gradlew` 会自动完成 Gradle 环境的搭建。而在 Windouws 环境下，则执行  `gradlew.bat` 文件。
+
+### 3. build 和 .gradle 目录
+
+`build` 和`.gradle` 目录都是在 Gradle 对项目进行构建后生成的。
+
+### 4. gradle/wrapper
+
+Gradle Wrapper 可以使得项目组成员不必预先安装好 Gradle，就会自动下载 Gradle。好处是便于统一项目所使用的 Gradle 版本。由于本例已经事先安装好了 Gradle，所以并没有用到 Gradle Wrapper。 `gradle-wrapper.properties`是用来 说明 Gradle Wrapper 的配置情况。
+
+```
+distributionUrl=https\://services.gradle.org/distributions/gradle-2.13-bin.zip
+```
+
+其中 `distributionUrl` 说明了 Gradle 发布包下载的路径。从上述配置可以看出， Spring Boot 采用的是 Gradle 2.13 版本。
+
+### 5. src 目录
+
+如果你用过 Maven，那么肯定对 `src` 目录不默认。约定该目录下的  `main`目录下是 程序的源码，`test`下是测试代码。
