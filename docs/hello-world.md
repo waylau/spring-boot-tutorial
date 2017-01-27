@@ -102,4 +102,5 @@ public class HelloControllerTest {
 
 在浏览器，我们访问<http://localhost:8080/hello> ，可以到页面打印出了“Hello World! Welcome to visit waylau.com!”字样。
 
+看到没有，编写一个 Spring Boot 程序就是这么简单！
 
