@@ -382,7 +382,7 @@ dependencies {
 
 ### 2. gradlew 和 gradlew.bat
 
-自动完成  Gradle 环境的脚本，在类似 Unix 的平台上(如 Linux 和 Mac OS)，下直接运行`gradlew`脚本 会自动完成 Gradle 环境的搭建。而在 Windouws 环境下，则执行  `gradlew.bat` 文件。
+自动完成  Gradle 环境的脚本，在类似 Unix 的平台上(如 Linux 和 Mac OS)，下直接运行`grfadlew`脚本 会自动完成 Gradle 环境的搭建。而在 Windouws 环境下，则执行  `gradlew.bat` 文件。
 
 ### 3. build 和 .gradle 目录
 

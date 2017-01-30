@@ -117,7 +117,68 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-bin.zip
 
 执行`gradlew`来对 “hello-world” 程序进行构建。如果是首次使用，首先会下载 Gradle 发布包。你可以在`$USER_HOME/.gradle/wrapper/dists`下的用户主目录中找到它们。
 
-### 2. 访问程序
+```
+D:\workspaceGithub\spring-boot-tutorial\samples\hello-world>gradlew build
+:compileJava
+:processResources
+:classes
+:findMainClass
+:jar
+:bootRepackage
+:assemble
+:compileTestJava
+:processTestResources UP-TO-DATE
+:testClasses
+:test
+:check
+:build
+
+BUILD SUCCESSFUL
+```
+
+### 3. 运行程序
+
+执行 `java -jar build/libs/hello-world-0.0.1-SNAPSHOT.jar`来运行程序
+
+```java
+D:\workspaceGithub\spring-boot-tutorial\samples\hello-world>java -jar build/libs/hello-world-0.0.1-SNAPSHOT.jar
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.4.3.RELEASE)
+
+2017-01-30 19:48:39.861  INFO 1392 --- [           main] c.waylau.spring.boot.hello.Application   : Starting Application on DESKTOP-L4SAS32 with PID 1392 (D:\workspaceGithub\spring-boot-tutorial\samples\hello-world\build\libs\hello-world-0.0.1-SNAPSHOT.jar started by AAA in D:\workspaceGithub\spring-boot-tutorial\samples\hello-world)
+2017-01-30 19:48:39.871  INFO 1392 --- [           main] c.waylau.spring.boot.hello.Application   : No active profile set, falling back to default profiles: default
+2017-01-30 19:48:40.048  INFO 1392 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@45283ce2: startup date [Mon Jan 30 19:48:40 CST 2017]; root of context hierarchy
+2017-01-30 19:48:43.372  INFO 1392 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-01-30 19:48:43.400  INFO 1392 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-01-30 19:48:43.402  INFO 1392 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
+2017-01-30 19:48:44.182  INFO 1392 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-01-30 19:48:44.183  INFO 1392 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4140 ms
+2017-01-30 19:48:44.433  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-01-30 19:48:44.444  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-01-30 19:48:44.543  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-01-30 19:48:44.544  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-01-30 19:48:44.549  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-01-30 19:48:45.093  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@45283ce2: startup date [Mon Jan 30 19:48:40 CST 2017]; root of context hierarchy
+2017-01-30 19:48:45.233  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String com.waylau.spring.boot.hello.controller.HelloController.hello()
+2017-01-30 19:48:45.241  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-01-30 19:48:45.242  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-01-30 19:48:45.291  INFO 1392 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-30 19:48:45.291  INFO 1392 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-30 19:48:45.364  INFO 1392 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-30 19:48:45.668  INFO 1392 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-01-30 19:48:45.778  INFO 1392 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-01-30 19:48:45.791  INFO 1392 --- [           main] c.waylau.spring.boot.hello.Application   : Started Application in 6.896 seconds (JVM running for 7.924)
+```
+
+
+
+### 3. 访问程序
 
 在浏览器，我们访问<http://localhost:8080/hello> ，可以到页面打印出了“Hello World! Welcome to visit waylau.com!”字样。
 
