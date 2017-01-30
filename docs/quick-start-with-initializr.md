@@ -8,7 +8,7 @@
 * Gradle 3.3
 * Eclipse Neon.2 Release (4.6.2)
 
-其中，JDK 的安装，可以参阅 [《Java 编程要点》](https://github.com/waylau/essential-java)；Gradle 的安装可以参阅 [《Gradle 2 用户指南》](https://github.com/waylau/Gradle-2-User-Guide)
+其中，JDK 的安装，可以参阅 [《Java 编程要点》](https://github.com/waylau/essential-java)；Gradle 的安装可以参阅 [《Gradle 3 用户指南》](https://github.com/waylau/gradle-3-user-guide)
 
 ## 通过 Spring Initializr 初始化一个 Spring Boot 原型
 
@@ -382,7 +382,7 @@ dependencies {
 
 ### 2. gradlew 和 gradlew.bat
 
-自动完成  Gradle 环境的脚本，在 Linux 和 Mact 下直接运行`gradlew` 会自动完成 Gradle 环境的搭建。而在 Windouws 环境下，则执行  `gradlew.bat` 文件。
+自动完成  Gradle 环境的脚本，在类似 Unix 的平台上(如 Linux 和 Mac OS)，下直接运行`gradlew`脚本 会自动完成 Gradle 环境的搭建。而在 Windouws 环境下，则执行  `gradlew.bat` 文件。
 
 ### 3. build 和 .gradle 目录
 

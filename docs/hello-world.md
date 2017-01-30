@@ -92,11 +92,30 @@ public class HelloControllerTest {
 
 用 JUnit 运行该测试，绿色代码测试通过。
 
+## 配置 Gradle Wrapper
+
+Gradle 项目可以使用 Gradle 的安装包进行构建，也可以使用  Gradle Wrapper 来进行构建。使用  Gradle Wrapper 的好处是可以使项目的构建工具版本得到统一。
+
+我们修改 Wrapper 属性文件（位于  gradle/wrapper/gradle-wrapper.properties）中的 distributionUrl 属性，将其改为指定的 Gradle 版本，这里是采用了 Gradle 3.3 版本。
+
+```
+distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-bin.zip
+```
+
+这样，Gradle Wrapper 会自动安装 Gradle 的版本。
+
+不同平台，执行不同的命令脚本
+
+* gradlew（Unix Shell脚本）
+* gradlew.bat（Windows批处理文件）
+
+有关 Gradle Wrapper 的安装可以参阅 [《Gradle 3 用户指南》](https://github.com/waylau/gradle-3-user-guide)
+
 ## 运行程序
 
-### 1. 编译程序
+### 1. 使用  Gradle Wrapper 程序
 
-执行`gradle build`来对 “hello-world” 程序进行构建。
+执行`gradlew`来对 “hello-world” 程序进行构建。如果是首次使用，首先会下载 Gradle 发布包。你可以在`$USER_HOME/.gradle/wrapper/dists`下的用户主目录中找到它们。
 
 ### 2. 访问程序
 
