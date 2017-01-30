@@ -136,7 +136,7 @@ D:\workspaceGithub\spring-boot-tutorial\samples\hello-world>gradlew build
 BUILD SUCCESSFUL
 ```
 
-### 3. 运行程序
+### 2. 运行程序
 
 执行 `java -jar build/libs/hello-world-0.0.1-SNAPSHOT.jar`来运行程序
 
