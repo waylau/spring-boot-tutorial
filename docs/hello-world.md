@@ -8,7 +8,17 @@
 
 我们打开`build.gradle` 文件，做了如下变更。
 
-### 1. 修改项目的名称
+### 1. 自定义依赖的版本
+
+我们可以自定义 Spring Boot 的版本，比如，我们使用了目前最新的 1.5.1.RELEASE 版本。
+
+```
+ext {
+	springBootVersion = '1.5.1.RELEASE'
+}
+```
+
+### 2. 修改项目的名称
 
 修改项目的名称为“hello-world”：
 
@@ -19,7 +29,7 @@ jar {
 }
 ```
 
-### 2. 修改项目的仓库地址
+### 3. 修改项目的仓库地址
 
 为了加快构建速度，我们自定义了一个国内的仓库镜像地址：
 
@@ -149,31 +159,33 @@ D:\workspaceGithub\spring-boot-tutorial\samples\hello-world>java -jar build/libs
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v1.4.3.RELEASE)
+ :: Spring Boot ::        (v1.5.1.RELEASE)
 
-2017-01-30 19:48:39.861  INFO 1392 --- [           main] c.waylau.spring.boot.hello.Application   : Starting Application on DESKTOP-L4SAS32 with PID 1392 (D:\workspaceGithub\spring-boot-tutorial\samples\hello-world\build\libs\hello-world-0.0.1-SNAPSHOT.jar started by AAA in D:\workspaceGithub\spring-boot-tutorial\samples\hello-world)
-2017-01-30 19:48:39.871  INFO 1392 --- [           main] c.waylau.spring.boot.hello.Application   : No active profile set, falling back to default profiles: default
-2017-01-30 19:48:40.048  INFO 1392 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@45283ce2: startup date [Mon Jan 30 19:48:40 CST 2017]; root of context hierarchy
-2017-01-30 19:48:43.372  INFO 1392 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
-2017-01-30 19:48:43.400  INFO 1392 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
-2017-01-30 19:48:43.402  INFO 1392 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
-2017-01-30 19:48:44.182  INFO 1392 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2017-01-30 19:48:44.183  INFO 1392 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4140 ms
-2017-01-30 19:48:44.433  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
-2017-01-30 19:48:44.444  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2017-01-30 19:48:44.543  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2017-01-30 19:48:44.544  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2017-01-30 19:48:44.549  INFO 1392 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2017-01-30 19:48:45.093  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@45283ce2: startup date [Mon Jan 30 19:48:40 CST 2017]; root of context hierarchy
-2017-01-30 19:48:45.233  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String com.waylau.spring.boot.hello.controller.HelloController.hello()
-2017-01-30 19:48:45.241  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2017-01-30 19:48:45.242  INFO 1392 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2017-01-30 19:48:45.291  INFO 1392 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-01-30 19:48:45.291  INFO 1392 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-01-30 19:48:45.364  INFO 1392 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2017-01-30 19:48:45.668  INFO 1392 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2017-01-30 19:48:45.778  INFO 1392 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-2017-01-30 19:48:45.791  INFO 1392 --- [           main] c.waylau.spring.boot.hello.Application   : Started Application in 6.896 seconds (JVM running for 7.924)
+2017-02-01 11:09:26.330  INFO 9108 --- [           main] c.waylau.spring.boot.hello.Application   : Starting Application on DESKTOP-L4SAS32 with PID 9108 (D:\workspaceGithub\spring-boot-tutorial\samples\hello-world\build\libs\hello-world-0.0.1-SNAPSHOT.jar started by AAA in D:\workspaceGithub\spring-boot-tutorial\samples\hello-world)
+2017-02-01 11:09:26.344  INFO 9108 --- [           main] c.waylau.spring.boot.hello.Application   : No active profile set, falling back to default profiles: default
+2017-02-01 11:09:26.519  INFO 9108 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5f4da5c3: startup date [Wed Feb 01 11:09:26 CST 2017]; root of context hierarchy
+2017-02-01 11:09:28.572  INFO 9108 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-02-01 11:09:28.790  INFO 9108 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-02-01 11:09:29.702  INFO 9108 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-02-01 11:09:29.735  INFO 9108 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-02-01 11:09:29.739  INFO 9108 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-02-01 11:09:30.193  INFO 9108 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-02-01 11:09:30.197  INFO 9108 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3685 ms
+2017-02-01 11:09:30.443  INFO 9108 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-02-01 11:09:30.452  INFO 9108 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-02-01 11:09:30.457  INFO 9108 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-02-01 11:09:30.458  INFO 9108 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-02-01 11:09:30.460  INFO 9108 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-02-01 11:09:30.973  INFO 9108 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5f4da5c3: startup date [Wed Feb 01 11:09:26 CST 2017]; root of context hierarchy
+2017-02-01 11:09:31.114  INFO 9108 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String com.waylau.spring.boot.hello.controller.HelloController.hello()
+2017-02-01 11:09:31.123  INFO 9108 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-02-01 11:09:31.124  INFO 9108 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-02-01 11:09:31.179  INFO 9108 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-02-01 11:09:31.180  INFO 9108 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-02-01 11:09:31.250  INFO 9108 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-02-01 11:09:31.503  INFO 9108 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-02-01 11:09:31.683  INFO 9108 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-02-01 11:09:31.693  INFO 9108 --- [           main] c.waylau.spring.boot.hello.Application   : Started Application in 6.107 seconds (JVM running for 6.932)
 ```
 
 

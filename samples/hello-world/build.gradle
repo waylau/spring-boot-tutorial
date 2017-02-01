@@ -3,7 +3,7 @@ buildscript {
 
 	// ext 用于定义动态属
 	ext {
-		springBootVersion = '1.4.3.RELEASE'
+		springBootVersion = '1.5.1.RELEASE'
 	}
 	
 	// 使用了 Maven 的中央仓库（你也可以指定其他仓库）
