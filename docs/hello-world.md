@@ -50,8 +50,17 @@ repositories {
 
 ## 1. 观察 Application.java
 
-打开 Application.java 文件，我们首先看到的是`@SpringBootApplication`注解。对于经常使用 Spring 用户而言，
-`@SpringBootApplication`注解等同于使用 `@Configuration`、 `@EnableAutoConfiguration` 和 `@ComponentScan` 的默认属性。
+打开 Application.java 文件，我们首先看到的是`@SpringBootApplication`注解。对于经常使用 Spring 用户而言，很多开发者总是使用`@Configuration`、`@EnableAutoConfiguration`和`@ComponentScan`注解他们的 main 类。由于这些注解被如此频繁地一块使用，Spring Boot提供一个方便的`@SpringBootApplication`选择。该 
+`@SpringBootApplication`注解等同于默认属性使用 `@Configuration`、 `@EnableAutoConfiguration` 和 `@ComponentScan` 的默认属性。
+
+```
+@SpringBootApplication = (默认属性)@Configuration + @EnableAutoConfiguration + @ComponentScan 
+```
+
+*  `@Configuration`：提到`@Configuration`经常与`@Bean`组合使用，使用这两个注解就可以创建一个简单的 Spring 配置类，可以用来替代相应的 XML 配置文件。`@Configuration`的注解类标识这个类可以使用Spring IoC 容器作为 bean 定义的来源。`@Bean`注解告诉Spring，一个带有`@Bean`的注解方法将返回一个对象，该对象应该被注册为在Spring应用程序上下文中的bean。
+* `@EnableAutoConfiguration`：能够自动配置 Spring 的上下文，试图猜测和配置你想要的bean类，通常会自动根据你的类路径和你的bean定义自动配置。
+* `@ComponentScan`：会自动扫描指定包下的全部标有`@Component`的类，并注册成bean，当然也包括`@Component`下的子注解`@Service`、`@Repository`、`@Controller`。这些bean一般是结合`@Autowired`构造函数来注入。
+
 
 ## 2. 编写控制器 HelloController
 
@@ -69,6 +78,15 @@ public class HelloController {
 	}
 }
 ```
+
+其中`@RestController`等价于`@Controller`与`@ResponseBody`的组合。
+
+```
+@RestController = @Controller + @ResponseBody 
+```
+
+* `@ResponseBody`:该注解指示方法返回值的应绑定到 Web 响应正文。
+* `@RequestMapping`:是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。根据方法的不同，还可以用`GetMapping`、`PostMapping`、`PutMapping`、`DeleteMapping`、`PatchMapping`代替。
 
 ## 编写测试用例
 
