@@ -8,7 +8,10 @@ buildscript {
 	
 	// 使用了 Maven 的中央仓库（你也可以指定其他仓库）
 	repositories {
-		mavenCentral()
+		//mavenCentral()
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
 	}
 	
 	// 依赖关系
@@ -36,8 +39,8 @@ sourceCompatibility = 1.8
 repositories {
 	//mavenCentral()
 	maven {
-        url 'http://maven.aliyun.com/nexus/content/groups/public/'
-    }
+		url 'http://maven.aliyun.com/nexus/content/groups/public/'
+	}
 }
 
 // 依赖关系
