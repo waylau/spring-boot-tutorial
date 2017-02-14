@@ -6,7 +6,7 @@
 
 * JDK 8
 * Gradle 3.3
-* Eclipse Neon.2 Release (4.6.2)
+* ~~Eclipse Neon.2 Release (4.6.2)~~
 
 其中，JDK 的安装，可以参阅 [《Java 编程要点》](https://github.com/waylau/essential-java)；Gradle 的安装可以参阅 [《Gradle 3 用户指南》](https://github.com/waylau/gradle-3-user-guide)
 

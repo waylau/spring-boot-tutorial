@@ -48,7 +48,7 @@ repositories {
 
 好了，现在终于可以进入编写代码的时间了。我们进入 src 目录下，我们应该能够看到 `com.waylau.spring.boot`包以及 `InitializrStartApplication.java` 文件。为了规范，我们将该包名改为 `com.waylau.spring.boot.hello`，将`InitializrStartApplication.java`更名为`Application.java`
 
-## 1. 观察 Application.java
+### 1. 观察 Application.java
 
 打开 Application.java 文件，我们首先看到的是`@SpringBootApplication`注解。对于经常使用 Spring 用户而言，很多开发者总是使用`@Configuration`、`@EnableAutoConfiguration`和`@ComponentScan`注解他们的 main 类。由于这些注解被如此频繁地一块使用，Spring Boot提供一个方便的`@SpringBootApplication`选择。该 
 `@SpringBootApplication`注解等同于默认属性使用 `@Configuration`、 `@EnableAutoConfiguration` 和 `@ComponentScan` 的默认属性。
@@ -62,7 +62,12 @@ repositories {
 * `@ComponentScan`：会自动扫描指定包下的全部标有`@Component`的类，并注册成bean，当然也包括`@Component`下的子注解`@Service`、`@Repository`、`@Controller`。这些bean一般是结合`@Autowired`构造函数来注入。
 
 
-## 2. 编写控制器 HelloController
+### 2. main方法
+
+该main方法，这是一个标准的方法，它遵循Java对于一个应用程序入口点的约定。main方法通过调用run，将业务委托给了Spring Boot的SpringApplication类。SpringApplication将引导我们的应用，启动Spring，相应地启动被自动配置的Tomcat web服务器。我们需要将Application.class作为参数传递给run方法，以此告诉SpringApplication谁是主要的Spring组件，并传递args数组以暴露所有的命令行参数。
+
+
+### 3. 编写控制器 HelloController
 
 创建`com.waylau.spring.boot.hello.controller`包，用于放置控制器类。
 
@@ -87,6 +92,7 @@ public class HelloController {
 
 * `@ResponseBody`:该注解指示方法返回值的应绑定到 Web 响应正文。
 * `@RequestMapping`:是一个用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。根据方法的不同，还可以用`GetMapping`、`PostMapping`、`PutMapping`、`DeleteMapping`、`PatchMapping`代替。
+* `@RestController`：暗示用户，这是一个支持REST的控制器。
 
 ## 编写测试用例
 
