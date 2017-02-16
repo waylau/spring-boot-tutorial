@@ -20,6 +20,10 @@ Spring Boot 主要的目标是：
 
 简言之，抛弃了传统JavaEE项目繁琐的配置、学习过程，让开发过程变得 so easy!
 
+## Spring Boot 简史
+
+* 2016年 10月 11日，Spring Boot 获得 [JAX Innovation Awards 2016](https://jaxenter.com/winners-jax-innovation-awards-2016-jax-london-129588.html) 大奖
+
 ## Spring Boot 不是什么
 
 ### 与 Spring 框架的关系
