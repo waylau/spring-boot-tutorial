@@ -5,7 +5,7 @@ This is the summary of my book.
 * [Spring Boot 是什么，不是什么](docs/overview.md)
 * [开启 Spring Boot 的第一个  Web 项目](docs/quick-start-with-initializr.md)
 * [Hello World](docs/hello-world.md)
-* 开发环境的搭建
+* [开发环境的搭建](docs/devlope-in-ide.md)
 	* Eclipse 的安装与配置
 	* 常用 Eclipse 插件的选择与安装
 	* 项目导入 IDE、运行
