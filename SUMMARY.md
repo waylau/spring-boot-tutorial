@@ -12,7 +12,7 @@ This is the summary of my book.
 * Spring 依赖注入与 bean管理概述
 	* 依赖注入
 	* bean 管理
-* 处理 Spring MVC MediaType（媒体类型）
+* [处理 Spring MVC 常用 MediaType（媒体类型）](docs/media-type.md)
 	* Spring MVC 简介
 	* 返回 XML 类型
 	* 返回 JSON 类型
