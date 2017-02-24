@@ -1,4 +1,4 @@
-package com.waylau.spring.boot.hello.contrller;
+package com.waylau.spring.boot.mediatype.contrller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

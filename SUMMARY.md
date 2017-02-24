@@ -20,7 +20,7 @@ This is the summary of my book.
 	* Thymeleaf 简介
 	* Thymeleaf 标准表达式语法
 	* Thymeleaf 与 Spring Boot 集成
-	* Thymeleaf 实战
+	* [Thymeleaf 实战](docs/thymeleaf-in-action.md)
 * 数据持久化
 	* JPA 简介
 	* Spring Data JPA 用法介绍
@@ -45,28 +45,28 @@ This is the summary of my book.
 	* Apache Shiro 简介
 	* Apache Shiro 与 Spring Boot 集成
 	* Apache Shiro 实战
-* NewStarBlog 博客系统的用户管理实现
+* 博客系统的用户管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统的角色管理实现
+* 博客系统的角色管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统的权限管理实现
+* 博客系统的权限管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统的博客管理实现
+* 博客系统的博客管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统的评论管理实现
+* 博客系统的评论管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统的分类管理实现
+* 博客系统的分类管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统的标签管理实现
+* 博客系统的标签管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试
-* NewStarBlog 博客系统总结
+* 博客系统总结
 	* 集成测试
 	* 总结
 * [参考资料](docs/references.md)
