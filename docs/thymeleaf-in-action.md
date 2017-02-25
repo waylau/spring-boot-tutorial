@@ -3,6 +3,14 @@
 
 在 `media-type`项目基础上，我们构架了一个新的项目`thymeleaf-in-action`。项目的包名也做了调整，改为`com.waylau.spring.boot.thymeleaf`。
 
+## 所需环境
+
+本例子采用的开发环境如下：
+
+* Gradle 3.4
+* Thymeleaf 3.0.3.RELEASE
+* Thymeleaf Layout Dialect 2.2.0
+
 
 ## build.gradle
 

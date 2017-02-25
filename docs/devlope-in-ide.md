@@ -8,7 +8,7 @@
 
 * JDK 8
 * Gradle 3.3
-* Eclipse Oxygen (4.7)
+* Eclipse 4.6
 
 ## 配置 Eclipse
 
