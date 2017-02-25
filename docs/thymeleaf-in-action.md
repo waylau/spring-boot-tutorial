@@ -1,4 +1,4 @@
-# 
+# Thymeleaf 实战
 
 
 在 `media-type`项目基础上，我们构架了一个新的项目`thymeleaf-in-action`。项目的包名也做了调整，改为`com.waylau.spring.boot.thymeleaf`。
