@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Messages : View all</title>
+</head>
+<body>
+	<h1 layout:fragment="header">Messages : View all</h1>
+	<div layout:fragment="content" class="container">
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/(form)}">Create Message</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Age</td>
+					<td>Name</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${users.empty}">
+					<td colspan="3">No users</td>
+				</tr>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.id}">1</td>
+					<td th:text="${user.age}">11</td>
+					<td><a href="view.html" th:href="@{'/' + ${user.id}}"
+						th:text="${user.name}">waylau </a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

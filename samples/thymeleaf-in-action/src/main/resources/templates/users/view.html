@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>users : View</title>
+</head>
+<body>
+	<h1 layout:fragment="header">users : Create</h1>
+	<div layout:fragment="content" class="container">
+		<div class="alert alert-success" th:if="${globalMessage}"
+			th:text="${globalMessage}">Some Success message</div>
+		<div class="pull-right">
+			<a th:href="@{/}" href="list.html"> Messages </a>
+		</div>
+		<dl>
+			<dt>ID</dt>
+			<dd id="id" th:text="${user.id}">123</dd>
+			<dt>Date</dt>
+			<dd id="created" th:text="${#calendars.format(user.age)}">
+				30</dd>
+			<dt>Summary</dt>
+			<dd id="summary" th:text="${user.summary}">A short summary...
+			</dd>
+			<dt>user</dt>
+			<dd id="text" th:text="${user.text}">A detailed user that
+				is longer than the summary.</dd>
+		</dl>
+		<div class="pull-left">
+			<a href="users" th:href="@{'/delete/' + ${user.id}}">
+				delete </a> | <a href="form.html"
+				th:href="@{'/modify/' + ${user.id}}"> modify </a>
+		</div>
+	</div>
+</body>
+</html>

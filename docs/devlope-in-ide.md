@@ -71,3 +71,19 @@
 ### 2. 以“Java Application”运行
 
 `hello-world`程序就是一个平常的 Java 程序，所以直接右键项目，在开发时，可以以“Java Application”运行程序。
+
+
+### 3. 使用 Spring Boot Gradle Plugin 插件运行
+
+Spring Boot 已经内嵌了Spring Boot Gradle Plugin 插件，所以可以使用 Spring Boot Gradle Plugin 插件来运行程序。在命令行执行方式如下：
+
+```
+gradle bootRun
+```
+
+或者 
+
+
+```
+gradlew bootRun
+```

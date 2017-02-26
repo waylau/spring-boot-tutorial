@@ -10,7 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement // mediatype 转为xml
 public class UserVO {
 
-	private String name;
+	private long id; // 用户的唯一标识
+ 	private String name;
 	private int age;
 
 	public UserVO() {
@@ -20,7 +21,13 @@ public class UserVO {
 		this.name = name;
 		this.age = age;
 	}
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
