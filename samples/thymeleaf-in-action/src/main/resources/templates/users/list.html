@@ -9,7 +9,7 @@
 	<h1 layout:fragment="header">Messages : View all</h1>
 	<div layout:fragment="content" class="container">
 		<div class="pull-right">
-			<a href="form.html" th:href="@{/(form)}">Create Message</a>
+			<a href="users/form.html" >Create user</a>
 		</div>
 		<table class="table table-bordered table-striped">
 			<thead>
@@ -20,9 +20,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${users.empty}">
-					<td colspan="3">No users</td>
-				</tr>
+<!-- 				<tr th:if="${users.empty}"> -->
+<!-- 					<td colspan="3">No users</td> -->
+<!-- 				</tr> -->
 				<tr th:each="user : ${users}">
 					<td th:text="${user.id}">1</td>
 					<td th:text="${user.age}">11</td>

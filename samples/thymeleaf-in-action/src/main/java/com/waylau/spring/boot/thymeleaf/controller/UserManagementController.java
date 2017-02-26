@@ -74,7 +74,7 @@ public class UserManagementController {
 	 * @param user
 	 * @return
 	 */
-	@GetMapping(params = "form")
+	@GetMapping(params = "/form")
 	public String createForm(@ModelAttribute UserVO user) {
 		return "users/form";
 	}

@@ -3,26 +3,26 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="layout">
 <head>
-<title>Messages : Create</title>
+<title>users : Create</title>
 </head>
 <body>
-	<h1 layout:fragment="header">Messages : Create</h1>
+	<h1 layout:fragment="header">users : Create</h1>
 	<div layout:fragment="content" class="container">
-		<form id="messageForm" th:action="@{/(form)}" th:object="${message}"
+		<form id="userForm" th:action="@{/(form)}" th:object="${user}"
 			action="#" method="post">
 			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
 				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">
 					Validation error</p>
 			</div>
 			<div class="pull-right">
-				<a th:href="@{/}" href="messages.html"> Messages </a>
+				<a th:href="@{/}" href="users.html"> users </a>
 			</div>
 			<input type="hidden" th:field="*{id}"
 				th:class="${#fields.hasErrors('id')} ? 'field-error'" /> <label
 				for="summary">Summary</label> <input type="text"
 				th:field="*{summary}"
 				th:class="${#fields.hasErrors('summary')} ? 'field-error'" /> <label
-				for="text">Message</label>
+				for="text">user</label>
 			<textarea th:field="*{text}"
 				th:class="${#fields.hasErrors('text')} ? 'field-error'"></textarea>
 			<div class="form-actions">
