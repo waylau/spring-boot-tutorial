@@ -1,12 +1,10 @@
 package com.waylau.spring.boot.thymeleaf.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.waylau.spring.boot.thymeleaf.repository.UserRepository;
 import com.waylau.spring.boot.thymeleaf.vo.UserVO;
 
 /**
@@ -29,24 +28,15 @@ import com.waylau.spring.boot.thymeleaf.vo.UserVO;
 @RequestMapping("/users")
 public class UserManagementController {
 
-	/**
-	 * 模拟用户存储库
-	 */
-	private Map<Long, UserVO> userRepository = new HashMap<>();
+	@Autowired 
+	private UserRepository userRepository;
 
 	/**
 	 * 从 用户存储库 获取用户列表
 	 * @return
 	 */
 	private List<UserVO> getUserlist() {
-		List<UserVO> userList = new ArrayList<>();
-
-		for (Map.Entry<Long, UserVO> entry : userRepository.entrySet()) {
-			UserVO user = entry.getValue();
-			userList.add(user);
-		}
-
-		return userList;
+ 		return userRepository.gelist();
 	}
 
 	/**
@@ -65,7 +55,7 @@ public class UserManagementController {
 	 */
 	@GetMapping("{id}")
 	public ModelAndView view(@PathVariable("id") Long id) {
-		UserVO user = userRepository.get(id);
+		UserVO user = userRepository.getUerById(id);
 		return new ModelAndView("users/view", "user", user);
 	}
 
@@ -91,10 +81,8 @@ public class UserManagementController {
 		if (result.hasErrors()) {
 			return new ModelAndView("users/form", "formErrors", result.getAllErrors());
 		}
-
-		Long key = System.currentTimeMillis(); // 随机生成数字，作为唯一编码
-		user.setId(key);
-		user = userRepository.put(key, user);
+ 
+		user = userRepository.addUser(user);
 		redirect.addFlashAttribute("globalMessage", "Successfully created a new user");
 		return new ModelAndView("redirect:/{user.id}", "user.id", user.getId());
 	}
@@ -111,7 +99,7 @@ public class UserManagementController {
 	 */
 	@GetMapping(value = "delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
-		this.userRepository.remove(id);
+		userRepository.removeById(id);
 
 		return new ModelAndView("users/list", "users", getUserlist());
 	}
@@ -123,7 +111,7 @@ public class UserManagementController {
 	 */
 	@GetMapping(value = "modify/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") UserVO user) {
-		return new ModelAndView("users/form", "user", user);
+		return new ModelAndView("users/form", "user", userRepository.updateUser(user));
 	}
 
 }
