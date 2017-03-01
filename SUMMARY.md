@@ -18,7 +18,7 @@ This is the summary of my book.
 	* 返回 JSON 类型
 * 集成 Thymeleaf 
 	* Thymeleaf 简介
-	* Thymeleaf 标准表达式语法
+	* [Thymeleaf 标准表达式语法](docs/thymeleaf-standard-expression-syntax.md)
 	* Thymeleaf 与 Spring Boot 集成
 	* [Thymeleaf 实战](docs/thymeleaf-in-action.md)
 * 数据持久化
