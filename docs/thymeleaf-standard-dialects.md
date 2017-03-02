@@ -1,4 +1,18 @@
-# Thymeleaf 标准表达式语法
+# Thymeleaf 标准方言
+
+Thymeleaf的可扩展性很强，它支持自定义你自己的模板属性集（或事件标签）、表达式、语法及应用逻辑。它更像一个模板引擎框架（template engine framework）。
+
+然而，秉着“开箱即用”的原则，Thymeleaf提供了满足大多数情况下的默认实现——标准方言（standard dialects），命名为 Standard 和  SpringStandard 方言。你可以在模板中识别出这些被使用的标准方言，因为他们都以`th`属性开头，如
+
+```
+<span th:text="...">  
+```
+
+值得注意的是，Standard 和 SpringStandard 方言的用法几乎相同，不同之处在于 SpringStandard 包括了 Spring MVC 集成的具体特征（比如用 Spring Expression Language 来替代 OGNL）。
+
+通常，我们在谈论 Thymeleaf 的标准方言时，一般引用的是  Standard， 而不涉及特例。
+
+## Thymeleaf 标准表达式语法
 
 大多数 Thymeleaf 属性允许设值或者包含表达式（expressions），因为它们使用的方言的关系，我们称之为标准表达式（Standard Expressions）。这些标准表达式语法可以有五种类型：
 
@@ -11,7 +25,7 @@ ${...} : Variable expressions（变量表达式）
 ```
 
 
-## Variable expressions（变量表达式）
+### 1. Variable expressions（变量表达式）
 
 变量表达式可以是OGNL表达式或者是 Spring EL，如果集成了Spring的话，可以在上下文变量（context variables ）中执行。在Spring术语中，变量表达式也称为模型属性（model attributes）。 他们看起来像这样：
 
@@ -40,7 +54,7 @@ ${session.user.name}
 
 这里`${books}`从上下文中选择名为`books`的变量，并将其评估为可在`th:each`循环中使用的迭代器（iterable）。
 
-## Selection expressions（选择表达式）
+### 2. Selection expressions（选择表达式）
 
 选择表达式与变量表达式很像，区别在于它们是在当前选择的对象而不是整个上下文变量映射上执行。 他们看起来像这样：
 
@@ -70,7 +84,7 @@ ${session.user.name}
 }
 ```
 
-## Message (i18n) expressions（消息表达式）
+### 3. Message (i18n) expressions（消息表达式）
 
 消息表达式（通常称为文本外化、国际化或i18n）允许我们从外部源（`.properties`文件）检索特定于语言环境的消息，通过键引用它们（可选）应用一组参数。
 
@@ -99,7 +113,7 @@ ${session.user.name}
 #{${config.adminWelcomeKey}(${session.user.name})}
 ```
 
-## Link (URL) expressions（链接表达式）
+### 4. Link (URL) expressions（链接表达式）
 
 
 链接表达式旨在构建URL并向其添加有用的上下文和会话信息（通常称为URL重写的过程）。
@@ -165,7 +179,7 @@ URL 可以携带参数：
 *答案是，可能是由响应过滤器定义的URL重写。在基于Servlet的Web应用程序中，对于每个输出的URL（上下文相对、相对、绝对...）Thymeleaf将总是调用HttpServletResponse.encodeUrl(...) 机制 在显示URL之前。 这意味着过滤器可以通过包装HttpServletResponse对象（通常使用的机制）来为应用程序执行定制的URL重写。
 
 
-## Fragment expressions（分段表达式）
+### 5. Fragment expressions（分段表达式）
 
 分段表达式是 3.x 版本新增的内容。
 
@@ -188,6 +202,69 @@ URL 可以携带参数：
 
 分段表达式可以有参数。
 
+### 6. 字面量和操作
+
+Thymeleaf有一组可用的字面量和操作。
+
+* 字面量:
+	* 文本：`'one text'`、`'Another one!'`等；
+	* 数值：0、34、3.0、12.3等；
+	* 布尔：true、false
+	* Null：null
+	* token: one、sometext、 main等；
+* 文本操作:
+	* 字符串拼接：`+`
+	* 文本替换：`|The name is ${name}|`
+* 算术操作:
+	* 二元运算符：`+`、`-`、 `*`、`/`、`%`
+	* 减号（单目运算符）：`-`
+* 布尔操作：
+	* 二元运算符：`and`、`or`
+	* 布尔否定（一元运算符）：`!`、`not`
+* 比较和等价：
+	* 比较：`>`、`<`、`>=`、`<=`（`gt`、`lt`、`ge`、`le`）
+	* 等价:`==`、`!=`（`eq`、`ne`）
+* 条件运算符：
+	* If-then：`(if) ? (then)`
+	* If-then-else：`(if) ? (then) : (else)`
+	* Default：`(value) ?: (defaultvalue)`
+	
+### 7. 表达式预处理
+
+表达式预处理（expression preprocessing），它被定义在下划线`_`之间：
+
+```
+#{selection.__${sel.code}__}
+```
+
+我们看到的变量表达式`${sel.code}`将先被执行，加入结果是`"ALL"`，那么_之间的值`"ALL"`将被看做表达式的一部分被执行，在这里会变成`selection.ALL`。	
+
+
+## 基本属性
+
+ 
+让我们看一组最基本的标准方言属性，以`th:text`开头，替换标签中的文字内容（这里再次强调Thymeleaf的原型支持能力）。
+
+```
+<p th:text="#{msg.welcome}">Welcome everyone!</p>
+```
+
+
+`th:each`将循环 array 或 list 中的元素并重复打印一组标签，语法相当于 Java foreach 表达式：
+
+```
+<li th:each="book : ${books}" th:text="${book.title}">En las Orillas del Sar</li>
+```
+
+Thymeleaf 有很多`th`属性来定义 XHTML 或者 HTML5 属性，这些属性只是执行表达式并把值设置成HTML的属性值：
+
+```
+<form th:action="@{/createOrder}">
+
+<input type="button" th:value="#{form.submit}" />
+
+<a th:href="@{/admin/users}">
+```
 
 ## 参考文献
 
