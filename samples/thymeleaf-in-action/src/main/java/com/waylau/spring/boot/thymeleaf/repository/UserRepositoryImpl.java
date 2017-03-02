@@ -28,14 +28,14 @@ public class UserRepositoryImpl implements UserRepository {
 		UserVO user = new UserVO();
 		user.setAge(30);
 		user.setName("Way Lau");
-		this.saveUser(user);
+		this.saveOrUpateUser(user);
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.waylau.spring.boot.thymeleaf.repository.UserRepository#saveUser(com.waylau.spring.boot.thymeleaf.vo.UserVO)
 	 */
 	@Override
-	public UserVO saveUser(UserVO user) {
+	public UserVO saveOrUpateUser(UserVO user) {
 		Long id = user.getId();
 		if (id <= 0) {
 			id = counter.incrementAndGet();
@@ -51,16 +51,6 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public void deleteUser(Long id) {
 		this.userMap.remove(id);
-	}
-
-	/* (non-Javadoc)
-	 * @see com.waylau.spring.boot.thymeleaf.repository.UserRepository#updateUser(com.waylau.spring.boot.thymeleaf.vo.UserVO)
-	 */
-	@Override
-	public UserVO updateUser(UserVO user) {
-		Long id = user.getId();
-		this.userMap.put(id, user);
-		return user;
 	}
 
 	/* (non-Javadoc)

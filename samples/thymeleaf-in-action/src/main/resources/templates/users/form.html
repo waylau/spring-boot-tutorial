@@ -2,19 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<title th:text="${userModel.title}">users : View</title>
+	<title th:text="${userModel.title}">users : View</title>
 </head>
 <body>
- 
-<form action="/users" method="POST" th:object="${userModel.user}" >
-<input type="hidden" name="name" th:value="*{id}" >
- 名称:<br>
-<input type="text" name="name" th:value="*{name}" >
-<br>
- 年龄:<br>
-<input type="text" name="age" th:value="*{age}" >
-<input type="submit" value="提交">
-</form> 
+	<h1 th:text="${userModel.title}">Welcome to waylau.com</h1>
+	<div>
+		<a href="/users">返回主页</a>
+	</div>
+	<form action="/users" method="POST" th:object="${userModel.user}" >
+		<input type="hidden" name="id" th:value="*{id}" >
+		 名称:<br>
+		<input type="text" name="name" th:value="*{name}" >
+		<br>
+		 年龄:<br>
+		<input type="text" name="age" th:value="*{age}" >
+		<input type="submit" value="提交">
+	</form> 
 
 </body>
 </html>

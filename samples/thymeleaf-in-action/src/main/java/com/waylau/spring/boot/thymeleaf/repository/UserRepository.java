@@ -15,24 +15,17 @@ import com.waylau.spring.boot.thymeleaf.vo.UserVO;
  */
 public interface UserRepository {
 	/**
-	 * 新增用户
+	 * 新增或者修改用户
 	 * @param user
 	 * @return
 	 */
-	UserVO saveUser(UserVO user);
+	UserVO saveOrUpateUser(UserVO user);
 	
 	/**
 	 * 删除用户
 	 * @param id
 	 */
 	void deleteUser(Long id);
-	
-	/**
-	 * 修改用户
-	 * @param user
-	 * @return
-	 */
-	UserVO updateUser(UserVO user);
 	
 	/**
 	 * 根据用户id获取用户

@@ -7,7 +7,7 @@
 <body>
 	<h1 th:text="${userModel.title}">Welcome to waylau.com</h1>
 	<div>
-		<a href="users/form.html" >创建用户</a>
+		<a href="/users/form.html" >创建用户</a>
 	</div>
 	<table border="1">
 		<thead>
@@ -24,7 +24,7 @@
 			<tr th:each="user : ${userModel.userList}">
 				<td th:text="${user.id}">1</td>
 				<td th:text="${user.age}">11</td>
-				<td><a href="view.html" th:href="@{'users/' + ${user.id}}"
+				<td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
 					th:text="${user.name}">waylau </a></td>
 			</tr>
 		</tbody>
