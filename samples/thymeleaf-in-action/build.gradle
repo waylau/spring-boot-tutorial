@@ -1,7 +1,7 @@
 // buildscript 代码块中脚本优先执行
 buildscript {
 
-	// ext 用于定义动态属
+	// ext 用于定义动态属性
 	ext {
 		springBootVersion = '1.5.1.RELEASE'
 	}
