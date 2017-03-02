@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<title>Messages : View all</title>
+<title th:text="${userModel.title}">welcome</title>
 </head>
 <body>
-	<h1 layout:fragment="header">Messages : View all</h1>
-	<div layout:fragment="content" class="container">
-		<div class="pull-right">
-			<a href="users/form.html" >Create user</a>
-		</div>
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<td>ID</td>
-					<td>Age</td>
-					<td>Name</td>
-				</tr>
-			</thead>
-			<tbody>
-<!-- 				<tr th:if="${users.empty}"> -->
-<!-- 					<td colspan="3">No users</td> -->
-<!-- 				</tr> -->
-				<tr th:each="user : ${users}">
-					<td th:text="${user.id}">1</td>
-					<td th:text="${user.age}">11</td>
-					<td><a href="view.html" th:href="@{'/' + ${user.id}}"
-						th:text="${user.name}">waylau </a></td>
-				</tr>
-			</tbody>
-		</table>
+	<h1 th:text="${userModel.title}">Welcome to waylau.com</h1>
+	<div>
+		<a href="users/form.html" >创建用户</a>
 	</div>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Age</td>
+				<td>Name</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${userModel.userList.size()} eq 0">
+				<td colspan="3">没有用户信息！！</td>
+			</tr>
+			<tr th:each="user : ${userModel.userList}">
+				<td th:text="${user.id}">1</td>
+				<td th:text="${user.age}">11</td>
+				<td><a href="view.html" th:href="@{'users/' + ${user.id}}"
+					th:text="${user.name}">waylau </a></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

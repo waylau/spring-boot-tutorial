@@ -1,35 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<title>users : View</title>
+<title th:text="${userModel.title}">users : View</title>
 </head>
 <body>
-	<h1 layout:fragment="header">users : Create</h1>
-	<div layout:fragment="content" class="container">
-		<div class="alert alert-success" th:if="${globalMessage}"
-			th:text="${globalMessage}">Some Success message</div>
-		<div class="pull-right">
-			<a th:href="@{/}" href="list.html"> Messages </a>
-		</div>
-		<dl>
-			<dt>ID</dt>
-			<dd id="id" th:text="${user.id}">123</dd>
-			<dt>Date</dt>
-			<dd id="created" th:text="${#calendars.format(user.age)}">
-				30</dd>
-			<dt>Summary</dt>
-			<dd id="summary" th:text="${user.summary}">A short summary...
-			</dd>
-			<dt>user</dt>
-			<dd id="text" th:text="${user.text}">A detailed user that
-				is longer than the summary.</dd>
-		</dl>
-		<div class="pull-left">
-			<a href="users" th:href="@{'/delete/' + ${user.id}}">
-				delete </a> | <a href="form.html"
-				th:href="@{'/modify/' + ${user.id}}"> modify </a>
-		</div>
+	<h1 th:text="${userModel.title}"></h1>
+	<div>
+		<a href="/users">返回主页</a>
 	</div>
+	<div>
+		<p><strong>ID:</strong><span id="id" th:text="${userModel.user.id}">123</span></p>
+		<p><strong>Name:</strong><span id="name" th:text="${userModel.user.name}">waylau</span></p>
+		<p><strong>Age:</strong><span id="age" th:text="${userModel.user.age}">30</span></p>
+	</div>
+
+	<div>
+		<a th:href="@{'/users/delete/' + ${userModel.user.id}}">删除 </a> 
+		| <a th:href="@{'/users/modify/' + ${userModel.user.id}}">修改</a>
+	</div>
+ 
 </body>
 </html>
