@@ -1,74 +1,230 @@
 # Thymeleaf 实战
 
+在上一节，我们构建了一个新的项目`thymeleaf-in-action`。通过该项目，我们用 Thymeleaf 来实现一个最简单的“用户管理”功能。
 
-在 `media-type`项目基础上，我们构架了一个新的项目`thymeleaf-in-action`。项目的包名也做了调整，改为`com.waylau.spring.boot.thymeleaf`。
-
-## 所需环境
-
-本例子采用的开发环境如下：
-
-* Gradle 3.4
-* Thymeleaf 3.0.3.RELEASE
-* Thymeleaf Layout Dialect 2.2.0
+“用户管理”可以实现对用户的查询、新增、删除和修改。 为了简便，我们没有使用数据库管理系统，而是将数据直接保存在了内存。需要注意的是，只要应用重启，数据就会丢失。
 
 
-## build.gradle
+## 修改application.properties
 
-修改 build.gradle 文件，让我们的`thymeleaf-in-action`项目成为一个新的项目。
+增加下面两项配置：
 
-修改内容也比较简单，修改项目名称及版本即可。
-
-```groovy
-jar {
-	baseName = 'thymeleaf-in-action'
-	version = '1.0.0'
-}
+```
+# 热部署静态文件
+spring.thymeleaf.cache=false
+# 使用HTML5标准
+spring.thymeleaf.mode=HTML5
 ```
 
-同时，我们需要添加 Thymeleaf 的依赖。
 
-```groovy
-// 依赖关系
-dependencies {
-	...
+## 后台编码
  
-	// 添加 Thymeleaf 的依赖
-	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	
- 	...
+### 修改 UserVO.java
+
+在 UserVO 类里面，增加一个 id 字段，作为不用的用户的唯一表示。
+
+```java
+private long id; // 用户的唯一标识
+ 
+public long getId() {
+	return id;
+}
+
+public void setId(long id) {
+	this.id = id;
 }
 ```
 
-	
-	
-由于 `spring-boot-starter-thymeleaf`库，默认使用的是 Thymeleaf 2.1 版本。为了学习最前沿的技术，我们采用了 Thymeleaf 最新的版本[Thymeleaf 3.0.3](http://www.thymeleaf.org/)。我们要使用Thymeleaf 3去替换 Spring Boot 依赖库中的thymeleaf和thymeleaf-layout-dialect版本号，如下：
+### 创建资源库
 
+建包 `com.waylau.spring.boot.thymeleaf.repository`，用于存放用户资源库。
 
-```groovy
-buildscript {
- 	...	
- 	
-	// 自定义 Thymeleaf 和 Thymeleaf Layout Dialect 的版本
-	ext['thymeleaf.version'] = '3.0.3.RELEASE'
-	ext['thymeleaf-layout-dialect.version'] = '2.2.0'
+建立用户资源库的接口 ：
+
+```java
+public interface UserRepository {
+	/**
+	 * 新增或者修改用户
+	 * @param user
+	 * @return
+	 */
+	UserVO saveOrUpateUser(UserVO user);
 	
-	...
+	/**
+	 * 删除用户
+	 * @param id
+	 */
+	void deleteUser(Long id);
+	
+	/**
+	 * 根据用户id获取用户
+	 * @param id
+	 * @return
+	 */
+	UserVO getUserById(Long id);
+	
+	/**
+	 * 获取所有用户的列表
+	 * @return
+	 */
+	List<UserVO> listUser();
 }
 ```
 
 
-## 升级 Gradle Wrapper
+ UserRepositoryImpl 作为该类的实现类。其中：
 
-由于近期 Gradle 刚升级到了 3.4 版本，所以，我们紧跟潮流，设置 Gradle Wrapper使用 3.4 最新版本。
+```java
+private static AtomicLong counter = new AtomicLong();
 
-修改`gradle/wrapper/gradle-wrapper.properties`文件：
-
-```
-distributionUrl=https\://services.gradle.org/distributions/gradle-3.4-bin.zip
+private final ConcurrentMap<Long, UserVO> userMap = new ConcurrentHashMap<Long, UserVO>();
 ```
 
-## 建立项目结构
-
-在`resources`目录下，建立两个目录，`static` 以及 `templates`。其中 `static` 用于放置静态的资源，比如 JS、CSS、图片或者是静态的 HTML 页面资源等。 `templates`用于放置模板 HTML 页面。
+我们用 `ConcurrentMap<Long, UserVO> userMap`来模拟数据的存储， `AtomicLong counter` 用来生成一个递增的id，作为用户的唯一编号。
 
 
+### 创建控制器
+
+创建了`com.waylau.spring.boot.thymeleaf.repository.UserManagementController` 用于处理界面的请求。
+
+```
+@RestController
+@RequestMapping("/users")
+public class UserManagementController {
+
+	@Autowired 
+	private UserRepositoryImpl userRepository;
+
+	/**
+	 * 从 用户存储库 获取用户列表
+	 * @return
+	 */
+	private List<UserVO> getUserlist() {
+ 		return userRepository.listUser();
+	}
+
+	/**
+	 * 查询所用用户
+	 * @return
+	 */
+	@GetMapping
+	public ModelAndView list() {
+		ModelMap model = new ModelMap();
+		model.put("userList", getUserlist());
+		model.put("title", "用户管理");
+		return new ModelAndView("users/list", "userModel", model);
+	}
+
+	/**
+	 * 根据id查询用户
+	 * @param message
+	 * @return
+	 */
+	@GetMapping("{id}")
+	public ModelAndView view(@PathVariable("id") Long id) {
+		UserVO user = userRepository.getUserById(id);
+		ModelMap model = new ModelMap();
+		model.put("user", user);
+		model.put("title", "查看用户");
+		return new ModelAndView("users/view", "userModel", model);
+	}
+
+	/**
+	 * 获取 form 表单页面
+	 * @param user
+	 * @return
+	 */
+	@GetMapping("/form")
+	public ModelAndView createForm() {
+		ModelMap model = new ModelMap();
+		model.put("user", new UserVO());
+		model.put("title", "创建用户");
+		return new ModelAndView("users/form", "userModel", model);
+	}
+
+	/**
+	 * 新建用户
+	 * @param user
+	 * @param result
+	 * @param redirect
+	 * @return
+	 */
+	@PostMapping
+	public ModelAndView create(UserVO user) {
+ 		user = userRepository.saveOrUpateUser(user);
+		return new ModelAndView("redirect:/users");
+	}
+
+	/**
+	 * 删除用户
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value = "delete/{id}")
+	public ModelAndView delete(@PathVariable("id") Long id) {
+		userRepository.deleteUser(id);
+		
+		ModelMap model = new ModelMap();
+		model.put("userList", getUserlist());
+		model.put("title", "删除用户");
+		return new ModelAndView("users/list", "userModel", model);
+	}
+
+	/**
+	 * 修改用户
+	 * @param user
+	 * @return
+	 */
+	@GetMapping(value = "modify/{id}")
+	public ModelAndView modifyForm(@PathVariable("id") Long id) {
+		UserVO user = userRepository.getUserById(id);
+		
+		ModelMap model = new ModelMap();
+		model.put("user", user);
+		model.put("title", "修改用户");
+		return new ModelAndView("users/form", "userModel", model);
+	}
+
+}
+```
+
+整体的API设计如下：
+
+* GET /users/list ： 返回用于展现用户列表的 list.html 页面；
+* GET /users/form ： 返回用于新增或者修改用户的 form.html 页面；
+* POST /users ： 新增或者修改用户；
+* GET /users/delete/{id} ： 根据id删除相应的用户数据；
+* GET /users/modify/{id} ： 根据id删除相应的用户数据。
+
+
+需要注意的是，本API仅为展现 SpingMVC 的功能，并非完全符合REST风格。如果需要了解详细的 REST 风格架构，可以参考笔者的另外一本开源书[《REST 实战》](https://github.com/waylau/rest-in-action)。
+
+### 编写前台页面
+
+页面主要采用 Thymeleaf 引擎来开发。本节内容为了专注于 Thymeleaf 核心功能，故不涉及  CSS 样式和  JS 脚本的编写。
+
+
+在`templates`目录下，我们新建一个`users`页面，来归档“用户管理”功能相关的页面。
+
+其中 ：
+
+* list.html：用于展现用户列表；
+* form.html：用于新增或者修改用户的资料；
+* view.html：用户查看某个用户的资料。
+
+ 
+## 运行
+
+启动`thymeleaf-in-action`项目后，访问 <localhost:8080/users> 可以看到项目的运行效果。
+ 
+查看用户列表：
+
+![](../images/thymeleaf-in-action/thymeleaf-user-list.jpg)
+
+新增用户：
+
+![](../images/thymeleaf-in-action/thymeleaf-user-create.jpg)
+
+查看用户：
+
+![](../images/thymeleaf-in-action/thymeleaf-user-view.jpg)

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ import com.waylau.spring.boot.thymeleaf.vo.UserVO;
 @RestController
 @RequestMapping("/users")
 public class UserManagementController {
-
+	
 	@Autowired 
 	private UserRepositoryImpl userRepository;
 
@@ -58,7 +57,7 @@ public class UserManagementController {
 		UserVO user = userRepository.getUserById(id);
 		ModelMap model = new ModelMap();
 		model.put("user", user);
-		model.put("title", "查看用户管理");
+		model.put("title", "查看用户");
 		return new ModelAndView("users/view", "userModel", model);
 	}
 
@@ -84,13 +83,8 @@ public class UserManagementController {
 	 */
 	@PostMapping
 	public ModelAndView create(UserVO user) {
- 		user = userRepository.saveUser(user);
+ 		user = userRepository.saveOrUpateUser(user);
 		return new ModelAndView("redirect:/users");
-	}
-
-	@RequestMapping("foo")
-	public String foo() {
-		throw new RuntimeException("Expected exception in controller");
 	}
 
 	/**
@@ -104,7 +98,7 @@ public class UserManagementController {
 		
 		ModelMap model = new ModelMap();
 		model.put("userList", getUserlist());
-		model.put("title", "用户管理");
+		model.put("title", "删除用户");
 		return new ModelAndView("users/list", "userModel", model);
 	}
 
