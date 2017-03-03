@@ -22,7 +22,7 @@ This is the summary of my book.
 	* Thymeleaf 与 Spring Boot 集成
 	* [Thymeleaf 实战](docs/thymeleaf-in-action.md)
 * 数据持久化
-	* JPA 简介
+	* [JPA 简介](docs/jpa-overview.md)
 	* Spring Data JPA 用法介绍
 	* MySQL 安装及使用
 	* Spring Data JPA、Hiberate 与 Spring Boot 集成
