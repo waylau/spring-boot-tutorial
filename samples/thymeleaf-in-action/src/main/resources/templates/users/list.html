@@ -5,7 +5,8 @@
     <title th:text="${userModel.title}">welcome</title>
 </head>
 <body>
-<h1 th:text="${userModel.title}">Welcome to waylau.com</h1>
+<div th:replace="~{fragments/header :: header}">...</div>
+<h3 th:text="${userModel.title}">Welcome to waylau.com</h3>
 <div>
     <a href="/users/form.html">创建用户</a>
 </div>
@@ -25,9 +26,10 @@
         <td th:text="${user.id}">1</td>
         <td th:text="${user.age}">11</td>
         <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
-               th:text="${user.name}">waylau </a></td>
+               th:text="${user.name}">waylau</a></td>
     </tr>
     </tbody>
 </table>
+<div th:replace="~{fragments/footer :: footer}">...</div>
 </body>
 </html>

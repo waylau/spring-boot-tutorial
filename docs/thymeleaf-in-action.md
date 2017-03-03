@@ -10,6 +10,7 @@
 增加下面两项配置：
 
 ```
+spring.thymeleaf.encoding=UTF-8
 # 热部署静态文件
 spring.thymeleaf.cache=false
 # 使用HTML5标准
@@ -212,7 +213,13 @@ public class UserManagementController {
 * form.html：用于新增或者修改用户的资料；
 * view.html：用户查看某个用户的资料。
 
- 
+ 在`templates`目录下，我们新建一个`fragments`页面，来归档页面共用的部分。
+
+其中 ：
+
+* header.html：共用的头部页面；
+* footer.html：共用的底部页面。
+
 ## 运行
 
 启动`thymeleaf-in-action`项目后，访问 <localhost:8080/users> 可以看到项目的运行效果。
