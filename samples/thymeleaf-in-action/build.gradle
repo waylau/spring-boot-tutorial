@@ -3,7 +3,7 @@ buildscript {
 
 	// ext 用于定义动态属性
 	ext {
-		springBootVersion = '1.5.1.RELEASE'
+		springBootVersion = '1.5.2.RELEASE'
 	}
 			
 	// 自定义  Thymeleaf 和 Thymeleaf Layout Dialect 的版本

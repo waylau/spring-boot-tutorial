@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.waylau.spring.boot.thymeleaf.domain.User;
 import com.waylau.spring.boot.thymeleaf.repository.UserRepositoryImpl;
-import com.waylau.spring.boot.thymeleaf.vo.UserVO;
 
 /**
- * 用户管理控制器.
+ * 用户控制器.
  * 
  * @author <a href="https://waylau.com">Way Lau</a>
  * @date 2017年2月26日
  */
 @RestController
 @RequestMapping("/users")
-public class UserManagementController {
+public class UserController {
 	
 	@Autowired 
 	private UserRepositoryImpl userRepository;
@@ -31,7 +31,7 @@ public class UserManagementController {
 	 * 从 用户存储库 获取用户列表
 	 * @return
 	 */
-	private List<UserVO> getUserlist() {
+	private List<User> getUserlist() {
  		return userRepository.listUser();
 	}
 
@@ -54,7 +54,7 @@ public class UserManagementController {
 	 */
 	@GetMapping("{id}")
 	public ModelAndView view(@PathVariable("id") Long id) {
-		UserVO user = userRepository.getUserById(id);
+		User user = userRepository.getUserById(id);
 		ModelMap model = new ModelMap();
 		model.put("user", user);
 		model.put("title", "查看用户");
@@ -69,7 +69,7 @@ public class UserManagementController {
 	@GetMapping("/form")
 	public ModelAndView createForm() {
 		ModelMap model = new ModelMap();
-		model.put("user", new UserVO());
+		model.put("user", new User());
 		model.put("title", "创建用户");
 		return new ModelAndView("users/form", "userModel", model);
 	}
@@ -82,7 +82,7 @@ public class UserManagementController {
 	 * @return
 	 */
 	@PostMapping
-	public ModelAndView create(UserVO user) {
+	public ModelAndView create(User user) {
  		user = userRepository.saveOrUpateUser(user);
 		return new ModelAndView("redirect:/users");
 	}
@@ -109,7 +109,7 @@ public class UserManagementController {
 	 */
 	@GetMapping(value = "modify/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id) {
-		UserVO user = userRepository.getUserById(id);
+		User user = userRepository.getUserById(id);
 		
 		ModelMap model = new ModelMap();
 		model.put("user", user);

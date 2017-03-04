@@ -3,7 +3,7 @@ package com.waylau.spring.boot.thymeleaf.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.waylau.spring.boot.thymeleaf.vo.UserVO;
+import com.waylau.spring.boot.thymeleaf.domain.User;
 
 /**
  * Media Type 控制器.
@@ -20,8 +20,8 @@ public class MediaTypeController {
 	 * @return
 	 */
 	@RequestMapping("/user")
-	public UserVO getUser() {
-		return new UserVO("waylau", 30);
+	public User getUser() {
+		return new User("waylau", 30);
 	}
 
 }

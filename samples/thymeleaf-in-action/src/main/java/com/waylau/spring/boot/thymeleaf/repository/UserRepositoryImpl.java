@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Repository;
 
-import com.waylau.spring.boot.thymeleaf.vo.UserVO;
+import com.waylau.spring.boot.thymeleaf.domain.User;
  
 
 /**
@@ -22,10 +22,10 @@ public class UserRepositoryImpl implements UserRepository {
 	
 	private static AtomicLong counter = new AtomicLong();
 
-	private final ConcurrentMap<Long, UserVO> userMap = new ConcurrentHashMap<Long, UserVO>();
+	private final ConcurrentMap<Long, User> userMap = new ConcurrentHashMap<Long, User>();
  
 	public UserRepositoryImpl(){
-		UserVO user = new UserVO();
+		User user = new User();
 		user.setAge(30);
 		user.setName("Way Lau");
 		this.saveOrUpateUser(user);
@@ -35,7 +35,7 @@ public class UserRepositoryImpl implements UserRepository {
 	 * @see com.waylau.spring.boot.thymeleaf.repository.UserRepository#saveUser(com.waylau.spring.boot.thymeleaf.vo.UserVO)
 	 */
 	@Override
-	public UserVO saveOrUpateUser(UserVO user) {
+	public User saveOrUpateUser(User user) {
 		Long id = user.getId();
 		if (id <= 0) {
 			id = counter.incrementAndGet();
@@ -57,7 +57,7 @@ public class UserRepositoryImpl implements UserRepository {
 	 * @see com.waylau.spring.boot.thymeleaf.repository.UserRepository#getUserById(java.lang.Long)
 	 */
 	@Override
-	public UserVO getUserById(Long id) {
+	public User getUserById(Long id) {
 		return this.userMap.get(id);
 	}
 
@@ -65,8 +65,8 @@ public class UserRepositoryImpl implements UserRepository {
 	 * @see com.waylau.spring.boot.thymeleaf.repository.UserRepository#listUser()
 	 */
 	@Override
-	public List<UserVO> listUser() {
-		return new ArrayList<UserVO>(this.userMap.values());
+	public List<User> listUser() {
+		return new ArrayList<User>(this.userMap.values());
 	}
 
 }

@@ -5,7 +5,7 @@ package com.waylau.spring.boot.thymeleaf.repository;
 
 import java.util.List;
 
-import com.waylau.spring.boot.thymeleaf.vo.UserVO;
+import com.waylau.spring.boot.thymeleaf.domain.User;
 
 /**
  * 用户仓库.
@@ -19,7 +19,7 @@ public interface UserRepository {
 	 * @param user
 	 * @return
 	 */
-	UserVO saveOrUpateUser(UserVO user);
+	User saveOrUpateUser(User user);
 	
 	/**
 	 * 删除用户
@@ -32,11 +32,11 @@ public interface UserRepository {
 	 * @param id
 	 * @return
 	 */
-	UserVO getUserById(Long id);
+	User getUserById(Long id);
 	
 	/**
 	 * 获取所有用户的列表
 	 * @return
 	 */
-	List<UserVO> listUser();
+	List<User> listUser();
 }
