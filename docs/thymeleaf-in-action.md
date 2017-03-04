@@ -20,9 +20,10 @@ spring.thymeleaf.mode=HTML5
 
 ## 后台编码
  
-### 修改 UserVO.java
+### 修改 User.java
 
-在 UserVO 类里面，增加一个 id 字段，作为不用的用户的唯一表示。
+我们将 User.java 所在的包名，改为了`com.waylau.spring.boot.thymeleaf.domain`，并将 User 更名为 User。
+在 User 类里面，增加一个 id 字段，作为不同的用户的唯一表示。
 
 ```java
 private long id; // 用户的唯一标识
@@ -49,7 +50,7 @@ public interface UserRepository {
 	 * @param user
 	 * @return
 	 */
-	UserVO saveOrUpateUser(UserVO user);
+	User saveOrUpateUser(User user);
 	
 	/**
 	 * 删除用户
@@ -62,13 +63,13 @@ public interface UserRepository {
 	 * @param id
 	 * @return
 	 */
-	UserVO getUserById(Long id);
+	User getUserById(Long id);
 	
 	/**
 	 * 获取所有用户的列表
 	 * @return
 	 */
-	List<UserVO> listUser();
+	List<User> listUser();
 }
 ```
 
@@ -78,21 +79,21 @@ public interface UserRepository {
 ```java
 private static AtomicLong counter = new AtomicLong();
 
-private final ConcurrentMap<Long, UserVO> userMap = new ConcurrentHashMap<Long, UserVO>();
+private final ConcurrentMap<Long, User> userMap = new ConcurrentHashMap<Long, User>();
 ```
 
-我们用 `ConcurrentMap<Long, UserVO> userMap`来模拟数据的存储， `AtomicLong counter` 用来生成一个递增的id，作为用户的唯一编号。
+我们用 `ConcurrentMap<Long, User> userMap`来模拟数据的存储， `AtomicLong counter` 用来生成一个递增的id，作为用户的唯一编号。
 
 
 ### 创建控制器
 
-创建了`com.waylau.spring.boot.thymeleaf.repository.UserManagementController` 用于处理界面的请求。
+创建了`com.waylau.spring.boot.thymeleaf.repository.UserController` 用于处理界面的请求。
 
 ```
 @RestController
 @RequestMapping("/users")
-public class UserManagementController {
-
+public class UserController {
+	
 	@Autowired 
 	private UserRepositoryImpl userRepository;
 
@@ -100,7 +101,7 @@ public class UserManagementController {
 	 * 从 用户存储库 获取用户列表
 	 * @return
 	 */
-	private List<UserVO> getUserlist() {
+	private List<User> getUserlist() {
  		return userRepository.listUser();
 	}
 
@@ -109,24 +110,22 @@ public class UserManagementController {
 	 * @return
 	 */
 	@GetMapping
-	public ModelAndView list() {
-		ModelMap model = new ModelMap();
-		model.put("userList", getUserlist());
-		model.put("title", "用户管理");
+	public ModelAndView list(Model model) {
+		model.addAttribute("userList", getUserlist());
+		model.addAttribute("title", "用户管理");
 		return new ModelAndView("users/list", "userModel", model);
 	}
-
+ 
 	/**
 	 * 根据id查询用户
 	 * @param message
 	 * @return
 	 */
 	@GetMapping("{id}")
-	public ModelAndView view(@PathVariable("id") Long id) {
-		UserVO user = userRepository.getUserById(id);
-		ModelMap model = new ModelMap();
-		model.put("user", user);
-		model.put("title", "查看用户");
+	public ModelAndView view(@PathVariable("id") Long id, Model model) {
+		User user = userRepository.getUserById(id);
+		model.addAttribute("user", user);
+		model.addAttribute("title", "查看用户");
 		return new ModelAndView("users/view", "userModel", model);
 	}
 
@@ -136,10 +135,9 @@ public class UserManagementController {
 	 * @return
 	 */
 	@GetMapping("/form")
-	public ModelAndView createForm() {
-		ModelMap model = new ModelMap();
-		model.put("user", new UserVO());
-		model.put("title", "创建用户");
+	public ModelAndView createForm(Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("title", "创建用户");
 		return new ModelAndView("users/form", "userModel", model);
 	}
 
@@ -151,7 +149,7 @@ public class UserManagementController {
 	 * @return
 	 */
 	@PostMapping
-	public ModelAndView create(UserVO user) {
+	public ModelAndView create(User user) {
  		user = userRepository.saveOrUpateUser(user);
 		return new ModelAndView("redirect:/users");
 	}
@@ -162,12 +160,11 @@ public class UserManagementController {
 	 * @return
 	 */
 	@GetMapping(value = "delete/{id}")
-	public ModelAndView delete(@PathVariable("id") Long id) {
+	public ModelAndView delete(@PathVariable("id") Long id, Model model) {
 		userRepository.deleteUser(id);
-		
-		ModelMap model = new ModelMap();
-		model.put("userList", getUserlist());
-		model.put("title", "删除用户");
+ 
+		model.addAttribute("userList", getUserlist());
+		model.addAttribute("title", "删除用户");
 		return new ModelAndView("users/list", "userModel", model);
 	}
 
@@ -177,12 +174,11 @@ public class UserManagementController {
 	 * @return
 	 */
 	@GetMapping(value = "modify/{id}")
-	public ModelAndView modifyForm(@PathVariable("id") Long id) {
-		UserVO user = userRepository.getUserById(id);
-		
-		ModelMap model = new ModelMap();
-		model.put("user", user);
-		model.put("title", "修改用户");
+	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
+		User user = userRepository.getUserById(id);
+ 
+		model.addAttribute("user", user);
+		model.addAttribute("title", "修改用户");
 		return new ModelAndView("users/form", "userModel", model);
 	}
 

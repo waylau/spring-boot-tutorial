@@ -3,7 +3,7 @@ package com.waylau.spring.boot.thymeleaf.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,24 +40,22 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping
-	public ModelAndView list() {
-		ModelMap model = new ModelMap();
-		model.put("userList", getUserlist());
-		model.put("title", "用户管理");
+	public ModelAndView list(Model model) {
+		model.addAttribute("userList", getUserlist());
+		model.addAttribute("title", "用户管理");
 		return new ModelAndView("users/list", "userModel", model);
 	}
-
+ 
 	/**
 	 * 根据id查询用户
 	 * @param message
 	 * @return
 	 */
 	@GetMapping("{id}")
-	public ModelAndView view(@PathVariable("id") Long id) {
+	public ModelAndView view(@PathVariable("id") Long id, Model model) {
 		User user = userRepository.getUserById(id);
-		ModelMap model = new ModelMap();
-		model.put("user", user);
-		model.put("title", "查看用户");
+		model.addAttribute("user", user);
+		model.addAttribute("title", "查看用户");
 		return new ModelAndView("users/view", "userModel", model);
 	}
 
@@ -67,10 +65,9 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("/form")
-	public ModelAndView createForm() {
-		ModelMap model = new ModelMap();
-		model.put("user", new User());
-		model.put("title", "创建用户");
+	public ModelAndView createForm(Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("title", "创建用户");
 		return new ModelAndView("users/form", "userModel", model);
 	}
 
@@ -93,12 +90,11 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value = "delete/{id}")
-	public ModelAndView delete(@PathVariable("id") Long id) {
+	public ModelAndView delete(@PathVariable("id") Long id, Model model) {
 		userRepository.deleteUser(id);
-		
-		ModelMap model = new ModelMap();
-		model.put("userList", getUserlist());
-		model.put("title", "删除用户");
+ 
+		model.addAttribute("userList", getUserlist());
+		model.addAttribute("title", "删除用户");
 		return new ModelAndView("users/list", "userModel", model);
 	}
 
@@ -108,12 +104,11 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value = "modify/{id}")
-	public ModelAndView modifyForm(@PathVariable("id") Long id) {
+	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
 		User user = userRepository.getUserById(id);
-		
-		ModelMap model = new ModelMap();
-		model.put("user", user);
-		model.put("title", "修改用户");
+ 
+		model.addAttribute("user", user);
+		model.addAttribute("title", "修改用户");
 		return new ModelAndView("users/form", "userModel", model);
 	}
 

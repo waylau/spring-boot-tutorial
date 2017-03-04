@@ -8,6 +8,7 @@
 本例子采用的开发环境如下：
 
 * Gradle 3.4
+* Spring Boot 1.5.2.RELEASE 
 * Thymeleaf 3.0.3.RELEASE
 * Thymeleaf Layout Dialect 2.2.0
 
@@ -25,6 +26,13 @@ jar {
 }
 ```
 
+近期 Spring Boot 版本做了升级，我们升级到最新的版本：
+
+```groovy
+ext {
+	springBootVersion = '1.5.2.RELEASE'
+}
+```
 同时，我们需要添加 Thymeleaf 的依赖。
 
 ```groovy
