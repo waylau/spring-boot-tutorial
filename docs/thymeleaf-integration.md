@@ -74,7 +74,3 @@ buildscript {
 ```
 distributionUrl=https\://services.gradle.org/distributions/gradle-3.4-bin.zip
 ```
-
-## 建立项目结构
-
-在`resources`目录下，建立两个目录，`static` 以及 `templates`。其中 `static` 用于放置静态的资源，比如 JS、CSS、图片或者是静态的 HTML 页面资源等。 `templates`用于放置模板 HTML 页面。
