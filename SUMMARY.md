@@ -24,7 +24,7 @@ This is the summary of my book.
 * 数据持久化
 	* [JPA 简介](docs/jpa-overview.md)
 	* [Spring Data JPA 用法介绍](docs/jpa-sping-data-jpa.md)
-	* MySQL 安装及使用
+	* [MySQL 安装及使用](docs/jpa-mysql.md)
 	* [Spring Data JPA、Hiberate 与 Spring Boot 集成](docs/jpa-integration.md)
 	* [数据持久化实战](docs/jpa-in-action.md)
 * 架构设计与分层

@@ -57,6 +57,9 @@ dependencies {
 
 	// 添加 Spring Data JPA 的依赖
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	
+	// 添加 MySQL连接驱动 的依赖
+	compile('mysql:mysql-connector-java:6.0.5')
 
 	// 该依赖对于编译测试是必须的，默认包含编译产品依赖和编译时依
 	testCompile('org.springframework.boot:spring-boot-starter-test')

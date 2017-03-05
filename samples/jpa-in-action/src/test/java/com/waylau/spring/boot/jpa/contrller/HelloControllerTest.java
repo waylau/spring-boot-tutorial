@@ -1,4 +1,4 @@
-package com.waylau.spring.boot.thymeleaf.contrller;
+package com.waylau.spring.boot.jpa.contrller;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
