@@ -95,7 +95,7 @@ private final ConcurrentMap<Long, User> userMap = new ConcurrentHashMap<Long, Us
 public class UserController {
 	
 	@Autowired 
-	private UserRepositoryImpl userRepository;
+	private UserRepository userRepository;
 
 	/**
 	 * 从 用户存储库 获取用户列表
