@@ -23,10 +23,10 @@ This is the summary of my book.
 	* [Thymeleaf 实战](docs/thymeleaf-in-action.md)
 * 数据持久化
 	* [JPA 简介](docs/jpa-overview.md)
-	* Spring Data JPA 用法介绍
+	* [Spring Data JPA 用法介绍](docs/jpa-sping-data-jpa.md)
 	* MySQL 安装及使用
-	* Spring Data JPA、Hiberate 与 Spring Boot 集成
-	* 数据持久化 实战
+	* [Spring Data JPA、Hiberate 与 Spring Boot 集成](docs/jpa-integration.md)
+	* [数据持久化实战](docs/jpa-in-action.md)
 * 架构设计与分层
 	* 为什么需要分层
 	* 系统的架构设计及职责划分
