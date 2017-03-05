@@ -23,5 +23,22 @@ spring.datasource.tomcat.test-on-borrow=true
 ```
 
 
-## 后台编码
+## 定义实体
+
+
+修改 User 类，参考 JPA 的规范，将其修改成为实体：
+
+* User 类上增加了`@Entity`注解，以标识其为实体
+* `@Id`标识id 字段为主键； `@GeneratedValue(strategy=GenerationType.IDENTITY)`标识id使用数据库的自增长字段为新增加的实体的标识。这种情况下需要数据库提供对自增长字段的支持，一般的数据库如 HSQL、SQL Server、MySQL、DB2、Derby 等数据库都能够提供这种支持；
+* 应 JPA 的规范要求，设置无参的构造函数`protected User() {}`，并设为 protected 防止直接被使用；
+* 重写 `toString`方法，来将 User 信息自定义输出。
+
+
+
+## 修改资源库
+
+修改用户资源库的接口;
+
+
  
+## 运行

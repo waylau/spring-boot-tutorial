@@ -66,7 +66,7 @@ public class UserController {
 	 */
 	@GetMapping("/form")
 	public ModelAndView createForm(Model model) {
-		model.addAttribute("user", new User());
+		model.addAttribute("user", null);
 		model.addAttribute("title", "创建用户");
 		return new ModelAndView("users/form", "userModel", model);
 	}

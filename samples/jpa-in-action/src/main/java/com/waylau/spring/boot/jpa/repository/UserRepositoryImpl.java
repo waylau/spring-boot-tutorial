@@ -25,9 +25,8 @@ public class UserRepositoryImpl implements UserRepository {
 	private final ConcurrentMap<Long, User> userMap = new ConcurrentHashMap<Long, User>();
  
 	public UserRepositoryImpl(){
-		User user = new User();
-		user.setAge(30);
-		user.setName("Way Lau");
+		User user = new User("Way Lau",30);
+ 
 		this.saveOrUpateUser(user);
 	}
 	
