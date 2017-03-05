@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.waylau.spring.boot.jpa.domain.User;
-import com.waylau.spring.boot.jpa.repository.UserRepositoryImpl;
+import com.waylau.spring.boot.jpa.repository.UserRepository;
 
 /**
  * 用户控制器.
@@ -25,7 +25,7 @@ import com.waylau.spring.boot.jpa.repository.UserRepositoryImpl;
 public class UserController {
 	
 	@Autowired 
-	private UserRepositoryImpl userRepository;
+	private UserRepository userRepository;
 
 	/**
 	 * 从 用户存储库 获取用户列表
