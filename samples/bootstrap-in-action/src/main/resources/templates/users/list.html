@@ -2,34 +2,62 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title th:text="${userModel.title}">welcome</title>
+        <!-- Bootstrap core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
+
+    
 <div th:replace="~{fragments/header :: header}">...</div>
-<h3 th:text="${userModel.title}">Welcome to waylau.com</h3>
-<div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title" th:text="${userModel.title}">Welcome to waylau.com</h2>
+            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+         </div><!-- /.blog-post -->
+       </div><!-- /.blog-main -->        
+      </div><!-- /.row -->
+      
+      <div>
     <a href="/users/form.html">创建用户</a>
-</div>
-<table border="1">
-    <thead>
-    <tr>
-        <td>ID</td>
-        <td>Age</td>
-        <td>Name</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${userModel.userList.size()} eq 0">
-        <td colspan="3">没有用户信息！！</td>
-    </tr>
-    <tr th:each="user : ${userModel.userList}">
-        <td th:text="${user.id}">1</td>
-        <td th:text="${user.age}">11</td>
-        <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
-               th:text="${user.name}">waylau</a></td>
-    </tr>
-    </tbody>
-</table>
+		</div>
+		<table border="1">
+		    <thead>
+		    <tr>
+		        <td>ID</td>
+		        <td>Age</td>
+		        <td>Name</td>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <tr th:if="${userModel.userList.size()} eq 0">
+		        <td colspan="3">没有用户信息！！</td>
+		    </tr>
+		    <tr th:each="user : ${userModel.userList}">
+		        <td th:text="${user.id}">1</td>
+		        <td th:text="${user.age}">11</td>
+		        <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
+		               th:text="${user.name}">waylau</a></td>
+		    </tr>
+		    </tbody>
+		</table>
+
+    </div><!-- /.container -->
+    
+ 
+
 <div th:replace="~{fragments/footer :: footer}">...</div>
+
+
+   	<!-- Bootstrap\jQuery core JavaScript
+    ================================================== -->
+    <script src="../../js/jquery-3.1.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>
