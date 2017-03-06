@@ -1,0 +1,69 @@
+// buildscript 代码块中脚本优先执行
+buildscript {
+
+	// ext 用于定义动态属性
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+			
+	// 自定义  Thymeleaf 和 Thymeleaf Layout Dialect 的版本
+	ext['thymeleaf.version'] = '3.0.3.RELEASE'
+	ext['thymeleaf-layout-dialect.version'] = '2.2.0'
+	
+	// 自定义  Hibernate 的版本
+	ext['hibernate.version'] = '5.2.8.Final'
+	
+	// 使用了 Maven 的中央仓库（你也可以指定其他仓库）
+	repositories {
+		//mavenCentral()
+		maven {
+			url 'http://maven.aliyun.com/nexus/content/groups/public/'
+		}
+	}
+	
+	// 依赖关系
+	dependencies {
+		// classpath 声明说明了在执行其余的脚本时，ClassLoader 可以使用这些依赖项
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+// 使用插件
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+// 打包的类型为 jar，并指定了生成的打包的文件名称和版本
+jar {
+	baseName = 'bootstrap-in-action'
+	version = '1.0.0'
+}
+
+// 指定编译 .java 文件的 JDK 版本
+sourceCompatibility = 1.8
+
+// 默认使用了 Maven 的中央仓库。这里改用自定义的镜像库
+repositories {
+	//mavenCentral()
+	maven {
+		url 'http://maven.aliyun.com/nexus/content/groups/public/'
+	}
+}
+
+// 依赖关系
+dependencies {
+	// 该依赖对于编译发行是必须的
+	compile('org.springframework.boot:spring-boot-starter-web')
+ 
+	// 添加 Thymeleaf 的依赖
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+	// 添加 Spring Data JPA 的依赖
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	
+	// 添加 MySQL连接驱动 的依赖
+	compile('mysql:mysql-connector-java:6.0.5')
+
+	// 该依赖对于编译测试是必须的，默认包含编译产品依赖和编译时依
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

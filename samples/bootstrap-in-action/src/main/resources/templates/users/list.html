@@ -1,63 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title th:text="${userModel.title}">welcome</title>
-        <!-- Bootstrap core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
 </head>
 <body>
 
 
-    
-<div th:replace="~{fragments/header :: header}">...</div>
+	<div class="container">
+		<div class="row">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 blog-main">
-          <div class="blog-post">
-            <h2 class="blog-post-title" th:text="${userModel.title}">Welcome to waylau.com</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-         </div><!-- /.blog-post -->
-       </div><!-- /.blog-main -->        
-      </div><!-- /.row -->
-      
-      <div>
-    <a href="/users/form.html">创建用户</a>
-		</div>
-		<table border="1">
-		    <thead>
-		    <tr>
-		        <td>ID</td>
-		        <td>Age</td>
-		        <td>Name</td>
-		    </tr>
-		    </thead>
-		    <tbody>
-		    <tr th:if="${userModel.userList.size()} eq 0">
-		        <td colspan="3">没有用户信息！！</td>
-		    </tr>
-		    <tr th:each="user : ${userModel.userList}">
-		        <td th:text="${user.id}">1</td>
-		        <td th:text="${user.age}">11</td>
-		        <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
-		               th:text="${user.name}">waylau</a></td>
-		    </tr>
-		    </tbody>
-		</table>
+			<h2 th:text="${userModel.title}">Welcome
+				to waylau.com</h2>
 
-    </div><!-- /.container -->
-    
- 
+		</div><!-- /.row -->
 
-<div th:replace="~{fragments/footer :: footer}">...</div>
+		<div class="row">
+			<p>
+				<a class="btn btn-primary" href="/users/form.html" role="button">创建用户</a>
+			</p>
+		</div><!-- /.row -->
 
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>Age</td>
+						<td>Name</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${userModel.userList.size()} eq 0">
+						<td colspan="3">没有用户信息！！</td>
+					</tr>
+					<tr th:each="user : ${userModel.userList}">
+						<td th:text="${user.id}">1</td>
+						<td th:text="${user.age}">11</td>
+						<td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
+							th:text="${user.name}">waylau</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div><!-- /.row -->
+	</div><!-- /.container -->
 
-   	<!-- Bootstrap\jQuery core JavaScript
-    ================================================== -->
-    <script src="../../js/jquery-3.1.1.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+
 </body>
 </html>
