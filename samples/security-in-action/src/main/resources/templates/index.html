@@ -11,6 +11,7 @@
 			sec:authorize="isAuthenticated()">
 			登录的用户为: <span sec:authentication="name"></span> | 角色为: <span
 				sec:authentication="principal.authorities"></span>
+ 
 			<div>
 				<form action="#" th:action="@{/logout}" method="post">
 					<input class="btn btn-default" type="submit" value="Logout" />

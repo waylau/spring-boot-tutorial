@@ -45,6 +45,9 @@ This is the summary of my book.
 	* Apache Shiro 简介
 	* Apache Shiro 与 Spring Boot 集成
 	* Apache Shiro 实战
+	* Spring Security 简介
+	* [Spring Security 与 Spring Boot 集成](docs/security-integration.md)
+	* [Spring Security 实战](docs/security-in-action.md)
 * 博客系统的用户管理实现
 	* 后台实现及单元测试
 	* 前台实现、测试

@@ -8,7 +8,7 @@
 本例子采用的开发环境如下：
 
 * Spring Security 4.2.2.RELEASE
-* Thymeleaf Spring Security 2.1.3.RELEASE
+* Thymeleaf Spring Security 3.0.2.RELEASE
 
 ## build.gradle
 
@@ -33,7 +33,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 
 	// 添加   Thymeleaf Spring Security 依赖
-	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.3.RELEASE')
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
  	...
 }
 ```

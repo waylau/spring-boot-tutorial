@@ -16,13 +16,13 @@
 
 		<div class="row">
 			<p>
-				<a class="btn btn-primary" href="/users" role="button">返回</a>
+				<a class="btn btn-primary" href="/users" th:href="@{/users}" role="button">返回</a>
 			</p>
 		</div>
 		<!-- /.row -->
 
 		<div class="row">
-			<form action="/users" method="POST" th:object="${userModel.user}">
+			<form th:action="@{/users}" method="post" th:object="${userModel.user}">
 
 				<input type="hidden" name="id" th:value="*{id}">
 

@@ -38,6 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()  // 认证信息存储于没内存中
-				.withUser("user").password("password").roles("USER");
+				.withUser("waylau").password("123456").roles("USER");
 	}
 }
