@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+
+			<h2 th:text="${userModel.title}">Welcome
+				to waylau.com</h2>
+
+		</div><!-- /.row -->
+
+		<div class="row">
+			<p>
+				<a class="btn btn-primary" href="/users/form.html" role="button">创建用户</a>
+			</p>
+		</div><!-- /.row -->
+
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>ID</td>
+						<td>Age</td>
+						<td>Name</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${userModel.userList.size()} eq 0">
+						<td colspan="3">没有用户信息！！</td>
+					</tr>
+					<tr th:each="user : ${userModel.userList}">
+						<td th:text="${user.id}">1</td>
+						<td th:text="${user.age}">11</td>
+						<td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
+							th:text="${user.name}">waylau</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+
+</body>
+</html>

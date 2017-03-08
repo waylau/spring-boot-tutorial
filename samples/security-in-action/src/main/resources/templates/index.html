@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+	<div class="container">
+ 
+		<div th:fragment="logout" class="logout"
+			sec:authorize="isAuthenticated()">
+			登录的用户为: <span sec:authentication="name"></span> | 角色为: <span
+				sec:authentication="principal.authorities"></span>
+			<div>
+				<form action="#" th:action="@{/logout}" method="post">
+					<input class="btn btn-default" type="submit" value="Logout" />
+				</form>
+			</div>
+		</div>
+
+		<h1>Hello Spring Security</h1>
+		<p>本页面无需授权。进入下面页面需要授权：</p>
+		<ul>
+			<li> <a href="/users" th:href="@{/users}">用户管理</a></li>
+		</ul>
+ 
+	</div>
+	<!-- /.container -->
+	
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+</body>
+</html>
