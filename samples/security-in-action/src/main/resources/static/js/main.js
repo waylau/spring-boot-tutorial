@@ -7,10 +7,6 @@
 
 // DOM 加载完再执行
 $(function() {
-
-	// nav bar 点击样式
-    $('#navbarsContainer a').click(function (e) {
-        $(this).tab('show')
-    })
+ 
 
 });

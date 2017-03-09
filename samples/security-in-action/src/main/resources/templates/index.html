@@ -9,23 +9,14 @@
       	<div class="mt-3">
         	<h2>Hello Spring Security</h2>
         </div>
-		<div th:fragment="logout" class="logout"
-			sec:authorize="isAuthenticated()">
-			登录的用户为: <span sec:authentication="name"></span> | 角色为: <span
-				sec:authentication="principal.authorities"></span>
- 
-			<div>
-				<form action="#" th:action="@{/logout}" method="post">
-					<input class="btn btn-default" type="submit" value="Logout" />
-				</form>
-			</div>
+		<div sec:authorize="isAuthenticated()">
+			<p>已有用户登录</p>
+			<p>登录的用户为: <span sec:authentication="name"></span></p>
+ 			<p>用户角色为: <span sec:authentication="principal.authorities"></span></p>
 		</div>
- 
-		<p>本页面无需授权。进入下面页面需要授权：</p>
-		<ul>
-			<li> <a href="/users" th:href="@{/users}">用户管理</a></li>
-		</ul>
- 
+ 		<div sec:authorize="isAnonymous()">
+			<p>未有用户登录</p>
+		</div>
 	</div>
 	<!-- /.container -->
 	

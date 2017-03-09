@@ -11,7 +11,7 @@
  
         <p>默认账户密码: waylau/123456</p>
 
-        <p th:if="${loginError}" class="error">用户名密码错误！</p>
+        <p th:if="${loginError}" th:text="${errorMsg}">用户名密码错误！</p>
 
         <form th:action="@{/login}" method="post">
         	<div class="form-group">

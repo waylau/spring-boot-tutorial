@@ -21,11 +21,11 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Bootstrap in action</a>
+        <a class="navbar-brand" href="/" th:href="@{/}">Spring Security in action</a>
 
         <div class="collapse navbar-collapse" id="navbarsContainer">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -33,6 +33,19 @@
                 </li>
             </ul>
 
+	 		<ul class="navbar-nav mr-auto navbar-right">
+	          <li class="nav-item" sec:authorize="isAnonymous()">
+				<a class="nav-link" href="/login" th:href="@{/login}">登录 </a>
+	          </li>
+	           <li class="nav-item" sec:authorize="isAuthenticated()">
+					<span class="nav-link"  sec:authentication="name"></span>
+	          </li>
+	          <li class="nav-item">
+	            	<form action="/logout" th:action="@{/logout}" method="post">
+						<input class="btn btn-default  " type="submit" value="退出" />
+					</form>
+	          </li>
+	        </ul>
         </div>
     </div>
 </nav>
