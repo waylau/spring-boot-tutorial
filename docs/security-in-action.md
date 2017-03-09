@@ -108,16 +108,16 @@ public class MainController {
 在前端，我们创建了index.html 作为我们的主页：
 
 ```html
-	......
-	<div sec:authorize="isAuthenticated()">
-		<p>已有用户登录</p>
-		<p>登录的用户为: <span sec:authentication="name"></span></p>
-		<p>用户角色为: <span sec:authentication="principal.authorities"></span></p>
-	</div>
-	<div sec:authorize="isAnonymous()">
-		<p>未有用户登录</p>
-	</div>
-	......
+......
+<div sec:authorize="isAuthenticated()">
+	<p>已有用户登录</p>
+	<p>登录的用户为: <span sec:authentication="name"></span></p>
+	<p>用户角色为: <span sec:authentication="principal.authorities"></span></p>
+</div>
+<div sec:authorize="isAnonymous()">
+	<p>未有用户登录</p>
+</div>
+......
 ```
 
 	
@@ -135,21 +135,21 @@ public class MainController {
 在前端，我们修改了 header.html：
 
 ```html
-	......
- 	<ul class="navbar-nav mr-auto navbar-right">
-      <li class="nav-item" sec:authorize="isAnonymous()">
-		<a class="nav-link" href="/login" th:href="@{/login}">登录 </a>
-      </li>
-       <li class="nav-item" sec:authorize="isAuthenticated()">
-			<span class="nav-link"  sec:authentication="name"></span>
-      </li>
-      <li class="nav-item">
-        	<form action="/logout" th:action="@{/logout}" method="post">
-				<input class="btn btn-default  " type="submit" value="退出" />
-			</form>
-      </li>
-    </ul>
-	......
+......
+<ul class="navbar-nav mr-auto navbar-right">
+  <li class="nav-item" sec:authorize="isAnonymous()">
+	<a class="nav-link" href="/login" th:href="@{/login}">登录 </a>
+  </li>
+   <li class="nav-item" sec:authorize="isAuthenticated()">
+		<span class="nav-link"  sec:authentication="name"></span>
+  </li>
+  <li class="nav-item">
+    	<form action="/logout" th:action="@{/logout}" method="post">
+			<input class="btn btn-default  " type="submit" value="退出" />
+		</form>
+  </li>
+</ul>
+......
 ```
 
 菜单栏会根据用户是否认证了来显示不同的信息：
@@ -171,7 +171,7 @@ public class MainController {
 
 ![](../images/security-in-action/security-unanth-login.jpg)
 
-用户登录后可以访问“用户管理”：
+我们用默认的 waylau 用户进行登录后可以访问“用户管理”：
 
 ![](../images/security-in-action/security-anth-users.jpg) 
 	
@@ -202,7 +202,6 @@ Invalid CSRF Token 'null' was found on the request parameter '_csrf' or header '
 
 改为 ：
 
-，将
 ```
 <form th:action="@{/users}" method="post">
 	......
