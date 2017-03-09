@@ -13,4 +13,5 @@ hs_err_pid*
 
 *.project
 *.md.html
-/.idea/
+.idea
+
