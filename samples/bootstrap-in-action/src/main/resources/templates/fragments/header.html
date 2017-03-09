@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap core CSS -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom styles -->
-    <link href="../../css/blog.css" rel="stylesheet">
+    <link href="../../css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
 </head>
 <body>
 
@@ -24,10 +24,10 @@
         <div class="collapse navbar-collapse" id="navbarsContainer">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/users">首页 <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/users" th:href="@{/users}">首页 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/users">其他</a>
+                    <a class="nav-link" href="/users" th:href="@{/users}">其他</a>
                 </li>
             </ul>
 

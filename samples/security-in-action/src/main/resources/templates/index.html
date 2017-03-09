@@ -6,7 +6,9 @@
 </head>
 <body>
 	<div class="container">
- 
+      	<div class="mt-3">
+        	<h2>Hello Spring Security</h2>
+        </div>
 		<div th:fragment="logout" class="logout"
 			sec:authorize="isAuthenticated()">
 			登录的用户为: <span sec:authentication="name"></span> | 角色为: <span
@@ -18,8 +20,7 @@
 				</form>
 			</div>
 		</div>
-
-		<h1>Hello Spring Security</h1>
+ 
 		<p>本页面无需授权。进入下面页面需要授权：</p>
 		<ul>
 			<li> <a href="/users" th:href="@{/users}">用户管理</a></li>

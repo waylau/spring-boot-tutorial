@@ -78,4 +78,15 @@ Invalid CSRF Token 'null' was found on the request parameter '_csrf' or header '
 * https://github.com/thymeleaf/thymeleaf-extras-springsecurity
 * http://stackoverflow.com/questions/28904176/thymeleaf-with-spring-security-how-to-check-if-user-is-logged-in-or-not
 
+
+
+错误 ：
+
+```
+Error: Bootstrap tooltips require Tether (http://tether.io/)
+```
+解决：安装 Tether
 ## 运行
+
+
+
