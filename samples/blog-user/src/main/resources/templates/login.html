@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}">
+</head>
+    <body>
+    <div class="container">
+     	<div class="mt-3">
+        	<h2>登录页面</h2>
+        </div>
+ 
+        <p>默认账户密码: waylau/123456</p>
+
+        <p th:if="${loginError}" th:text="${errorMsg}">用户名密码错误！</p>
+
+        <form th:action="@{/login}" method="post">
+        	<div class="form-group">
+            	<label for="username">用户名</label>
+            	<input type="text" class="form-control"  id="username" name="username" autofocus="autofocus" /> <br />
+            </div>
+            <div class="form-group">
+            	<label for="password">密码</label>
+            	<input type="password" class="form-control"  id="password" name="password" /> <br />
+            </div>
+            <input type="submit" class="btn btn-default" value="登录" />
+        </form>
+
+	</div>
+	<!-- /.container -->
+	
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+    </body>
+</html>
