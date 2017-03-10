@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.waylau.spring.boot.blog.domain.User;
 import com.waylau.spring.boot.blog.repository.UserRepository;
 
 /**
- * 
+ * 用户管理 服务类.
  * 
  * @since 1.0.0 2017年3月10日
  * @author <a href="https://waylau.com">Way Lau</a> 
@@ -25,16 +26,25 @@ public class UserServiceImpl implements UserService {
 	@Autowired 
 	private UserRepository userRepository;
 	
+	@Transactional
 	@Override
 	public User saveUser(User user) {
 		return userRepository.save(user);
 	}
 
+	@Transactional
 	@Override
 	public void removeUser(Long id) {
 		userRepository.delete(id);
 	}
 
+	@Transactional
+	@Override
+	public void removeUsersInBatch(List<User> users) {
+		userRepository.deleteInBatch(users);
+	}
+	
+	@Transactional
 	@Override
 	public User updateUser(User user) {
 		return userRepository.save(user);
@@ -51,8 +61,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Page<User> listUsersByNameAndPage(String name, Pageable pageable) {
-		return userRepository.findByName(name, pageable);
+	public Page<User> listUsersByNameLike(String name, Pageable pageable) {
+		Page<User> users = userRepository.findByNameLike(name, pageable);
+		return users;
 	}
-
+ 
 }

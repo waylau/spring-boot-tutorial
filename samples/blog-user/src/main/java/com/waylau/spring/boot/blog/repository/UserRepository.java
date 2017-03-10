@@ -19,5 +19,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	 * @param pageable
 	 * @return
 	 */
-	Page<User> findByName(String name, Pageable pageable);
+	Page<User> findByNameLike(String name, Pageable pageable);
 }

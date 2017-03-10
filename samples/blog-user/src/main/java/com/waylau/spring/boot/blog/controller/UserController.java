@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.waylau.spring.boot.blog.domain.User;
 import com.waylau.spring.boot.blog.repository.UserRepository;
+import com.waylau.spring.boot.blog.service.UserService;
 
 /**
  * 用户控制器.
@@ -26,18 +27,14 @@ import com.waylau.spring.boot.blog.repository.UserRepository;
 public class UserController {
 	
 	@Autowired 
-	private UserRepository userRepository;
+	private UserService userService;
 
 	/**
 	 * 从 用户存储库 获取用户列表
 	 * @return
 	 */
 	private List<User> getUserlist() {
-		List<User> users = new ArrayList<>();
-		for (User user : userRepository.findAll()) {
-			users.add(user);
-		}
- 		return users;
+ 		return userService.listUsers();
 	}
 
 	/**
@@ -58,7 +55,7 @@ public class UserController {
 	 */
 	@GetMapping("{id}")
 	public ModelAndView view(@PathVariable("id") Long id, Model model) {
-		User user = userRepository.findOne(id);
+		User user = userService.getUserById(id);
 		model.addAttribute("user", user);
 		model.addAttribute("title", "查看用户");
 		return new ModelAndView("users/view", "userModel", model);
@@ -85,7 +82,7 @@ public class UserController {
 	 */
 	@PostMapping
 	public ModelAndView create(User user) {
-		userRepository.save(user);
+		userService.saveUser(user);
 		return new ModelAndView("redirect:/users");
 	}
 
@@ -96,7 +93,7 @@ public class UserController {
 	 */
 	@GetMapping(value = "delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id, Model model) {
-		userRepository.delete(id);
+		userService.removeUser(id);
 		model.addAttribute("userList", getUserlist());
 		model.addAttribute("title", "删除用户");
 		return new ModelAndView("users/list", "userModel", model);
@@ -109,10 +106,19 @@ public class UserController {
 	 */
 	@GetMapping(value = "modify/{id}")
 	public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-		User user = userRepository.findOne(id);
+		User user = userService.getUserById(id);
 		model.addAttribute("user", user);
 		model.addAttribute("title", "修改用户");
 		return new ModelAndView("users/form", "userModel", model);
+	}
+	/**
+	 * 获取 form 表单页面
+	 * @param user
+	 * @return
+	 */
+	@GetMapping("/test")
+	public ModelAndView createTest(Model model) {
+		return new ModelAndView("users/test", "userModel", model);
 	}
 
 }

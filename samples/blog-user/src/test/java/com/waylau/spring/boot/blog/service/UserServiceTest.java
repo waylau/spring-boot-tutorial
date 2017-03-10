@@ -2,11 +2,16 @@ package com.waylau.spring.boot.blog.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.waylau.spring.boot.blog.domain.User;
@@ -39,6 +44,13 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	public void testRemoveUsersInBatch() throws Exception {
+		userService.saveUser(new User("老卫",29));
+		userService.removeUsersInBatch(userService.listUsers());
+		assertThat(userService.listUsers().size()).isZero();
+	}
+	
+	@Test
     public void testUpdateUser() throws Exception {
 		int age = 23;
 		User user = userService.saveUser(new User("老卫",43));
@@ -54,5 +66,21 @@ public class UserServiceTest {
 		user.setAge(age);
 		user = userService.updateUser(user);
 		assertThat(user.getAge()).isEqualTo(age);
+	}
+	
+	@Test
+    public void testListUsers() throws Exception {
+		userService.saveUser(new User("老卫",43));
+		List<User> users = userService.listUsers();
+		assertThat(users.size()).isGreaterThan(0);
+	}
+	
+	@Test
+    public void testListUsersByNameAndPage() throws Exception {
+		userService.saveUser(new User("老卫",43));
+		Pageable pageable = new PageRequest(0, 20000);
+		Page<User> users = userService.listUsersByNameLike("%卫%",pageable);
+		System.out.println(users.getTotalElements());
+		assertThat(users.getTotalElements()).isGreaterThan(0);
 	}
 }
