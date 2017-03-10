@@ -1,6 +1,8 @@
 package com.waylau.spring.boot.blog.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.waylau.spring.boot.blog.domain.User;
 
@@ -10,5 +12,12 @@ import com.waylau.spring.boot.blog.domain.User;
  * @since 1.0.0 2017年3月2日
  * @author <a href="https://waylau.com">Way Lau</a> 
  */
-public interface UserRepository extends CrudRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long>{
+	/**
+	 * 根据用户名分页查询用户列表
+	 * @param name
+	 * @param pageable
+	 * @return
+	 */
+	Page<User> findByName(String name, Pageable pageable);
 }
