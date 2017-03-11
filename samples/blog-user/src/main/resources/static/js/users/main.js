@@ -8,12 +8,18 @@
 // DOM 加载完再执行
 $(function() {
  
-    var $table = $('#table');
  
-    
-    function stateFormatter(value, row, index) {
- 
-        return value;
-    }
-    
+	 $(".page").click(function() {
+		 $.ajax({ 
+			 url: "/users", 
+			 contentType : 'application/json',
+			 data:{"async":true, "pageIndex":1, "name":$("#searchName").val()},
+			 success: function(data){
+				 $("#userMain").html(data);
+		     },
+		     error : function() {
+		         alert("error");
+		     }
+		 });
+     });
 });

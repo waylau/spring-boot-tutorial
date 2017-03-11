@@ -5,9 +5,15 @@
 </head>
 <body>
 
-<nav data-th-fragment="page" data-th-if="${page}" data-th-object="${page}">
-
-	<ul class="pagination" data-th-if="${page.totalPages le 7}" >
+<nav class="page" data-th-fragment="page" data-th-if="${page}" data-th-object="${page}">
+ 
+ 	<div>
+ 		<span >共[[${page.totalElements}]]记录,当前第[[${page.number+1}]]/[[${page.totalPages}]]页</span>
+ 	</div>
+ 
+	
+	<!-- 处理页数小于等于7 的情况 -->
+	<ul class="pagination justify-content-end" data-th-if="${page.totalPages le 7}" >
 		<!-- 上一页 -->
 		<li class="page-item" data-th-classappend="*{first} ? 'disabled' : ''">
 			<a href="#" class="page-link" aria-label="Previous">
@@ -30,8 +36,9 @@
 			</a>
 		</li>
 	</ul>
-			
-	<ul class="pagination" data-th-if="${page.totalPages gt 7}" >
+		
+	<!-- 处理页数大于7 的情况 -->	
+	<ul class="pagination justify-content-end" data-th-if="${page.totalPages gt 7}" >
 	 	<!-- 上一页 -->
 		<li class="page-item" data-th-classappend="*{first} ? 'disabled' : ''">
 			<a href="#" class="page-link" aria-label="Previous">
@@ -57,7 +64,7 @@
 			</a>
 		</li>
 		
-		<!-- 最后一页与当前页面之差，小于等于4 -->
+		<!-- 最后一页与当前页面之差，小于等于3 -->
 		<li class="page-item disabled" data-th-if="${(page.totalPages-(page.number + 1)) le 3}">
 			<a href="#" class="page-link">
 				<span aria-hidden="true">...</span>
@@ -70,7 +77,7 @@
            </a>
 		</li>
 	 
-		 <!-- 最后一页与当前页面之差大于4，且  当前页面大于4-->
+		 <!-- 最后一页与当前页面之差大于3，且  当前页面大于4-->
 		 
 		<li class="page-item disabled" data-th-if="${((page.number + 1) gt 4) && ((page.totalPages-(page.number + 1)) gt 3 )}">
 			<a href="#" class="page-link">
@@ -97,11 +104,8 @@
 			</a>
 		</li>
 	</ul>
-			
-			
-	共[[${page.totalPages}]]页，[[${page.totalElements}]]记录
-	last[[${page.last}]]页，first[[${page.first}]]记录
-	当前页面索引[[${page.number}]]
+ 
+ 
 </nav>
 
 </body>

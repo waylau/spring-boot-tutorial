@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,12 +47,15 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping
-	public ModelAndView list(Model model) {
+	public ModelAndView list(@RequestParam(value="async",required=false) boolean async,
+			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
+			@RequestParam(value="name",required=false,defaultValue="") String name,
+			Model model) {
 		
-		int pageIndex = 0; // 页面索引 从0开始
+		//int pageIndex = 0; // 页面索引 从0开始
 		int pageSize = 5; // 页面的大小
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
-		Page<User> page = userService.listUsersByNameLike("", pageable);
+		Page<User> page = userService.listUsersByNameLike(name, pageable);
 		long totleElements = page.getTotalElements();  // 数据总数
 		List<User> list = page.getContent();	// 当前所在页面数据列表
 		long totalPages = page.getTotalPages();  // 总共页数
@@ -61,7 +65,7 @@ public class UserController {
 		model.addAttribute("page", page);
 		model.addAttribute("title", "用户管理");
 		model.addAttribute("userList", list);
-		return new ModelAndView("users/list", "userModel", model);
+		return new ModelAndView(async==true?"users/list :: #userMain":"users/list", "userModel", model);
 	}
  
 	/**

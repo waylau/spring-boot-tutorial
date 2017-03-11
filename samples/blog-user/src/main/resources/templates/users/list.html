@@ -4,39 +4,66 @@
 <head th:replace="~{fragments/header :: header}">
 </head>
 <body>
-<div class="container">
+<div class="container" id="userMain">
 
     <div class="mt-3">
         <h2 th:text="${userModel.title}">Welcome to waylau.com</h2>
     </div>
-
-    <p>
-        <a class="btn btn-primary" href="/users/form" th:href="@{/users/form}" role="button">创建用户</a>
-    </p>
-
+	<div class="row">
+<!-- 	    <div class="col-lg-2"> -->
+<!-- 			<div class="input-group"> -->
+<!-- 				<span class="input-group-addon" id="basic-addon">跳页</span> -->
+<!-- 			  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon"> -->
+<!-- 			</div> -->
+<!-- 	    </div> -->
+<!-- 	    <div class="col-lg-2"> -->
+<!-- 			<div class="input-group"> -->
+<!-- 				<span class="input-group-addon" id="basic-addon2">大小</span> -->
+<!-- 			  	<input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon2"> -->
+<!-- 			</div> -->
+<!-- 	    </div> -->
+	    <div class="col-lg-4">
+			<div class="input-group">
+				<input type="text" class="form-control" id="searchName" placeholder="输入用户名称进行搜索">
+				<span class="input-group-btn">
+					<button class="btn btn-secondary" type="button">Go!</button>
+				</span>
+				<a class="btn btn-primary" href="/users/form" th:href="@{/users/form}" role="button"><i class="fa fa-plus" aria-hidden="true"></i>创建</a>
+			</div>
+	    </div>
+    </div>	
+ 
     <table class="table table-striped">
         <thead>
         <tr>
             <th data-field="id">ID</th>
             <th data-field="age">年龄</th>
             <th data-field="name">姓名</th>
+            <th data-field="operation">操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${userModel.userList.size()} eq 0">
-            <td colspan="3">没有用户信息！！</td>
-        </tr>
+ 
         <tr th:each="user : ${userModel.userList}">
             <td th:text="${user.id}">1</td>
             <td th:text="${user.age}">11</td>
-            <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
-                   th:text="${user.name}">waylau</a></td>
+            <td th:text="${user.name}">waylau</td>
+            <td>
+            	<div>
+            		<a th:href="@{'/users/modify/' + ${user.id}}">
+            			<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            		</a>
+        			<a th:href="@{'/users/delete/' + ${user.id}}">
+        				<i class="fa fa-times" aria-hidden="true"></i>
+        			</a>
+        		</div>
+        	</td>
         </tr>
         </tbody>
+        
     </table>
 	<div th:replace="~{fragments/page :: page}">...</div>
-	
-
+ 
 </div><!-- /.container -->
 
 <div th:replace="~{fragments/footer :: footer}">...</div>
