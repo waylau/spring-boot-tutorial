@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,8 +47,20 @@ public class UserController {
 	 */
 	@GetMapping
 	public ModelAndView list(Model model) {
-		model.addAttribute("userList", getUserlist());
+		
+		int pageIndex = 0; // 页面索引 从0开始
+		int pageSize = 5; // 页面的大小
+		Pageable pageable = new PageRequest(pageIndex, pageSize);
+		Page<User> page = userService.listUsersByNameLike("", pageable);
+		long totleElements = page.getTotalElements();  // 数据总数
+		List<User> list = page.getContent();	// 当前所在页面数据列表
+		long totalPages = page.getTotalPages();  // 总共页数
+		int number = page.getNumber(); // 当前页面索引。
+		int numberOfElements = page.getNumberOfElements(); // 索引总数 
+		
+		model.addAttribute("page", page);
 		model.addAttribute("title", "用户管理");
+		model.addAttribute("userList", list);
 		return new ModelAndView("users/list", "userModel", model);
 	}
  

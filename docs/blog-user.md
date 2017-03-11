@@ -50,3 +50,19 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 
 在测试类上，添加 `@AutoconfigureTestDatabase`
 
+
+### 问题2：Thymeleaf 取值 `${page.isLast}`报错
+
+
+
+```
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "page.isLast" (template: "fragments/page" - line 28, col 53)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.2.RELEASE.jar:2.0.2.RELEASE]
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.3.RELEASE.jar:3.0.3.RELEASE]
+	... 87 common frames omitted
+```
+
+返回的  org.springframework.data.domain.Page 对象里面找不到 isLast 属性。
+
+解决： 这个是序列化转化的问题。布尔值 isLast 映射为属性是 last，所以改为 `${page.last}`即可。

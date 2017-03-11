@@ -14,18 +14,12 @@
         <a class="btn btn-primary" href="/users/form" th:href="@{/users/form}" role="button">创建用户</a>
     </p>
 
-    <table id="table"
-               data-toggle="table"
-               data-pagination="true"
-               data-click-to-select="true"
-    	>
+    <table class="table table-striped">
         <thead>
         <tr>
-        	<th data-field="state" data-checkbox="true"
-                    data-formatter="stateFormatter"></th>
-                <th data-field="id">ID</th>
-                <th data-field="age">年龄</th>
-                <th data-field="name">姓名</th>
+            <th data-field="id">ID</th>
+            <th data-field="age">年龄</th>
+            <th data-field="name">姓名</th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +27,6 @@
             <td colspan="3">没有用户信息！！</td>
         </tr>
         <tr th:each="user : ${userModel.userList}">
-        	<td >1</td>
             <td th:text="${user.id}">1</td>
             <td th:text="${user.age}">11</td>
             <td><a href="view.html" th:href="@{'/users/' + ${user.id}}"
@@ -41,6 +34,8 @@
         </tr>
         </tbody>
     </table>
+	<div th:replace="~{fragments/page :: page}">...</div>
+	
 
 </div><!-- /.container -->
 
