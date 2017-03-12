@@ -1,11 +1,9 @@
 package com.waylau.spring.boot.blog.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.waylau.spring.boot.blog.domain.User;
-import com.waylau.spring.boot.blog.repository.UserRepository;
 import com.waylau.spring.boot.blog.service.UserService;
 
 /**
@@ -49,23 +46,18 @@ public class UserController {
 	@GetMapping
 	public ModelAndView list(@RequestParam(value="async",required=false) boolean async,
 			@RequestParam(value="pageIndex",required=false,defaultValue="0") int pageIndex,
+			@RequestParam(value="pageSize",required=false,defaultValue="10") int pageSize,
 			@RequestParam(value="name",required=false,defaultValue="") String name,
 			Model model) {
-		
-		//int pageIndex = 0; // 页面索引 从0开始
-		int pageSize = 5; // 页面的大小
+	 
 		Pageable pageable = new PageRequest(pageIndex, pageSize);
 		Page<User> page = userService.listUsersByNameLike(name, pageable);
-		long totleElements = page.getTotalElements();  // 数据总数
 		List<User> list = page.getContent();	// 当前所在页面数据列表
-		long totalPages = page.getTotalPages();  // 总共页数
-		int number = page.getNumber(); // 当前页面索引。
-		int numberOfElements = page.getNumberOfElements(); // 索引总数 
 		
 		model.addAttribute("page", page);
 		model.addAttribute("title", "用户管理");
 		model.addAttribute("userList", list);
-		return new ModelAndView(async==true?"users/list :: #userMain":"users/list", "userModel", model);
+		return new ModelAndView(async==true?"users/list :: #mainContainerRepleace":"users/list", "userModel", model);
 	}
  
 	/**
