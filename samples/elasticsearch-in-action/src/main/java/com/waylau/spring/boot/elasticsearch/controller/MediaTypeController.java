@@ -1,5 +1,8 @@
 package com.waylau.spring.boot.elasticsearch.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +27,11 @@ public class MediaTypeController {
 		return new UserVO("waylau", 30);
 	}
 
+	@RequestMapping("/users")
+	public List<UserVO> getUsers() {
+		List<UserVO> list = new ArrayList<>();
+		list.add(new UserVO("waylau", 30));
+		list.add(new UserVO("老卫", 30));
+		return list;
+	}
 }

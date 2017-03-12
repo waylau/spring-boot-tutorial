@@ -7,7 +7,7 @@ buildscript {
 	}
 	
 	// 自定义 Elasticsearch 的版本
-	ext['elasticsearch.version'] = '5.2.2'
+	//ext['elasticsearch.version'] = '5.2.2'
 
 	// 使用了 Maven 的中央仓库（你也可以指定其他仓库）
 	repositories {

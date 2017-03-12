@@ -15,3 +15,7 @@ hs_err_pid*
 *.md.html
 .idea
 
+/target/
+/.idea/
+/.settings/
+.classpath
