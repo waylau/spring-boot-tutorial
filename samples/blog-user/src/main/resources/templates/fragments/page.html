@@ -14,7 +14,7 @@
  		
  		<!-- 页面大小 -->
 		<select class="custom-select tbpage-size" data-th-attr="pageIndex=${page.number}">
-			<option data-th-each="i : ${#arrays.toIntegerArray({2,5,10,40,100})}" data-th-value="${i}" 
+			<option data-th-each="i : ${#arrays.toIntegerArray({5,10,40,100})}" data-th-value="${i}" 
 				 data-th-selected="${i eq page.size}" data-th-text="${i}"></option>
 		</select>
 		
@@ -48,7 +48,7 @@
  		
  		<!-- 页面大小 -->
 		<select class="custom-select tbpage-size" data-th-attr="pageIndex=${page.number}">
-			<option data-th-each="i : ${#arrays.toIntegerArray({2,5,10,40,100})}" data-th-value="${i}" 
+			<option data-th-each="i : ${#arrays.toIntegerArray({5,10,40,100})}" data-th-value="${i}" 
 				 data-th-selected="${i eq page.size}" data-th-text="${i}"></option>
 		</select>
 		
