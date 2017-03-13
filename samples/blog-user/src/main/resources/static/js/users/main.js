@@ -9,6 +9,9 @@
  
 // DOM 加载完再执行
 $(function() {
+	
+	var _pageSize; // 存储用于搜索
+	
 	// 根据用户名、页面索引、页面大小获取用户列表
 	function getUersByName(pageIndex, pageSize) {
 		 $.ajax({ 
@@ -30,13 +33,18 @@ $(function() {
 	}
 	
 	// 分页
-	$.tbpage("#mainContainer", ".page-link", function (pageIndex, pageSize) {
+//	$.tbpage("#mainContainer", ".page-link", function (pageIndex, pageSize) {
+//		getUersByName(pageIndex, pageSize);
+//	});
+	
+	$.tbpage("#mainContainer", function (pageIndex, pageSize) {
 		getUersByName(pageIndex, pageSize);
+		_pageSize = pageSize;
 	});
    
 	// 搜索
 	$("#searchNameBtn").click(function() {
-		getUersByName(0, 10);
+		getUersByName(0, _pageSize);
 	});
 	
 	
