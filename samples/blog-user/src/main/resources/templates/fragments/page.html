@@ -7,13 +7,14 @@
 
 <nav data-th-fragment="page" data-th-if="${page.totalPages gt 0}" data-th-object="${page}">
  
- 	<div>
- 		<span>共[[${page.totalElements}]]记录</span>
- 	</div>
+
  
 	
 	<!-- 处理页数小于等于7 的情况 -->
 	<ul class="pagination" data-th-if="${page.totalPages le 7}" >
+	 	<!-- 总记录数 -->
+ 		<li class="page-total-elements disabled">共[[${page.totalElements}]]条</li>
+ 		 
 		<!-- 上一页 -->
 		<li class="page-item" data-th-classappend="*{first} ? 'disabled' : ''">
 			<a href="javascript:void(0);" class="page-link" data-th-attr="pageIndex=${page.number} - 1" aria-label="Previous">
@@ -39,6 +40,9 @@
 		
 	<!-- 处理页数大于7 的情况 -->	
 	<ul class="pagination" data-th-if="${page.totalPages gt 7}" >
+		<!-- 总记录数 -->
+		<li class="page-total-elements disabled">共[[${page.totalElements}]]条</li>
+		
 	 	<!-- 上一页 -->
 		<li class="page-item" data-th-classappend="*{first} ? 'disabled' : ''">
 			<a href="javascript:void(0);" class="page-link" data-th-attr="pageIndex=${page.number} - 1" aria-label="Previous">
