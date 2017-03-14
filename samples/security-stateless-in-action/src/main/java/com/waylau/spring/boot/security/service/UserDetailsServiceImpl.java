@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 import com.waylau.spring.boot.security.repository.UserRepository;
 import com.waylau.spring.boot.security.domain.User;
 
@@ -14,6 +16,7 @@ import com.waylau.spring.boot.security.domain.User;
  * @since 1.0.0 2017年3月14日
  * @author <a href="https://waylau.com">Way Lau</a> 
  */
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired

@@ -43,14 +43,17 @@ public class User implements UserDetails, Serializable{
 	@Column(nullable = false)
 	private Integer age;
 
-    @Column(name = "username")  // 用户账号，用户登录时的唯一标识
-    private String username;
+    @Column(nullable = false)  
+    private String username; // 用户账号，用户登录时的唯一标识
 
     //@JsonIgnore
-    @Column(name = "password") // 登录时密码
-    private String password;
+    @Column 
+    private String password; // 登录时密码
     
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_authority",
+    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private List<Authority> authorities;
     
 	protected User() {  // JPA 的规范要求无参构造函数；设为 protected 防止直接使用 
@@ -88,14 +91,13 @@ public class User implements UserDetails, Serializable{
 	@Override
     public String toString() {
         return String.format(
-                "User[id=%d,username='%s', name='%s', age='%d']",
-                id, name, age);
+                "User[id=%d, username='%s', name='%s', age='%d']",
+                id, username, name, age);
     }
  
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.authorities;
 	}
 	
     public void setAuthorities(List<Authority> authorities) {

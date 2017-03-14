@@ -1,9 +1,11 @@
 package com.waylau.spring.boot.security.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -13,6 +15,8 @@ import org.springframework.security.core.GrantedAuthority;
  * @since 1.0.0 2017年3月14日
  * @author <a href="https://waylau.com">Way Lau</a> 
  */
+@Entity  // 实体
+@XmlRootElement // MediaType 转为 XML
 public class Authority implements GrantedAuthority {
  
 	private static final long serialVersionUID = 1L;
