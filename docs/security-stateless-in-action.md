@@ -17,8 +17,50 @@ jar {
 }
 ```
  
+依赖
+
+```
+	// 添加  JSON Web Token Support For The JVM 依赖
+	compile('io.jsonwebtoken:jjwt:0.7.0')
+```
+
 ## 后台代码
 
+### 创建 Authority
+
+
+### 修改 User
+
+修改 User.java，实现 `org.springframework.security.core.userdetails.UserDetails` 接口：
+
+```
+
+```
+
+### 修改 UserRepository
+
+修改 UserRepository.java 接口，增加：
+
+```
+User findByUsername(String username);
+```
+
+### 新增 UserDetailsServiceImpl
+
+UserDetailsServiceImpl 实现 `org.springframework.security.core.userdetails.UserDetailsService` 接口，并重写了  loadUserByUsername 方法：
+ 
+```
+@Override
+public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = userRepository.findByUsername(username);
+    
+    if (user == null) {
+        throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+    } else {
+        return user;
+    }
+}
+```
 
 ### 修改安全配置类
 
@@ -30,7 +72,7 @@ jar {
 ```
 
 
-
+详见 <http://docs.spring.io/spring-security/site/docs/current/apidocs/org/springframework/security/config/annotation/web/builders/HttpSecurity.html>
 
 ## 控制器
 

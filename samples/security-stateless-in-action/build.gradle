@@ -65,6 +65,9 @@ dependencies {
 	// 添加  Spring Security 依赖
 	compile('org.springframework.boot:spring-boot-starter-security')
 
+	// 添加  JSON Web Token Support For The JVM 依赖
+	compile('io.jsonwebtoken:jjwt:0.7.0')
+
 	// 添加 MySQL连接驱动 的依赖
 	compile('mysql:mysql-connector-java:6.0.5')
 
