@@ -55,6 +55,7 @@ This is the summary of my book.
 	* Spring Security 简介
 	* [Spring Security 与 Spring Boot 集成](docs/security-integration.md)
 	* [Spring Security 实战](docs/security-in-action.md)
+	* [Spring Security 无状态实战](docs/security-stateless-in-action.md)
 * [博客系统的用户管理实现](docs/blog-user.md)
 	* 后台实现及单元测试
 	* 前台实现、测试

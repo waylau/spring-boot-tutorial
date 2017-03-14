@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+
+			<h2 th:text="${userModel.title}">Welcome to waylau.com</h2>
+
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<p>
+				<a class="btn btn-primary" href="/users" th:href="@{/users}" role="button">返回</a>
+			</p>
+		</div>
+		<!-- /.row -->
+
+		<div class="row">
+			<form th:action="@{/users}" method="post" th:object="${userModel.user}">
+
+				<input type="hidden" name="id" th:value="*{id}">
+
+				<div class="form-group">
+					<label for="name">名称</label> <input type="text"
+						class="form-control" name="name" id="name" th:value="*{name}">
+				</div>
+				<div class="form-group">
+					<label for="name">年龄</label> <input type="text"
+						class="form-control" name="age" th:value="*{age}">
+				</div>
+				<input type="submit" class="btn btn-default" value="提交">
+			</form>
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+
+
+
+</body>
+</html>

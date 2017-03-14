@@ -11,12 +11,7 @@
 ### 安全配置类
 
 增加 `com.waylau.spring.boot.security.config` 包，用于放置项目的配置类。在该包下，我们创建  SecurityConfig.java :
-
-
-
-请求匹配/ css / **和/ index是完全可访问的
-与/ user / **匹配的请求需要用户进行身份验证，并且必须与USER角色相关联
-基于表单的身份验证使用自定义登录页面和失败URL启用
+ 
 
 ```java
 @EnableWebSecurity
