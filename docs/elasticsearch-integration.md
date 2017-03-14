@@ -4,8 +4,8 @@
 
 ## 环境
 
-* Elasticsearch 5.2.2
-
+* ~~Elasticsearch 5.2.2~~
+* JNA 4.3.0
 
 
 ## build.gradle
@@ -21,7 +21,7 @@ jar {
 }
 ```
 
-同时，我们需要添加 Elasticsearch 的依赖。
+同时，我们需要添加 Elasticsearch、JNA 的依赖。
 
 ```groovy
 // 依赖关系
@@ -31,6 +31,8 @@ dependencies {
 	// 添加  Spring Data Elasticsearch 的依赖
 	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
 	
+	// 添加  JNA 的依赖
+	compile('net.java.dev.jna:jna:4.3.0')
  	...
 }
 ```

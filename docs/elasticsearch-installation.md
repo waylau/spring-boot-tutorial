@@ -1,7 +1,8 @@
-# Elasticsearch 再 Windows 下的安装和使用
+# Elasticsearch 安装和使用
 
 ## 环境
 
+* Windows 10
 * Java 8 +
 * Elasticsearch 5.2.2
 
