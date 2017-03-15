@@ -48,6 +48,7 @@ This is the summary of my book.
 	* 数据库设计与建模
 	* 接口设计
 * 权限管理
+	* [安全概述](docs/security-overview.md)
 	* 基于角色的权限管理
 	* Apache Shiro 简介
 	* [Apache Shiro 与 Spring Boot 集成](docs/shiro-integration.md)

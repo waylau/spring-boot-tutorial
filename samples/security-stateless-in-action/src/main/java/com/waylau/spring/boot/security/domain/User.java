@@ -2,6 +2,7 @@ package com.waylau.spring.boot.security.domain;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,12 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
- 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * User 实体
@@ -37,24 +38,34 @@ public class User implements UserDetails, Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY) // 自增长策略
 	private Long id; // 用户的唯一标识
 
-	@Column(nullable = false) // 映射为字段，值不能为空
+	@Column(nullable = false, length = 50) // 映射为字段，值不能为空
  	private String name;
 	
 	@Column(nullable = false)
 	private Integer age;
 
-    @Column(nullable = false)  
+    @Column(nullable = false, length = 50, unique = true)  
     private String username; // 用户账号，用户登录时的唯一标识
 
     //@JsonIgnore
-    @Column 
+    @Column(length = 100)
     private String password; // 登录时密码
+    
     
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority",
     joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
     private List<Authority> authorities;
+    
+
+
+	@Column(length = 50)
+    private String email;
+    
+    @Column(nullable = false)  
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastPasswordResetDate;
     
 	protected User() {  // JPA 的规范要求无参构造函数；设为 protected 防止直接使用 
 	}
@@ -122,27 +133,43 @@ public class User implements UserDetails, Serializable{
         this.password = password;
     }
 
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getLastPasswordResetDate() {
+		return lastPasswordResetDate;
+	}
+
+	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }

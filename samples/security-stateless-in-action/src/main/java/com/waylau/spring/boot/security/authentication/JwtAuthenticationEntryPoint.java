@@ -1,9 +1,5 @@
 package com.waylau.spring.boot.security.authentication;
 
-/**
- * Created by fan.jin on 2016-11-12.
- */
-
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -13,10 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by fan.jin on 2016-11-07.
+ * JWT Authentication Entry Point.
+ * 
+ * @since 1.0.0 2017年3月15日
+ * @author <a href="https://waylau.com">Way Lau</a> 
  */
 @Component
-public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request,
