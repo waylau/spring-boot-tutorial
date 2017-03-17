@@ -19,7 +19,7 @@ This is the summary of my book.
 * 集成 Thymeleaf 
 	* Thymeleaf 简介
 	* [Thymeleaf 标准方言](docs/thymeleaf-standard-dialects.md)
-	* Thymeleaf 与 Spring Boot 集成
+	* [Thymeleaf 与 Spring Boot 集成](docs/thymeleaf-integration.md)
 	* [Thymeleaf 实战](docs/thymeleaf-in-action.md)
 * 数据持久化
 	* [JPA 简介](docs/jpa-overview.md)
