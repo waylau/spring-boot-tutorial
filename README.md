@@ -1,6 +1,7 @@
 # Spring Boot Tutorial 《Spring Boot 教程》
 
- 
+![](images/spring-boot-logo.jpg)
+
 Spring Boot  Tutorial takes you to learn Spring Boot  step by step with a large number of samples. There is also a GitBook version of the book: <http://www.gitbook.com/book/waylau/spring-boot-tutorial>.
 Let's [READ](SUMMARY.md)!
 
