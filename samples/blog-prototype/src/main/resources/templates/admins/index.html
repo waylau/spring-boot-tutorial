@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<div class="container" >
+
+        <div class="list-group menu">
+		<a href="/users" class="list-group-item list-group-item-action">用户管理</a>
+		<a href="#" class="list-group-item list-group-item-action active">角色管理</a>
+		<a href="#" class="list-group-item list-group-item-action">权限管理</a>
+		<a href="#" class="list-group-item list-group-item-action">博客管理</a>
+		</div>
+
+        <!-- Main content -->
+        <main class="main">
+ 
+            <div class="container-fluid">
+        		<div class="row"></div>
+            </div>
+            <!-- /.conainer-fluid -->
+        </main>
+    
+</div><!-- /.container -->
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+
+<!-- JavaScript -->
+<script src="../../js/users/main.js" th:src="@{/js/users/main.js}"></script>
+<script src="../../js/users/main.js" th:src="@{/js/admins/index.js}"></script>
+</body>
+</html>

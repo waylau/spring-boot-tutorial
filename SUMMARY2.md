@@ -44,7 +44,7 @@ This is the summary of my book.
 	* [Bootstrap 实战](docs/bootstrap-in-action.md)
 * NewStarBlog 博客系统的需要分析与设计
 	* NewStarBlog 博客系统的需要分析
-	* 原型设计
+	* [原型设计](docs/blog-prototype.md)
 	* 数据库设计与建模
 	* 接口设计
 * 权限管理
