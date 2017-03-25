@@ -3,18 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <!-- Tether core CSS -->
     <link href="../../css/tether.min.css" th:href="@{/css/tether.min.css}" rel="stylesheet">
-    
-	<!-- Bootstrap CSS -->
+
+    <!-- Bootstrap CSS -->
     <link href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    
+
     <!-- Font-Awesome CSS -->
     <link href="../../css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
-    
+
     <!-- Custom styles -->
-    <link href="../../css/thymeleaf-bootstrap-paginator.css" th:href="@{/css/thymeleaf-bootstrap-paginator.css}" rel="stylesheet">
+    <link href="../../css/thymeleaf-bootstrap-paginator.css" th:href="@{/css/thymeleaf-bootstrap-paginator.css}"
+          rel="stylesheet">
     <link href="../../css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
 </head>
 <body>
@@ -25,32 +26,29 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/" th:href="@{/}">Spring Security in action</a>
+        <a class="navbar-brand" href="/" th:href="@{/}">NewStarBlog</a>
 
         <div class="collapse navbar-collapse" id="navbarsContainer">
+
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/blogs?order=new&tag=1">最新 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/users" th:href="@{/users}">用户管理</a>
+                    <a class="nav-link" href="/blogs?order=hot&tag=2">最热</a>
                 </li>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="搜索">
+                    <a href="/search?q=ww" class="btn btn-outline-secondary my-2 my-sm-0"><i class="fa fa-search"
+                                                                                                                                        aria-hidden="true"></i></a>
+                </form>
+
             </ul>
 
-	 		<ul class="navbar-nav mr-auto navbar-right">
-	          <li class="nav-item" sec:authorize="isAnonymous()">
-				<a class="nav-link" href="/login" th:href="@{/login}">登录 </a>
-	          </li>
-	           <li class="nav-item" sec:authorize="isAuthenticated()">
-					<span class="nav-link"  sec:authentication="name"></span>
-	          </li>
-	          <li class="nav-item">
-	            	<form action="/logout" th:action="@{/logout}" method="post">
-						<input class="btn btn-default  " type="submit" value="退出" />
-					</form>
-	          </li>
-	        </ul>
+            <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</a>
+            <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</a>
         </div>
+
     </div>
 </nav>
 </body>

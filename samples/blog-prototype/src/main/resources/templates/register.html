@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}">
+</head>
+    <body>
+
+    <div class="container blog-content-container">
+ 
+		<form  >
+			<h2 class="form-signin-heading">注册成为博主</h2>
+			
+			<div class="form-group col-md-5">
+				<label for="username" class="col-form-label">账号</label>
+				<input type="text" class="form-control" id="username" name="username" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
+	 
+			</div>
+			<div class="form-group col-md-5">
+				<label for="email" class="col-form-label">邮箱</label>
+				<input type="email" class="form-control" id="email" name="email" maxlength="50" placeholder="请输入邮箱">
+			</div>
+			<div class="form-group col-md-5">
+				<label for="username" class="col-form-label">姓名</label>
+				<input type="text" class="form-control" id="username" name="username" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
+			</div>
+			<div class="form-group col-md-5">
+				<label for="password" class="col-form-label">密码</label>
+				<input type="password" class="form-control" id="password" name="password" maxlength="30" placeholder="请输入密码，字母或特殊符号和数字结合" >
+			</div>
+			<div class="form-group col-md-5">
+				<button type="submit" class="btn btn-primary">提交</button>
+			</div>
+ 
+		</form>
+ 
+    </div> <!-- /container -->
+ 
+	
+	<div th:replace="~{fragments/footer :: footer}">...</div>
+    </body>
+</html>
