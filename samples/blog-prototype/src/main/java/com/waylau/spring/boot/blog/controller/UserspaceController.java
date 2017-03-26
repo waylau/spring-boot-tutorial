@@ -52,4 +52,11 @@ public class UserspaceController {
 		System.out.print("blogId:" + id);
 		return "/blog";
 	}
+	
+	
+	@GetMapping("/{username}/blogs/edit")
+	public String editBlog() {
+ 
+		return "/blogedit";
+	}
 }

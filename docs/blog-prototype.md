@@ -20,6 +20,9 @@
 		* order: 排序类型， new/hot ， 默认是 new
 		* catalog : 博客分类 Id，默认是空
 		* keyword : 搜索关键字。博客的标签，即为关键字
+	* /u/{username}/blogs/edit : 获取编辑界面
+	* /u/{username}/blogs/edit/{id} : 编辑某个博客
+		* id : 博客的 id
 * search ： 搜索
 	* /search
 		* q : 搜索关键字
