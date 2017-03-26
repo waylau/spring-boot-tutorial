@@ -60,13 +60,13 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 	// 添加  Spring Security 依赖
-	compile('org.springframework.boot:spring-boot-starter-security')
+	//compile('org.springframework.boot:spring-boot-starter-security')
 
 	// 添加 Spring Boot 开发工具依赖
  	compile("org.springframework.boot:spring-boot-devtools")
  
 	// 添加   Thymeleaf Spring Security 依赖，与 Thymeleaf 版本一致都是 3.x
-	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
+	//compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
 	
 	// 该依赖对于编译测试是必须的，默认包含编译产品依赖和编译时依
 	testCompile('org.springframework.boot:spring-boot-starter-test')

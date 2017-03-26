@@ -35,7 +35,7 @@ This is the summary of my book.
 	* Bootstrap 核心概念
 	* [Bootstrap 及常用前端框架与 Spring Boot 集成](docs/bootstrap-integration.md)
 	* [Bootstrap 实战](docs/bootstrap-in-action.md)
-* NewStarBlog 博客系统的需要分析与设计
+* 博客系统的需要分析与设计
 	* NewStarBlog 博客系统的需要分析
 	* 原型设计
 	* 数据库设计与建模
