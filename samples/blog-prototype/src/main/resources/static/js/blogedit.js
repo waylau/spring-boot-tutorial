@@ -18,8 +18,8 @@ $(function() {
         },
         resize:'vertical',
         localStorage:'md',
-        imgurl: 'http://127.0.0.1:8081/',
-        base64url: 'http://127.0.0.1:8081/'
+        imgurl: 'http://localhost:8081/upload',
+        base64url: 'http://localhost:8081/upload'
     });
  
     

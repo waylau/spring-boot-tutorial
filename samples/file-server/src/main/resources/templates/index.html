@@ -17,15 +17,43 @@
             <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
             <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
         </table>
+        
     </form>
 </div>
 
 <div>
-    <ul>
-        <li th:each="file : ${files}">
-            <a th:href="${file.key}" th:text="${file.value}" />
-        </li>
-    </ul>
+<!--     <ul> -->
+<!--         <li th:each="file : ${files}"> -->
+<!--             <a th:href="${file.id}" th:text="${file.value}" /> -->
+<!--         </li> -->
+<!--     </ul> -->
+    
+    <table border="1">
+    <thead>
+    <tr>
+
+        <td>Name</td>
+        <td>ID</td>
+        <td>contentType</td>
+        <td>size</td>
+        <td>uploadDate</td>
+        <td>md5</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${files.size()} eq 0">
+        <td colspan="3">没有文件信息！！</td>
+    </tr>
+    <tr th:each="file : ${files}">
+        <td><a th:href="${file.id}" th:text="${file.name}" /></td>
+        <td th:text="${file.id}" ></td>
+        <td th:text="${file.contentType}" ></td>
+        <td th:text="${file.size}" ></td>
+        <td th:text="${file.uploadDate}" ></td>
+        <td th:text="${file.md5}" ></td>
+    </tr>
+    </tbody>
+</table>
 </div>
 
 <div th:replace="~{fragments/footer :: footer}">...</div>

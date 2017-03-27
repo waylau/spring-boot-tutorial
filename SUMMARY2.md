@@ -47,6 +47,7 @@ This is the summary of my book.
 	* [原型设计](docs/blog-prototype.md)
 	* 数据库设计与建模
 	* 接口设计
+	*  文件服务器  `file-server`
 * 权限管理
 	* [安全概述](docs/security-overview.md)
 	* 基于角色的权限管理
