@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ import com.waylau.spring.boot.fileserver.domain.File;
 import com.waylau.spring.boot.fileserver.service.FileService;
 import com.waylau.spring.boot.fileserver.util.MD5Util;
 
-
+@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)  // 允许所有域名访问
 @Controller
 public class FileController {
 
@@ -36,7 +37,7 @@ public class FileController {
     }
 
     /**
-     * 获取图片信息
+     * 获取文件片信息
      * @param id
      * @return
      */
@@ -61,13 +62,13 @@ public class FileController {
     }
     
     /**
-     * 在线显示
+     * 在线显示文件
      * @param id
      * @return
      */
     @GetMapping("/view/{id}")
     @ResponseBody
-    public ResponseEntity serveImages(@PathVariable String id) {
+    public ResponseEntity serveFileOnline(@PathVariable String id) {
 
         File file = fileService.getFileById(id);
 
@@ -112,19 +113,37 @@ public class FileController {
         return "redirect:/";
     }
 
+//    @PostMapping("/upload")
+//    @ResponseBody
+//    public ResponseEntity handleFileUpload(@RequestParam("file") MultipartFile file) {
+//    	File returnFile  = null;
+//        try {
+//        	File f = new File(file.getOriginalFilename(),  file.getContentType(), file.getSize(),file.getBytes());
+//        	f.setMd5( MD5Util.getMD5(file.getInputStream()) );
+//        	returnFile = fileService.saveFile(f);
+//        } catch (IOException | NoSuchAlgorithmException ex) {
+//            ex.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.OK).body(returnFile);
+//    }
     @PostMapping("/upload")
     @ResponseBody
-    public ResponseEntity handleFileUpload(@RequestParam("file") MultipartFile file) {
-
+    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+    	File returnFile = null;
         try {
         	File f = new File(file.getOriginalFilename(),  file.getContentType(), file.getSize(),file.getBytes());
         	f.setMd5( MD5Util.getMD5(file.getInputStream()) );
-        	fileService.saveFile(f);
+        	returnFile = fileService.saveFile(f);
+        	returnFile.setPath("http://localhost:8081/view/"+f.getId());
+        	returnFile.setContent(null) ;
+        	return ResponseEntity.status(HttpStatus.OK).body("http://localhost:8081/view/"+f.getId());
+ 
         } catch (IOException | NoSuchAlgorithmException ex) {
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
         }
-
-        return ResponseEntity.status(HttpStatus.OK).body("File was upload");
+ 
     }
 }

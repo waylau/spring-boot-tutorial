@@ -15,8 +15,19 @@ public class File {
     private Date uploadDate;
     private String md5;
     private byte[] content;
+    private String path;
     
-    public String getId() {
+    public String getPath() {
+		return path;
+	}
+
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+
+	public String getId() {
 		return id;
 	}
 
