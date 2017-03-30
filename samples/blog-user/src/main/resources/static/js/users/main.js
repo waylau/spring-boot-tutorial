@@ -33,10 +33,6 @@ $(function() {
 	}
 	
 	// 分页
-//	$.tbpage("#mainContainer", ".page-link", function (pageIndex, pageSize) {
-//		getUersByName(pageIndex, pageSize);
-//	});
-	
 	$.tbpage("#mainContainer", function (pageIndex, pageSize) {
 		getUersByName(pageIndex, pageSize);
 		_pageSize = pageSize;
@@ -47,5 +43,48 @@ $(function() {
 		getUersByName(0, _pageSize);
 	});
 	
+	// 获取添加用户的界面
+	$("#addUser").click(function() {
+		$.ajax({ 
+			 url: "/users/add", 
+			 success: function(data){
+				 $("#userFormContainer").html(data);
+		     },
+		     error : function() {
+		         alert("error");
+		     }
+		 });
+	});
+	
+	// 获取编辑用户的界面
+	$(".blog-edit-user").click(function() {
+		$.ajax({ 
+			 url: "/users/edit/" + $(this).attr("userId"), 
+			 success: function(data){
+				 $("#userFormContainer").html(data);
+		     },
+		     error : function() {
+		         alert("error");
+		     }
+		 });
+	});
+	
+	
+	// 提交变更后，清空表单
+	$("#submitEdit").click(function() {
+		$.ajax({ 
+			 url: "/users", 
+			 type: 'POST',
+			 data:$('#userForm').serialize(),
+			 success: function(data){
+				 
+				 // 从新刷新主界面
+				 getUersByName(0, _pageSize);
+		     },
+		     error : function() {
+		         alert("error");
+		     }
+		 });
+	});
 	
 });

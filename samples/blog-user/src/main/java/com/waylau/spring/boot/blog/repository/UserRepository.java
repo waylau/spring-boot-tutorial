@@ -13,6 +13,7 @@ import com.waylau.spring.boot.blog.domain.User;
  * @author <a href="https://waylau.com">Way Lau</a> 
  */
 public interface UserRepository extends JpaRepository<User, Long>{
+
 	/**
 	 * 根据用户名分页查询用户列表
 	 * @param name
@@ -20,4 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	 * @return
 	 */
 	Page<User> findByNameLike(String name, Pageable pageable);
+	
+	User findByUsername(String username);
 }

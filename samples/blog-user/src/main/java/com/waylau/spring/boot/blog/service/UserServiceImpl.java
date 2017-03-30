@@ -1,29 +1,30 @@
-/**
- * 
- */
 package com.waylau.spring.boot.blog.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.waylau.spring.boot.blog.domain.User;
 import com.waylau.spring.boot.blog.repository.UserRepository;
 
 /**
- * 用户管理 服务类.
+ * User 服务.
  * 
- * @since 1.0.0 2017年3月10日
- * @author <a href="https://waylau.com">Way Lau</a> 
+ * @since 1.0.0 2017年3月18日
+ * @author <a href="https://waylau.com">Way Lau</a>
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
-	@Autowired 
+	@Autowired
 	private UserRepository userRepository;
 	
 	@Transactional
@@ -67,5 +68,10 @@ public class UserServiceImpl implements UserService {
 		Page<User> users = userRepository.findByNameLike(name, pageable);
 		return users;
 	}
- 
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return userRepository.findByUsername(username);
+	}
+
 }

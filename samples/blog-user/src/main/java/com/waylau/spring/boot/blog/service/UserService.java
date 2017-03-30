@@ -8,13 +8,12 @@ import org.springframework.data.domain.Pageable;
 import com.waylau.spring.boot.blog.domain.User;
 
 /**
- * 用户管理 接口.
+ * User 服务接口.
  * 
- * @since 1.0.0 2017年3月10日
- * @author <a href="https://waylau.com">Way Lau</a> 
+ * @since 1.0.0 2017年3月18日
+ * @author <a href="https://waylau.com">Way Lau</a>
  */
 public interface UserService {
-	
 	/**
 	 * 保存用户
 	 * @param user
