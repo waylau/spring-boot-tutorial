@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<style type="text/css">
+ 
+    @import "/css/emoji/nature.css";
+    @import "/css/emoji/object.css";
+    @import "/css/emoji/people.css";
+    @import "/css/emoji/place.css";
+    @import "/css/emoji/Sysmbols.css";
+    @import "/css/emoji/twemoji.css";
+ 
+</style>
+<!-- Page Content -->
+<div class="container blog-content-container">
+
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <div class="card-block">
+                    <input  type="text" class="form-control" placeholder="请填写博客标题" value="" maxlength="50">
+
+                    <textarea class="blog-textarea" placeholder="请填写博客摘要" value="" maxlength="300"></textarea>
+
+                    <hr>
+                    <textarea id="md" data-provide="markdown" data-hidden-buttons="cmdImage" ></textarea>
+
+                    <hr>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 右侧栏目 -->
+        <div class="col-md-4">
+ 
+                <!-- 文章目录 -->
+                <div class="card ">
+                    <h5 class="card-header"><i class="fa fa-file-image-o" aria-hidden="true"></i> 图片上传</h5>
+                    <div class="card-block">
+                        <div class="row mt-1">
+                             <div  class="col-lg-12">
+	            
+				                
+				                    <form  enctype="multipart/form-data"  id="uploadformid"  >
+				                    <input type="file" name="file" accept="image/png,image/gif,image/jpeg" id="file">
+				                    <button class="btn btn-primary float-right"  type="button" id="uploadImage" >插入</button>
+								        
+								    </form>
+ 
+			                 </div>
+                        </div>
+                    </div>
+
+                </div>
+ 				<!-- 图片上传 -->
+                <div class="card ">
+                    <h5 class="card-header"><i class="fa fa-cog" aria-hidden="true"></i> 博客设置</h5>
+                    <div class="card-block">
+                        <div class="row mt-1">
+                            <div  class="col-lg-12">
+                                标签： 					<input type="text" class="form-control form-control-tag">
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div  class="col-lg-12">
+                                分类：					<select id="single" class="form-control form-control-chosen" data-placeholder="请选择">
+								  <option>Java</option>
+								  <option>分布式</option>
+								  <option>数据库</option>
+								</select>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div  class="col-lg-12">
+								<button class="btn btn-primary float-right">发布</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+ 
+
+<script src="../../js/blogedit.js" th:src="@{/js/blogedit.js}"></script>
+ 
+</body>
+</html>
