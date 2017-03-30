@@ -6,7 +6,7 @@
  * Version: 1.0.0
  * Copyright (c) 2017 Martin Haubek
  *
- *
+ * Updated  * @author Way Lau <https://waylau.com>
  *
  */
 .tag-editor {
@@ -95,12 +95,13 @@
       width: 1rem;
       height: 1rem;
       cursor: pointer;
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='#d9534f' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+      background-image: url(../images/delete.png);
       background-size: 1rem 1rem;
       background-position: center center;
       background-repeat: no-repeat; }
     .tag-editor .tag-editor-delete:hover i {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='#a02622' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E"); }
+      background-image:  url(../images/delete.png); 
+    }
 
 .tag-editor-hidden-src {
   position: absolute !important;

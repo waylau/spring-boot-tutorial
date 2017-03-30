@@ -23,7 +23,7 @@ import com.waylau.spring.boot.fileserver.domain.File;
 import com.waylau.spring.boot.fileserver.service.FileService;
 import com.waylau.spring.boot.fileserver.util.MD5Util;
 
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)  // 允许所有域名访问
+@CrossOrigin(origins = "*", maxAge = 3600)  // 允许所有域名访问
 @Controller
 public class FileController {
 
@@ -112,22 +112,7 @@ public class FileController {
 
         return "redirect:/";
     }
-
-//    @PostMapping("/upload")
-//    @ResponseBody
-//    public ResponseEntity handleFileUpload(@RequestParam("file") MultipartFile file) {
-//    	File returnFile  = null;
-//        try {
-//        	File f = new File(file.getOriginalFilename(),  file.getContentType(), file.getSize(),file.getBytes());
-//        	f.setMd5( MD5Util.getMD5(file.getInputStream()) );
-//        	returnFile = fileService.saveFile(f);
-//        } catch (IOException | NoSuchAlgorithmException ex) {
-//            ex.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-//        }
-//
-//        return ResponseEntity.status(HttpStatus.OK).body(returnFile);
-//    }
+ 
     @PostMapping("/upload")
     @ResponseBody
     public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
