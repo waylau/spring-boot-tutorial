@@ -87,4 +87,20 @@ $(function() {
 		 });
 	});
 	
+	// 删除用户
+	$(".blog-delete-user").click(function() {
+		$.ajax({ 
+			 url: "/users/" + $(this).attr("userId") , 
+			 type: 'PUT',//'DELETE',
+			 success: function(data){
+				 // 从新刷新主界面
+				 getUersByName(0, _pageSize);
+		     },
+		     error : function() {
+		         alert("error");
+		     }
+		 });
+	});
+ 
+	
 });

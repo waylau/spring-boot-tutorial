@@ -9,11 +9,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +34,7 @@ import com.waylau.spring.boot.blog.service.UserService;
  * @date 2017年2月26日
  */
 @RestController
+//@Controller
 @RequestMapping("/users")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")  // 指定角色权限才能操作方法
 public class UserController {
@@ -40,14 +44,6 @@ public class UserController {
 	
 	@Autowired
 	private AuthorityService  authorityService;
-
-	/**
-	 * 从 用户存储库 获取用户列表
-	 * @return
-	 */
-	private List<User> getUserlist() {
- 		return userService.listUsers();
-	}
 
 	/**
 	 * 查询所用用户
@@ -67,18 +63,6 @@ public class UserController {
 		model.addAttribute("page", page);
 		model.addAttribute("userList", list);
 		return new ModelAndView(async==true?"users/list :: #mainContainerRepleace":"users/list", "userModel", model);
-	}
- 
-	/**
-	 * 根据id查询用户
-	 * @param message
-	 * @return
-	 */
-	@GetMapping("{id}")
-	public ModelAndView view(@PathVariable("id") Long id, Model model) {
-		User user = userService.getUserById(id);
-		model.addAttribute("user", user);
-		return new ModelAndView("users/view", "userModel", model);
 	}
 
 	/**
@@ -100,7 +84,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping
-	public ResponseEntity create(User user, Long authorityId) {
+	public ResponseEntity<User> create(User user, Long authorityId) {
 		List<Authority> authorities = new ArrayList<>();
 		authorities.add(authorityService.getAuthorityById(authorityId));
 		user.setAuthorities(authorities);
@@ -113,14 +97,19 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(value = "delete/{id}")
-	public ModelAndView delete(@PathVariable("id") Long id, Model model) {
-		userService.removeUser(id);
-		model.addAttribute("userList", getUserlist());
-		model.addAttribute("title", "删除用户");
-		return new ModelAndView("users/list", "userModel", model);
+	//@DeleteMapping(value = "/{id}")
+//	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+//    public String delete(@PathVariable("id") Long id, Model model) {
+//		
+//		userService.removeUser(id);
+//		return  "删除成功！";
+//	}
+	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public String delete(@PathVariable("id") Long id, Model model) {
+		
+		//userService.removeUser(id);
+		return  "删除成功！";
 	}
-
 	/**
 	 * 获取修改用户的界面，及数据
 	 * @param user
