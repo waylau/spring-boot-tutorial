@@ -13,7 +13,7 @@ public interface AuthorityService {
 	
 	/**
 	 * 根据id获取 Authority
-	 * @param user
+	 * @param Authority
 	 * @return
 	 */
 	Authority getAuthorityById(Long id);

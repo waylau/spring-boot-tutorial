@@ -28,9 +28,11 @@
 		* q : 搜索关键字
 	* /keywords : 最热搜索关键字列表
 * login : 登录
-	* /login  :POST
+	* /login  :GET 获取登录的界面
+	* /login  :POST 登录
 * register ：注册
-	* /register :POST
+	* /register :GET 获取注册的界面
+	* /register :POST 注册 ， 注册成功跳转至 登录界面
 * users : 用户管理
 	* /users : 用户列表
 	* /users/{id} :具体某个用户的主页

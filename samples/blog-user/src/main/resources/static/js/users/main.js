@@ -12,10 +12,6 @@ $(function() {
 	
 	var _pageSize; // 存储用于搜索
 	
-	// 获取 CSRF Token 
-	var csrfHeader = $("meta[name='_csrf']").attr("content");
-	var csrfToken = $("meta[name='_csrf_header']").attr("content");
-	
 	// 根据用户名、页面索引、页面大小获取用户列表
 	function getUersByName(pageIndex, pageSize) {
 		 $.ajax({ 
@@ -93,6 +89,12 @@ $(function() {
 	
 	// 删除用户
 	$(".blog-delete-user").click(function() {
+		
+		// 获取 CSRF Token 
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		
+		
 		$.ajax({ 
 			 url: "/users/" + $(this).attr("userId") , 
 			 type: 'DELETE', 
