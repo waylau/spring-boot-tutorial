@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +33,6 @@ import com.waylau.spring.boot.blog.service.UserService;
  * @date 2017年2月26日
  */
 @RestController
-//@Controller
 @RequestMapping("/users")
 @PreAuthorize("hasAuthority('ROLE_ADMIN')")  // 指定角色权限才能操作方法
 public class UserController {
@@ -97,19 +95,13 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	//@DeleteMapping(value = "/{id}")
-//	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-//    public String delete(@PathVariable("id") Long id, Model model) {
-//		
-//		userService.removeUser(id);
-//		return  "删除成功！";
-//	}
-	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public String delete(@PathVariable("id") Long id, Model model) {
-		
-		//userService.removeUser(id);
-		return  "删除成功！";
+	@DeleteMapping(value = "/{id}")
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> delete(@PathVariable("id") Long id, Model model) {
+		userService.removeUser(id);
+		return  ResponseEntity.ok().body( "删除成功！");
 	}
+	
 	/**
 	 * 获取修改用户的界面，及数据
 	 * @param user

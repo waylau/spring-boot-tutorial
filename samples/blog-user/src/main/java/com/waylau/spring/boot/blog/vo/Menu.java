@@ -2,8 +2,6 @@ package com.waylau.spring.boot.blog.vo;
 
 import java.io.Serializable;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 /**
  * 菜单 值对象.
  * 

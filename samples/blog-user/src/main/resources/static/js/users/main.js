@@ -12,6 +12,10 @@ $(function() {
 	
 	var _pageSize; // 存储用于搜索
 	
+	// 获取 CSRF Token 
+	var csrfHeader = $("meta[name='_csrf']").attr("content");
+	var csrfToken = $("meta[name='_csrf_header']").attr("content");
+	
 	// 根据用户名、页面索引、页面大小获取用户列表
 	function getUersByName(pageIndex, pageSize) {
 		 $.ajax({ 
@@ -91,7 +95,10 @@ $(function() {
 	$(".blog-delete-user").click(function() {
 		$.ajax({ 
 			 url: "/users/" + $(this).attr("userId") , 
-			 type: 'PUT',//'DELETE',
+			 type: 'DELETE', 
+			 beforeSend: function(request) {
+                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
+             },
 			 success: function(data){
 				 // 从新刷新主界面
 				 getUersByName(0, _pageSize);
@@ -101,6 +108,7 @@ $(function() {
 		     }
 		 });
 	});
+
  
 	
 });
