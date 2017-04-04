@@ -50,7 +50,7 @@ $(function() {
 			 success: function(data){
 				 $("#userFormContainer").html(data);
 		     },
-		     error : function() {
+		     error : function(data) {
 		         alert("error");
 		     }
 		 });
@@ -77,9 +77,13 @@ $(function() {
 			 type: 'POST',
 			 data:$('#userForm').serialize(),
 			 success: function(data){
-				 
-				 // 从新刷新主界面
-				 getUersByName(0, _pageSize);
+				 if (data.success) {
+					 // 从新刷新主界面
+					 getUersByName(0, _pageSize);
+				 } else {
+					 alert(data.message);
+				 }
+
 		     },
 		     error : function() {
 		         alert("error");

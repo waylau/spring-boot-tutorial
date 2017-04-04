@@ -3,6 +3,8 @@ package com.waylau.spring.boot.blog.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,8 @@ import com.waylau.spring.boot.blog.domain.Authority;
 import com.waylau.spring.boot.blog.domain.User;
 import com.waylau.spring.boot.blog.service.AuthorityService;
 import com.waylau.spring.boot.blog.service.UserService;
+import com.waylau.spring.boot.blog.util.ConstraintViolationExceptionHandler;
+import com.waylau.spring.boot.blog.vo.Response;
  
 
 /**
@@ -82,12 +86,17 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping
-	public ResponseEntity<User> create(User user, Long authorityId) {
+	public ResponseEntity<Response> create(User user, Long authorityId) {
 		List<Authority> authorities = new ArrayList<>();
 		authorities.add(authorityService.getAuthorityById(authorityId));
 		user.setAuthorities(authorities);
-		userService.saveUser(user);
-		return ResponseEntity.ok().body( user);
+		try {
+			userService.saveUser(user);
+		}  catch (ConstraintViolationException e)  {
+			return ResponseEntity.ok().body(new Response(false, ConstraintViolationExceptionHandler.getMessage(e)));
+		}
+		
+		return ResponseEntity.ok().body(new Response(true, "处理成功", user));
 	}
 
 	/**
