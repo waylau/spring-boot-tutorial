@@ -88,8 +88,7 @@ $(function() {
 	});
 	
 	// 删除用户
-	$(".blog-delete-user").click(function() {
-		
+	$("#rightContainer").on("click",".blog-delete-user", function () { 
 		// 获取 CSRF Token 
 		var csrfToken = $("meta[name='_csrf']").attr("content");
 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
@@ -110,7 +109,4 @@ $(function() {
 		     }
 		 });
 	});
-
- 
-	
 });
