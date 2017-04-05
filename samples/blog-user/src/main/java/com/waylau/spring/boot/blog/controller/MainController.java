@@ -53,7 +53,7 @@ public class MainController {
 	@GetMapping("/login-error")
 	public String loginError(Model model) {
 		model.addAttribute("loginError", true);
-		model.addAttribute("errorMsg", "登陆失败，用户名或者密码错误！");
+		model.addAttribute("errorMsg", "登陆失败，账号或者密码错误！");
 		return "login";
 	}
 	

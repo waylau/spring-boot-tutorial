@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<!-- Page Content -->
+<div class="container blog-content-container">
+
+    <div class="row">
+
+        <!-- 左侧栏目 -->
+        <div class="col-md-4 col-xl-3">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span>
+                      <a href="/u/waylau" title="waylau" >
+                        <img src="https://waylau.com/images/waylau_181_181.jpg" class="blog-avatar-230"
+                             alt="waylau">
+                      </a>
+                    </span>
+
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h2 class="card-text">老卫</h2>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h4 class="card-text">waylau</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row ">
+                <div class="col-md-12">
+                    <h5><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <a href="mailto:waylau521@gmail.com">waylau521@gmail.com</a></h5>
+                </div>
+            </div>
+ 
+        </div>
+        
+   
+
+        <!-- 右侧栏目 -->
+
+
+        <div class="col-md-8 col-xl-9">
+ 
+
+            <!-- 个人设置 -->
+            <div class="card ">
+ 				<h5 class="card-header"><i class="fa fa-cog" aria-hidden="true"></i> 个人设置</h5>
+                    <div class="card-block">
+						<form th:action="@{/u/admin/profile}" method="post" th:object="${userModel.user}" id="userForm">
+							<input type="hidden" name="id" th:value="*{id}" >
+							
+							<div class="form-group ">
+								<label for="username" class="col-form-label">账号</label>
+								<input type="text" class="form-control" id="username" name="username"  th:value="*{username}" readonly="readonly">
+						
+							</div>
+							<div class="form-group">
+								<label for="email" class="col-form-label">邮箱</label>
+								<input type="email" class="form-control" id="email" name="email" th:value="*{email}" maxlength="50" placeholder="请输入邮箱">
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-form-label">姓名</label>
+								<input type="text" class="form-control" id="name" name="name" th:value="*{name}" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
+							</div>
+							<div class="form-group">
+								<label for="password" class="col-form-label">密码</label>
+								<input type="password" class="form-control" id="password" name="password"  th:value="*{password}" maxlength="30" placeholder="请输入密码，字母或特殊符号和数字结合" >
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">保存</button>
+							</div>
+						</form>
+                        
+                    </div>
+            </div>
+
+        
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+</body>
+</html>

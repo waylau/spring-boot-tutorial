@@ -22,6 +22,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * User 实体
@@ -126,7 +128,9 @@ public class User implements UserDetails, Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		PasswordEncoder  encoder = new BCryptPasswordEncoder();
+		String encodePasswd = encoder.encode(password);
+		this.password = encodePasswd;
 	}
 
 	@Override

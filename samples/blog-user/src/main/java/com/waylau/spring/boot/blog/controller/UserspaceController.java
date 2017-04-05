@@ -1,10 +1,24 @@
 package com.waylau.spring.boot.blog.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.waylau.spring.boot.blog.domain.Authority;
+import com.waylau.spring.boot.blog.domain.User;
+import com.waylau.spring.boot.blog.service.UserService;
 
 /**
  * 用户主页空间控制器.
@@ -15,13 +29,46 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/u")
 public class UserspaceController {
- 
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private UserService userService;
+	
 	@GetMapping("/{username}")
 	public String userSpace(@PathVariable("username") String username) {
 		System.out.println("username" + username);
 		return "u";
 	}
  
+	@GetMapping("/{username}/profile")
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public ModelAndView profile(@PathVariable("username") String username, Model model) {
+		System.out.println("username" + username);
+		User  user = (User)userDetailsService.loadUserByUsername(username);
+		model.addAttribute("user", user);
+		return new ModelAndView("profile", "userModel", model);
+	}
+ 
+	/**
+	 * 保存个人设置
+	 * @param user
+	 * @param result
+	 * @param redirect
+	 * @return
+	 */
+	@PostMapping("/{username}/profile")
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public String saveProfile(@PathVariable("username") String username,User user) {
+		System.out.println("username" + username);
+		User oldUser = userService.getUserById(user.getId());
+		oldUser.setEmail(user.getEmail());
+		oldUser.setName(user.getName());
+		oldUser.setPassword(user.getPassword());
+		userService.saveUser(oldUser);
+		return "redirect:/u/" + username + "/profile";
+	}
+	
 	@GetMapping("/{username}/blogs")
 	public String listBlogsByOrder(@PathVariable("username") String username,
 			@RequestParam(value="order",required=false,defaultValue="new") String order,

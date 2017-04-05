@@ -67,13 +67,20 @@
                 </form>
 
             </ul>
-            <div sec:authorize="isAuthenticated()">
-
-                <form action="/logout" th:action="@{/logout}" method="post">
-                    <a class="my-2 my-sm-0" href="/u/waylau"><span sec:authentication="name"></span></a>
-                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="退出"/>
-                </form>
+            <div sec:authorize="isAuthenticated()"  class="row" >
+				<div class="dropdown">
+					<a class=" dropdown-toggle" href="/u/waylau" data-toggle="dropdown"><span sec:authentication="name"></span></a>
+					<div class="dropdown-menu" >
+						<a class="dropdown-item" href="/u/waylau/profile">个人设置</a>
+					</div>
+				</div>
+				<form action="/logout" th:action="@{/logout}" method="post">
+					<input class="btn btn-outline-success " type="submit" value="退出">
+				</form>
             </div>
+ 
+                
+
             <div sec:authorize="isAnonymous()">
                 <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</a>
                 <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</a>
