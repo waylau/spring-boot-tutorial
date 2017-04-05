@@ -1,5 +1,5 @@
 /*!
- * Bolg main JS.
+  * Bolg main JS.
  * 
  * @since: 1.0.0 2017/3/9
  * @author Way Lau <https://waylau.com>
@@ -27,7 +27,7 @@ $(function() {
 				 $("#mainContainer").html(data);
 		     },
 		     error : function() {
-		         alert("error");
+		    	 toastr.error("error!");
 		     }
 		 });
 	}
@@ -51,7 +51,7 @@ $(function() {
 				 $("#userFormContainer").html(data);
 		     },
 		     error : function(data) {
-		         alert("error");
+		    	 toastr.error("error!");
 		     }
 		 });
 	});
@@ -64,7 +64,7 @@ $(function() {
 				 $("#userFormContainer").html(data);
 		     },
 		     error : function() {
-		         alert("error");
+		    	 toastr.error("error!");
 		     }
 		 });
 	});
@@ -81,12 +81,12 @@ $(function() {
 					 // 从新刷新主界面
 					 getUersByName(0, _pageSize);
 				 } else {
-					 alert(data.message);
+					 toastr.error(data.message);
 				 }
 
 		     },
 		     error : function() {
-		         alert("error");
+		    	 toastr.error("error!");
 		     }
 		 });
 	});
@@ -109,11 +109,11 @@ $(function() {
 					 // 从新刷新主界面
 					 getUersByName(0, _pageSize);
 				 } else {
-					 alert(data.message);
+					 toastr.error(data.message);
 				 }
 		     },
 		     error : function() {
-		         alert("error");
+		    	 toastr.error("error!");
 		     }
 		 });
 	});
