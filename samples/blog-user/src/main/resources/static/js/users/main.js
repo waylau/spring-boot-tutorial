@@ -105,8 +105,12 @@ $(function() {
                  request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token 
              },
 			 success: function(data){
-				 // 从新刷新主界面
-				 getUersByName(0, _pageSize);
+				 if (data.success) {
+					 // 从新刷新主界面
+					 getUersByName(0, _pageSize);
+				 } else {
+					 alert(data.message);
+				 }
 		     },
 		     error : function() {
 		         alert("error");

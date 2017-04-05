@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -105,9 +104,13 @@ public class UserController {
 	 * @return
 	 */
 	@DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id, Model model) {
-		userService.removeUser(id);
-		return  ResponseEntity.ok().body( "删除成功！");
+    public ResponseEntity<Response> delete(@PathVariable("id") Long id, Model model) {
+		try {
+			userService.removeUser(id);
+		} catch (Exception e) {
+			return  ResponseEntity.ok().body( new Response(false, e.getMessage()));
+		}
+		return  ResponseEntity.ok().body( new Response(true, "处理成功"));
 	}
 	
 	/**
