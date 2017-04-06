@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,11 +63,20 @@ public class UserspaceController {
 	@PreAuthorize("authentication.name.equals(#username)") 
 	public String saveProfile(@PathVariable("username") String username,User user) {
 		System.out.println("username" + username);
-		User oldUser = userService.getUserById(user.getId());
-		oldUser.setEmail(user.getEmail());
-		oldUser.setName(user.getName());
-		oldUser.setPassword(user.getPassword());
-		userService.saveUser(oldUser);
+		User originalUser = userService.getUserById(user.getId());
+		originalUser.setEmail(user.getEmail());
+		originalUser.setName(user.getName());
+		
+		// 判断密码是否做了变更
+		String rawPassword = originalUser.getPassword();
+		PasswordEncoder  encoder = new BCryptPasswordEncoder();
+		String encodePasswd = encoder.encode(user.getPassword());
+		boolean isMatch = encoder.matches(rawPassword, encodePasswd);
+		if (!isMatch) {
+			originalUser.setEncodePassword(user.getPassword());
+		}
+		
+		userService.saveUser(originalUser);
 		return "redirect:/u/" + username + "/profile";
 	}
 	

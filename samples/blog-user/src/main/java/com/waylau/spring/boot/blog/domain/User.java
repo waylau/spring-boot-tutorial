@@ -128,11 +128,15 @@ public class User implements UserDetails, Serializable {
 	}
 
 	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEncodePassword(String password) {
 		PasswordEncoder  encoder = new BCryptPasswordEncoder();
 		String encodePasswd = encoder.encode(password);
 		this.password = encodePasswd;
 	}
-
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
