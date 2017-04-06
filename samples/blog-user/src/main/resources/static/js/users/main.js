@@ -57,7 +57,7 @@ $(function() {
 	});
 	
 	// 获取编辑用户的界面
-	$(".blog-edit-user").click(function() {
+	$("#rightContainer").on("click",".blog-edit-user", function () { 
 		$.ajax({ 
 			 url: "/users/edit/" + $(this).attr("userId"), 
 			 success: function(data){
@@ -68,7 +68,6 @@ $(function() {
 		     }
 		 });
 	});
-	
 	
 	// 提交变更后，清空表单
 	$("#submitEdit").click(function() {
