@@ -1,6 +1,7 @@
 package com.waylau.spring.boot.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.waylau.spring.boot.blog.domain.User;
 import com.waylau.spring.boot.blog.service.UserService;
+import com.waylau.spring.boot.blog.vo.Response;
 
 /**
  * 用户主页空间控制器.
@@ -43,7 +45,7 @@ public class UserspaceController {
 	public ModelAndView profile(@PathVariable("username") String username, Model model) {
 		User  user = (User)userDetailsService.loadUserByUsername(username);
 		model.addAttribute("user", user);
-		return new ModelAndView("profile", "userModel", model);
+		return new ModelAndView("/userspace/profile", "userModel", model);
 	}
  
 	/**
@@ -72,6 +74,40 @@ public class UserspaceController {
 		userService.saveUser(originalUser);
 		return "redirect:/u/" + username + "/profile";
 	}
+	
+	/**
+	 * 获取编辑头像的界面
+	 * @param username
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/{username}/avatar")
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public ModelAndView avatar(@PathVariable("username") String username, Model model) {
+		User  user = (User)userDetailsService.loadUserByUsername(username);
+		model.addAttribute("user", user);
+		return new ModelAndView("/userspace/avatar", "userModel", model);
+	}
+	
+	
+	/**
+	 * 获取编辑头像的界面
+	 * @param username
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/{username}/avatar")
+	@PreAuthorize("authentication.name.equals(#username)") 
+	public ResponseEntity<Response> saveAvatar(@PathVariable("username") String username, User user) {
+		String avatarUrl = user.getAvatar();
+		
+		User originalUser = userService.getUserById(user.getId());
+		originalUser.setAvatar(avatarUrl);
+		userService.saveUser(originalUser);
+		
+		return ResponseEntity.ok().body(new Response(true, "处理成功", avatarUrl));
+	}
+	
 	
 	@GetMapping("/{username}/blogs")
 	public String listBlogsByOrder(@PathVariable("username") String username,

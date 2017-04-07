@@ -16,6 +16,16 @@
 * user space : 用户主页空间
 	* /u/{username} : 具体某个用户的主页
 		* username : 用户账号
+	* /u/{username}/profile ： GET 获取个人设置页面
+		* username : 用户账号
+	* /u/{username}/profile ： POST 保存个人设置
+		* username : 用户账号
+		* User : 待保存的对象
+	* /u/{username}/avatar ：GET 获取个人头像
+		* username : 用户账号
+	* /u/{username}/avatar ： POST 保存个人头像
+		* username : 用户账号
+		* User : 待保存的对象
 	* /u/{username}/blogs ： 查询用户博客，以下三个条件任选一个
 		* order: 排序类型， new/hot ， 默认是 new
 		* catalog : 博客分类 Id，默认是空

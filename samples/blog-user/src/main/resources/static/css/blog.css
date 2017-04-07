@@ -58,6 +58,12 @@
 	color: #d9534f;
 }
 
+/* blog avatar */
+.blog-avatar-img {
+  max-width: 100%; 
+}
+
+
 /* go to top */
 #goToTop{
   display:block;

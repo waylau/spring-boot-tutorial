@@ -16,4 +16,6 @@ public class HelloController {
 	public String hello() {
 	    return "Hello World! Welcome to visit waylau.com!";
 	}
+ 
 }
+ 

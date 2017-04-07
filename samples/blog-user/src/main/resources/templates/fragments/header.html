@@ -32,8 +32,11 @@
     <!-- bootstrap chosen CSS -->
     <link href="../../css/component-chosen.min.css" th:href="@{/css/component-chosen.min.css}" rel="stylesheet">
 
-    <!-- bootstrap chosen CSS -->
+    <!-- toastr CSS -->
     <link href="../../css/toastr.min.css" th:href="@{/css/toastr.min.css}" rel="stylesheet">
+    
+    <!-- jQuery image cropping plugin CSS -->
+    <link href="../../css/cropbox.css" th:href="@{/css/cropbox.css}" rel="stylesheet">
     
     <!-- Custom styles -->
     <link href="../../css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
@@ -69,9 +72,10 @@
             </ul>
             <div sec:authorize="isAuthenticated()"  class="row" >
 				<div class="dropdown">
-					<a class=" dropdown-toggle" href="/u/waylau" data-toggle="dropdown"><span sec:authentication="name"></span></a>
+					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="name"></span></a>
 					<div class="dropdown-menu" >
-						<a class="dropdown-item" href="/u/waylau/profile">个人设置</a>
+						<a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">个人主页</a> 
+						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人设置</a>
 					</div>
 				</div>
 				<form action="/logout" th:action="@{/logout}" method="post">

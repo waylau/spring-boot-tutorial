@@ -76,6 +76,8 @@ $(function() {
 			 type: 'POST',
 			 data:$('#userForm').serialize(),
 			 success: function(data){
+				 $('#userForm')[0].reset();  
+				 
 				 if (data.success) {
 					 // 从新刷新主界面
 					 getUersByName(0, _pageSize);

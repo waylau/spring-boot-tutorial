@@ -16,33 +16,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <span>
-                      <a href="/u/waylau" title="waylau" >
-                        <img src="https://waylau.com/images/waylau_181_181.jpg" class="blog-avatar-230"
+                    <a class="blog-edit-avatar" data-toggle="modal"
+								data-target="#flipFlop" role="button"
+								data-th-attr="userName=${userModel.user.username}">  
+								<img th:src="${userModel.user.avatar} == null ? 'https://avatars3.githubusercontent.com/u/3233966?v=3&s=460' : ${userModel.user.avatar} " class="blog-avatar blog-avatar-230"
                              alt="waylau">
+							</a>
+ 
+                        
                       </a>
                     </span>
 
                 </div>
 
-            </div>
-            <div class="row">
-
-                <div class="col-md-12">
-                    <h2 class="card-text">老卫</h2>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-md-12">
-                    <h4 class="card-text">waylau</h4>
-                </div>
-            </div>
-            <hr>
-            <div class="row ">
-                <div class="col-md-12">
-                    <h5><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        <a href="mailto:waylau521@gmail.com">waylau521@gmail.com</a></h5>
-                </div>
             </div>
  
         </div>
@@ -60,7 +46,7 @@
  				<h5 class="card-header"><i class="fa fa-cog" aria-hidden="true"></i> 个人设置</h5>
                     <div class="card-block">
 						<form th:action="@{/u/admin/profile}" method="post" th:object="${userModel.user}" id="userForm">
-							<input type="hidden" name="id" th:value="*{id}" >
+							<input type="hidden" name="id" id="userId" th:value="*{id}" >
 							
 							<div class="form-group ">
 								<label for="username" class="col-form-label">账号</label>
@@ -95,7 +81,33 @@
 </div>
 <!-- /.container -->
 
+<!-- The modal -->
+<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
+	aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="modalLabel">编辑头像</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+			</div>
+			<div class="modal-body" id="avatarFormContainer"></div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" data-dismiss="modal" id="submitEditAvatar">提交</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div th:replace="~{fragments/footer :: footer}">...</div>
+
+ 
+<!-- JavaScript -->
+<script src="../../js/userspace/main.js" th:src="@{/js/userspace/main.js}"></script>
+
 </body>
 </html>

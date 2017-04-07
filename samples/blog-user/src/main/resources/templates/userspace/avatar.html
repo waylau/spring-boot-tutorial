@@ -1,0 +1,71 @@
+ 
+ 
+    <style>
+        .cropImg {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-color: #ccc;
+            color: #fff;
+            line-height: 300px;
+            text-align: center;
+            border: 1px dashed rgba(0, 0, 0, .4);
+        }
+
+        .cropImg > img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            -moz-transform: translate3d(-50%, -50%, 0);
+            -ms-transform: translate3d(-50%, -50%, 0);
+            -o-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+        }
+    </style>
+ 
+ 
+<div id="cropImg" class="cropImg">
+    <span>图片剪切</span>
+    <img src="">
+</div>
+<div class="crop" id="crop">
+    <input type="file" accept="image/*" class="crop-input">
+    <div class="crop-mask"></div>
+    <div class="crop-wrap">
+        <div class="crop-wrap-content">
+            <div class="crop-wrap-thum"></div>
+            <div class="crop-wrap-spinner">Loading...</div>
+        </div>
+        <div class="crop-wrap-group">
+            <a href="javascript:;" class="croped">剪切</a>
+        </div>
+         <div class="crop-wrap-group">
+            <a href="javascript:;" class="zoomIn">放大</a>
+            <a href="javascript:;" class="zoomOut">缩小</a>
+        </div>
+ 
+    </div>
+</div>
+<form  enctype="multipart/form-data"  id="avatarformid"  >
+</form> 
+
+<script>
+    var crop = document.querySelector('#cropImg');
+    var cropNote = crop.querySelector('span');
+    var cropImg = crop.querySelector('img');
+
+    var cropper = new Cropper({
+        el: '#crop',
+        cp: '#cropImg',
+        callback: function (dataURL, dataBlob) {
+
+            cropNote.style.display = 'none';
+            cropImg.style.display = 'block';
+            cropImg.src = dataURL;
+        }
+    });
+    
+    
+</script>
+ 
