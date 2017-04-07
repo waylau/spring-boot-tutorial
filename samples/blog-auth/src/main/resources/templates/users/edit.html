@@ -1,0 +1,34 @@
+<div class="container">
+ 
+<form th:action="@{/users}" method="post" th:object="${userModel.user}" id="userForm">
+	<input type="hidden" name="id" th:value="*{id}">
+	
+	<div class="form-group ">
+		<label for="username" class="col-form-label">账号</label>
+		<input type="text" class="form-control" id="username" name="username"  th:value="*{username}" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
+
+	</div>
+	<div class="form-group">
+		<label for="email" class="col-form-label">邮箱</label>
+		<input type="email" class="form-control" id="email" name="email" th:value="*{email}" maxlength="50" placeholder="请输入邮箱">
+	</div>
+	<div class="form-group">
+		<label for="name" class="col-form-label">姓名</label>
+		<input type="text" class="form-control" id="name" name="name" th:value="*{name}" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
+	</div>
+	<div class="form-group">
+		<label for="password" class="col-form-label">密码</label>
+		<input type="password" class="form-control" id="password" name="password"  th:value="*{password}" maxlength="30" placeholder="请输入密码，字母或特殊符号和数字结合" >
+	</div>
+	<div class="form-group">
+		<label for="authorities" class="col-form-label">角色</label>
+  		<select id="authorities" name="authorityId" class="form-control form-control-chosen" data-placeholder="请选择">
+		  <option value="1" data-th-selected="${#strings.contains(userModel.user.authorities[0],'ROLE_ADMIN')}">管理员</option>
+		  <option value="2" data-th-selected="${#strings.contains(userModel.user.authorities[0],'ROLE_USER')}">博主</option>
+		</select>
+	</div>
+</form>
+ 
+</div>
+<!-- /.container -->
+ 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<!-- Page Content -->
+<div class="container blog-content-container">
+
+    <div class="row">
+
+        <!-- 左侧栏目 -->
+        <div class="col-md-4 col-xl-3">
+
+            
+	      <!-- 分类 -->
+	        <div class="card ">
+	            <h5 class="card-header"><i class="fa fa-bars" aria-hidden="true"></i> 菜单</h5>
+	
+	            <ul class="list-group blog-menu"  th:each="menu : ${model.list}">
+	                <a href="javascript:void(0)" class="list-group-item "  th:title="${menu.name}" th:text="${menu.name}"
+	                data-th-attr="url=${menu.url}">
+	                   	 用户管理
+	                </a>
+	        </div>
+ 
+        </div>
+        
+   
+
+        <!-- 右侧栏目 -->
+
+
+        <div class="col-md-8 col-xl-9">
+            <div class="card" id="rightContainer">
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+
+<!-- JavaScript -->
+<script src="../../js/admins/main.js" th:src="@{/js/admins/main.js}"></script>
+
+</body>
+</html>

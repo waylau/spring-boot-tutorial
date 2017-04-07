@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+<!-- Page Content -->
+<div class="container blog-content-container">
+
+    <div class="row">
+
+        <!-- 左侧栏目 -->
+        <div class="col-md-4 col-xl-3">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span>
+                    <a class="blog-edit-avatar" data-toggle="modal"
+								data-target="#flipFlop" role="button"
+								data-th-attr="userName=${userModel.user.username}">  
+								<img th:src="${userModel.user.avatar} == null ? 'https://avatars3.githubusercontent.com/u/3233966?v=3&s=460' : ${userModel.user.avatar} " class="blog-avatar blog-avatar-230"
+                             alt="waylau">
+							</a>
+ 
+                        
+                      </a>
+                    </span>
+
+                </div>
+
+            </div>
+ 
+        </div>
+        
+   
+
+        <!-- 右侧栏目 -->
+
+
+        <div class="col-md-8 col-xl-9">
+ 
+
+            <!-- 个人设置 -->
+            <div class="card ">
+ 				<h5 class="card-header"><i class="fa fa-cog" aria-hidden="true"></i> 个人设置</h5>
+                    <div class="card-block">
+						<form th:action="@{/u/admin/profile}" method="post" th:object="${userModel.user}" id="userForm">
+							<input type="hidden" name="id" id="userId" th:value="*{id}" >
+							
+							<div class="form-group ">
+								<label for="username" class="col-form-label">账号</label>
+								<input type="text" class="form-control" id="username" name="username"  th:value="*{username}" readonly="readonly">
+						
+							</div>
+							<div class="form-group">
+								<label for="email" class="col-form-label">邮箱</label>
+								<input type="email" class="form-control" id="email" name="email" th:value="*{email}" maxlength="50" placeholder="请输入邮箱">
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-form-label">姓名</label>
+								<input type="text" class="form-control" id="name" name="name" th:value="*{name}" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
+							</div>
+							<div class="form-group">
+								<label for="password" class="col-form-label">密码</label>
+								<input type="password" class="form-control" id="password" name="password"  th:value="*{password}" maxlength="30" placeholder="请输入密码，至少3个字符，至多30个" >
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">保存</button>
+							</div>
+						</form>
+                        
+                    </div>
+            </div>
+
+        
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<!-- The modal -->
+<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
+	aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="modalLabel">编辑头像</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+			</div>
+			<div class="modal-body" id="avatarFormContainer"></div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" data-dismiss="modal" id="submitEditAvatar">提交</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+
+ 
+<!-- JavaScript -->
+<script src="../../js/userspace/main.js" th:src="@{/js/userspace/main.js}"></script>
+
+</body>
+</html>
