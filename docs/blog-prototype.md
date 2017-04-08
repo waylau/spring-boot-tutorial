@@ -30,8 +30,16 @@
 		* order: 排序类型， new/hot ， 默认是 new
 		* catalog : 博客分类 Id，默认是空
 		* keyword : 搜索关键字。博客的标签，即为关键字
-	* /u/{username}/blogs/edit : 获取编辑界面
-	* /u/{username}/blogs/edit/{id} : 编辑某个博客
+	* /u/{username}/blogs/edit : GET 获取新增博客的界面
+		* username : 用户账号
+	* /u/{username}/blogs/edit : POST 新增、编辑博客
+		* username : 用户账号
+		* Blog ：待保存的博客对象
+	* /u/{username}/blogs/edit/{id} : GET 获取编辑博客的界面
+		* username : 用户账号
+		* id : 博客的 id
+	* /u/{username}/blogs/edit/{id} : DELETE 删除博客
+		* username : 用户账号
 		* id : 博客的 id
 * search ： 搜索
 	* /search
