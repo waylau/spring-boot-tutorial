@@ -9,7 +9,12 @@
 * 创建标签
 * 删除标签
 * 博客与标签关联
-* 按照标签查询博客
+* 按照标签查询博客:在之前关键字搜索的基础上，扩展，对 tags 字段进行查询
+
+
+## 环境
+
+* jQuery Tags Input Plugin:<https://github.com/xoxco/jQuery-Tags-Input>
 
 ## build.gradle
 
