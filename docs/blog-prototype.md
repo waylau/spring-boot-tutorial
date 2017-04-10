@@ -30,6 +30,9 @@
 		* order: 排序类型， new/hot ， 默认是 new
 		* catalog : 博客分类 Id，默认是空
 		* keyword : 搜索关键字。博客的标签，即为关键字
+		* async : 是否异步请求页面
+		* pageIndex
+		* pageSize
 	* /u/{username}/blogs/edit : GET 获取新增博客的界面
 		* username : 用户账号
 	* /u/{username}/blogs/edit : POST 新增、编辑博客
@@ -52,6 +55,42 @@
 	* /register :GET 获取注册的界面
 	* /register :POST 注册 ， 注册成功跳转至 登录界面
 * users : 用户管理
-	* /users : 用户列表
-	* /users/{id} :具体某个用户的主页
+	* /users : GET 用户列表
+		* async : 是否异步请求页面
+		* pageIndex
+		* pageSize
+		* name : 用户名称的关键字
+	* /users/add : GET 用户新增页面
+	* /users : POST 保存用户
+		* user : 待保存用户信息
+		* authorityId ： 角色 ID
+	* /users/{id} : DELETE  删除用户
+		* id :  用户 id
+	* /users/edit/{id} :获取具体某个用户编辑界面
 		* id ：某个用户的id
+* comments : 评论管理
+	* /comments :  GET 获取评论列表
+		* blogId : 博客id
+	* /comments :  POST 保存评论
+		* blogId : 博客id
+		* commentContent ： 评论内容
+	* /comments/{id} : DELETE  删除评论
+		* id :  评论id
+		* blogId : 博客id
+* votes : 点赞管理
+	* /votes :  POST 保存点赞
+		* blogId : 博客id
+	* /votes/{id} : DELETE  删除点赞
+		* id :  点赞id
+		* blogId : 博客id
+* catalogs : 分类管理
+	* /catalogs :  GET 获取用户分类列表
+		* username : 用户账号
+	* /catalogs :  POST 保存用户分类
+		* username : 用户账号
+		* CatalogVO ： 含 username、Catalog
+	* /catalogs/edit : GET  获取编辑分类的界面
+	* /catalogs/edit/{id} : GET  获取某ID分类的编辑界面
+	* /catalogs/{id} : DELETE  删除分类
+		* id :  分类id
+		* username : 用户账号
