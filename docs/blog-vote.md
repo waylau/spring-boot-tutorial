@@ -1,4 +1,4 @@
-# 博客系统的权限管理实现
+# 博客系统的点赞管理实现
 
 
 在 `blog-comment`项目基础上，我们构建了一个新的项目`blog-vote`。
@@ -9,11 +9,7 @@
 * 发表点赞
 * 取消点赞
 * 統計点赞數
-
-
-## 环境
-
-* Markdown parser for the JVM ： 0.16  
+ 
 
 ## build.gradle
 

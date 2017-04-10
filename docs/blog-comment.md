@@ -1,4 +1,4 @@
-# 博客系统的权限管理实现
+# 博客系统的评论管理实现
 
 
 在 `blog-blog`项目基础上，我们构建了一个新的项目`blog-comment`。
@@ -10,10 +10,6 @@
 * 删除评论
 * 統計评论數
 
-
-## 环境
-
-* Markdown parser for the JVM ： 0.16  
 
 ## build.gradle
 
