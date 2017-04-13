@@ -10,9 +10,10 @@
 * index : 主页，含最新、最热文章，最热标签、最热用户等
 	* /blogs
 		* order: 排序类型， new/hot ， 默认是 new
-		* tag : 博客标签，默认是空
-	* ~~/blogs/{id} :具体某篇博客~~
-		~~* id ：某篇博客的id~~
+		* keyword : 搜索关键字。博客的标签，即为关键字
+		* async : 是否异步请求页面
+		* pageIndex
+		* pageSize
 * user space : 用户主页空间
 	* /u/{username} : 具体某个用户的主页
 		* username : 用户账号
@@ -44,10 +45,6 @@
 	* /u/{username}/blogs/edit/{id} : DELETE 删除博客
 		* username : 用户账号
 		* id : 博客的 id
-* search ： 搜索
-	* /search
-		* q : 搜索关键字
-	* /keywords : 最热搜索关键字列表
 * login : 登录
 	* /login  :GET 获取登录的界面
 	* /login  :POST 登录
