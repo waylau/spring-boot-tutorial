@@ -93,6 +93,7 @@ public class MediaTypeController {
 	}
 
 }
+```
 
 ## 返回 JSON 类型 
 
@@ -187,7 +188,7 @@ public class UserVO {
 
 在我们运行程序后，我们可以对<http://localhost:8080/user> 接口进行测试。
 
-我们在 RESTClient 中的 Request Header 中设置 “Content-Type”为 “application/xml”，这样就能告诉后台接口，我想要的是 XML 数据。
+我们在 RESTClient 中的 Request Header 中设置 “Accept”为 “text/xml，这样就能告诉后台接口，我想要的是 XML 数据。
 
 
 ![](../images/media-type/media-type-request-header.jpg)
@@ -197,5 +198,5 @@ public class UserVO {
 ![](../images/media-type/media-type-get-xml.jpg)
 
 
-RESTClient 也可以测试其他数据类型，比如，如果想要获得 JSON 数据，则将 “Content-Type”设置为 “application/json”
+RESTClient 也可以测试其他数据类型，比如，如果想要获得 JSON 数据，则将 “Accept”设置为 “application/json”
 即可。
