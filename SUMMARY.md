@@ -48,30 +48,7 @@ This is the summary of my book.
 	* Spring Security 简介
 	* [Spring Security 与 Spring Boot 集成](docs/security-integration.md)
 	* [Spring Security 实战](docs/security-in-action.md)
-* [博客系统的用户管理实现](docs/blog-user.md)
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统的角色管理实现
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统的权限管理实现
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统的博客管理实现
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统的评论管理实现
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统的分类管理实现
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统的标签管理实现
-	* 后台实现及单元测试
-	* 前台实现、测试
-* 博客系统总结
-	* 集成测试
-	* 总结
+* [用户管理实现](docs/blog-user.md)
 * [参考资料](docs/references.md)
 * To be continued ...未完待续...
 
