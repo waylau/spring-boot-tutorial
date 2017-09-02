@@ -28,7 +28,7 @@ Spring Boot 主要的目标是：
 
 ### 与 Spring 框架的关系
 
-Spring 框架的关系通过 IOC机智来管理bean。Spring Boot 依赖 Spring 框架来管理对象的依赖。 Spring Boot并不是Spring的精简版本，而是为使用Spring做好各种产品级准备。
+Spring 框架的关系通过 IOC 机制来管理bean。Spring Boot 依赖 Spring 框架来管理对象的依赖。 Spring Boot并不是Spring的精简版本，而是为使用Spring做好各种产品级准备。
 
 ### 与 SpringMVC 框架的关系
 
