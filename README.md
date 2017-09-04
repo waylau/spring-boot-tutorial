@@ -7,29 +7,43 @@ Let's [READ](SUMMARY.md)!
 
 Spring Boot Tutorial 是一本关于 Spring Boot 学习的开源书。利用业余时间写了本书，图文并茂，用大量实例带你一步一步走进 Spring Boot 的世界。如有疏漏欢迎指正，欢迎提问。感谢您的参与！
  
-### Get Started 如何开始阅读
+## Get Started 如何开始阅读
 
 选择下面入口之一：
 
 * <https://github.com/waylau/spring-boot-tutorial/> 的 [SUMMARY.md](SUMMARY.md)（源码）
 * <http://waylau.gitbooks.io/spring-boot-tutorial/> 点击 Read 按钮（同步更新，国内访问速度一般）
  
-### Watch Videos 教学视频
+## Watch Videos 教学视频
 
 本课程另有视频版本，可供学习<http://coding.imooc.com/class/125.html>
 
-### Code 源码
+## Code 源码
 
 书中所有示例源码，移步至<https://github.com/waylau/spring-boot-tutorial>  `samples` 目录下
 
-### Issue 意见、建议
+## Issue 意见、建议
 
 如有勘误、意见或建议欢迎拍砖 <https://github.com/waylau/spring-boot-tutorial/issues>
 
-### Contact 联系作者:
+## 联系作者:
 
-* Blog: [waylau.com](http://waylau.com)
-* Gmail: [waylau521(at)gmail.com](mailto:waylau521@gmail.com)
-* Weibo: [waylau521](http://weibo.com/waylau521)
-* Twitter: [waylau521](https://twitter.com/waylau521)
-* Github : [waylau](https://github.com/waylau)
+您也可以直接联系我：
+
+* 博客：https://waylau.com
+* 邮箱：[waylau521(at)gmail.com](mailto:waylau521@gmail.com)
+* 微博：http://weibo.com/waylau521
+* 开源：https://github.com/waylau
+
+## 其他书籍
+
+若您对本书不感冒，笔者还写了其他方面的超过一打的书籍（可见<https://waylau.com/books/>），多是开源电子书。
+
+本人也维护了一个[books-collection](https://github.com/waylau/books-collection)项目，里面提供了优质的专门给程序员的开源、免费图书集合。
+
+## 开源捐赠
+
+
+![开源捐赠](https://waylau.com/images/showmethemoney-sm.jpg)
+
+捐赠所得所有款项将用于开源事业！
