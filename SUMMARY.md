@@ -26,6 +26,7 @@ This is the summary of my book.
 	* [Spring Data JPA 用法介绍](docs/jpa-sping-data-jpa.md)
 	* [MySQL 安装及使用](docs/jpa-mysql.md)
 	* [Spring Data JPA、Hiberate 与 Spring Boot 集成](docs/jpa-integration.md)
+	* [Spring Boot 设置 Hibernate DDL](https://waylau.com/spring-boot-with-hibernate-ddl/)
 	* [数据持久化实战](docs/jpa-in-action.md)
 * 架构设计与分层
 	* 为什么需要分层
