@@ -14,10 +14,6 @@ Spring Boot Tutorial 是一本关于 Spring Boot 学习的开源书。利用业�
 * <https://github.com/waylau/spring-boot-tutorial/> 的 [SUMMARY.md](SUMMARY.md)（源码）
 * <http://waylau.gitbooks.io/spring-boot-tutorial/> 点击 Read 按钮（同步更新，国内访问速度一般）
  
-## Watch Videos 教学视频
-
-本课程另有视频版本，可供学习<http://coding.imooc.com/class/125.html>
-
 ## Code 源码
 
 书中所有示例源码，移步至<https://github.com/waylau/spring-boot-tutorial>  `samples` 目录下
@@ -34,6 +30,14 @@ Spring Boot Tutorial 是一本关于 Spring Boot 学习的开源书。利用业�
 * 邮箱：[waylau521(at)gmail.com](mailto:waylau521@gmail.com)
 * 微博：http://weibo.com/waylau521
 * 开源：https://github.com/waylau
+
+## 相关资料
+
+其他与 Spring Boot 相关的学习资料还有：
+
+* 基于Spring Boot的博客系统实战（视频）：<http://coding.imooc.com/class/125.html>
+* Spring Cloud 教程：<https://github.com/waylau/spring-cloud-tutorial>
+* 基于Spring Cloud的微服务实战（视频）：<https://coding.imooc.com/class/177.html>
 
 ## 其他书籍
 
