@@ -38,6 +38,8 @@ Spring Boot Tutorial 是一本关于 Spring Boot 学习的开源书。利用业�
 * 基于Spring Boot的博客系统实战（视频）：<http://coding.imooc.com/class/125.html>
 * Spring Cloud 教程：<https://github.com/waylau/spring-cloud-tutorial>
 * 基于Spring Cloud的微服务实战（视频）：<https://coding.imooc.com/class/177.html>
+* Spring Boot 企业级应用开发实战（书籍）：<https://github.com/waylau/spring-boot-enterprise-application-development>
+* Spring Cloud 微服务架构开发实战（书籍）：<https://github.com/waylau/spring-cloud-microservices-development>
 
 ## 其他书籍
 
