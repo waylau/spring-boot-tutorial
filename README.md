@@ -18,6 +18,9 @@ Spring Boot Tutorial 是一本关于 Spring Boot 学习的开源书。利用业�
 
 书中所有示例源码，移步至<https://github.com/waylau/spring-boot-tutorial>  `samples` 目录下
 
+
+* [使用ProGuard插件proguard-maven-plugin进行代码混淆](samples/proguard-maven-plugin-spring-boot-example)
+
 ## Issue 意见、建议
 
 如有勘误、意见或建议欢迎拍砖 <https://github.com/waylau/spring-boot-tutorial/issues>

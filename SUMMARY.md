@@ -50,6 +50,7 @@ This is the summary of my book.
 	* [Spring Security 与 Spring Boot 集成](docs/security-integration.md)
 	* [Spring Security 实战](docs/security-in-action.md)
 * [用户管理实现](docs/blog-user.md)
+* [使用ProGuard插件proguard-maven-plugin对Spring Boot应用进行代码混淆](https://waylau.com/use-proguard-maven-plugin-to-obfuscate-the-spring-boot-program)
 * [参考资料](docs/references.md)
 * To be continued ...未完待续...
 
